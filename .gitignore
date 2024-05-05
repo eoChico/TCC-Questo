@@ -1,0 +1,8 @@
+*.pyc
+
+db.sqlite3
+
+*.swp  # Arquivos temporários do Vim
+*.tmp  # Arquivos temporários
+__pycache__/  # Diretório de cache do Python
+ 

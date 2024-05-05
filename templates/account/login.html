@@ -1,0 +1,59 @@
+{%load static%}
+{% load i18n %}
+{% load allauth account %}
+{% block content %}
+<title>Entrar</title>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<div class="main-login">
+    <div class="left-login">
+        <h1>Desperte sua produtividade e <br>  mantenha-se organizado</h1>
+        <img src="{% static 'img/login_background.svg'%}" class="left-login-image" alt="background">
+    </div>
+    <div class="right-login">
+        <div class="card-login">
+            {% element h1 %}
+            {% trans "Login" %}
+            {% endelement %}
+
+            {% url 'account_login' as login_url %}
+            <form method="post" action="{{ login_url }}" class="login-form">
+                {% csrf_token %}
+                {% for field in form %}
+                {% if field.name != 'remember' %} 
+                <div class="form-group">
+                    <div class="textfield">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                        {% if field.name == 'password' %}
+                        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control"
+                            placeholder="{% trans 'Digite sua senha' %}" />
+
+                        {% else %}
+                        {# Adicione condições para outros campos conforme necessário #}
+                        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control"
+                            placeholder="{% trans 'Digite seu nome de user' %}" />
+                        {% endif %}
+
+
+
+                        {% endif %}
+                        {% endfor %}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <button type="submit">{% trans "Logar" %}</button>
+                        <div class="link-urls">
+                            <a href="{% url 'account_reset_password' %}">{% trans 'Esqueceu sua senha?' %}</a>
+                            {% blocktrans %}
+                            <a href="{{ signup_url }}">Cadastrar-se</a>{% endblocktrans %}
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            {% endif %}
+            {% endblock content %}
+        </div>
+    </div>
+</div>

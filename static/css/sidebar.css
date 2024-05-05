@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*
+roxo 4d1980
+fundo escuro 28232d
+ */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #28232d;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100%;
+    background-color: #4d1980;
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10 rgba(0, 0, 0, 0.2);
+    color: #fff;
+    padding: 6px 14px;
+    transition: 0.5s;
+}
+
+.sidebar.active {
+    width: 260px;
+}
+
+.sidebar .menu {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    color: #fff;
+}
+
+.sidebar .menu .logo {
+    opacity: 0;
+    font-size: 25px;
+    color: #fff;
+}
+
+.sidebar.active .menu .logo {
+    opacity: 1;
+    transition-delay: .3s;
+}
+
+.sidebar .menu .toggle-btn {
+    position: absolute;
+    left: 30%;
+    font-size: 27px;
+    cursor: pointer;
+    padding: 3px;
+    transition: 0.5s;
+}
+
+.sidebar.active .menu .toggle-btn {
+    position: absolute;
+    left: 83%;
+    font-size: 27px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.sidebar .list {
+    margin-top: 10px;
+}
+
+.sidebar .list-item {
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+}
+
+.sidebar .list-item a {
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    background: rgba(255, 255, 255, .2);
+}
+
+.sidebar .list-item i {
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 40px;
+    padding-top: 5px;
+}
+
+.sidebar .name {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.sidebar.active .name {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+#content {
+    margin-left: 80px;
+    /* ou a largura da sua barra lateral */
+    padding: 20px;
+    /* ou a quantidade de preenchimento desejada */
+}
+
+.logout{
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+}
+.logout a {
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    position:absolute;
+    bottom: 10px;
+}
+
+.logout i{
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 40px;
+    padding-top: 5px;
+}

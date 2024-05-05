@@ -1,0 +1,401 @@
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+#formulario {
+    display: none;
+}
+
+textarea {
+    resize: none;
+}
+
+h3 {
+    font-weight: 300;
+}
+
+.main {
+    display: flex;
+    height: 95vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 1000px;
+    min-height: 520px;
+    margin: 0 auto;
+    padding: 25px;
+    display: flex;
+    border-radius: 15px;
+    background-color: #d9d9d9;
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.calendar {
+    position: relative;
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.calendar .month {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.calendar .month .prev,
+.calendar .month .next {
+    padding: 7px 10px;
+    background-color: #eee;
+    border: 2px solid #eee;
+    border-radius: 15px;
+}
+
+.calendar .month .prev:hover,
+.calendar .month .next:hover {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    cursor: pointer;
+}
+
+.calendar .weekdays {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.calendar .weekdays div {
+    width: 14.28%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar .days {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.calendar .days .day {
+    width: 14.28%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+}
+
+.calendar .days .day:hover:not(.today, .active) {
+    border: 1px solid #aaa;
+    border-radius: 15px;
+}
+
+.calendar .days .today {
+    background-color: #ae81d6;
+    border-radius: 15px;
+    position: relative;
+}
+
+.calendar .days .active {
+    background-color: #6a0dad;
+    color: #fff;
+    border-radius: 15px;
+    position: relative;
+}
+
+.calendar .days .inactive {
+    cursor: not-allowed;
+    color: #bbb;
+}
+
+.calendar .days .event {
+    position: relative;
+}
+
+.calendar .days .active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 0 10px 2px #5865f2;
+}
+
+.calendar .day.event::after {
+    content: '';
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    /* largura da barra */
+    height: 6px;
+    /* altura da barra */
+    background-color: #6a0dad;
+    /* cor da barra */
+    border-radius: 30px;
+
+    /* borda arredondada */
+}
+
+.container .right {
+    display: flex;
+    position: relative;
+    width: 45%;
+    min-height: 70%;
+    padding-top: 2px;
+    padding-left: 30px;
+}
+
+.right .today-date {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.today-date .event-day {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-right: 200px;
+    color: #2f1c48;
+}
+
+.today-date .event-date {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #2f1c48;
+}
+
+.btn-save {
+    height: 30px;
+    width: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7ebd53;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-save:hover {
+    background-color: #f0f0f0;
+    /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+    color: #000;
+}
+
+.btn-newform {
+    height: 40px;
+    width: 40px;
+    margin-left: 90%;
+    margin-top: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7ebd53;
+    color: #fff;
+    border-radius: 15px;
+    position: absolute;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.btn-newform:hover {
+    background-color: #f0f0f0;
+    /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+    color: #000;
+}
+
+.btn-edit {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5e81ac;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: #f0f0f0;
+    /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+    color: #000;
+}
+
+.btn-delet {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b0413e;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-delet:hover {
+    background-color: #f0f0f0;
+    /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+    color: #000;
+}
+
+.modal-form {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
+.modal-edit {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
+.modal-delet {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
+.modal-content-form {
+    background-color: #28232d;
+    color: #fff;
+    margin: 7% auto;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 21%;
+    animation: modal-in 0.3s ease-in-out;
+    /* Add animation for modal entrance */
+}
+
+.modal-content-edit {
+    background-color: #28232d;
+    color: #fff;
+    margin: 7% auto;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 21%;
+    animation: modal-in 0.3s ease-in-out;
+    /* Add animation for modal entrance */
+}
+
+.modal-content-delet {
+    background-color: #28232d;
+    color: #fff;
+    margin: 7% auto;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 21%;
+    animation: modal-in 0.3s ease-in-out;
+    /* Add animation for modal entrance */
+}
+
+.form-control {
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+@keyframes modal-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Close button styles */
+.fechar {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -10px
+}
+
+.fechar:hover,
+.fechar:focus {
+    color: #aaa;
+    text-decoration: none;
+    cursor: pointer;
+}

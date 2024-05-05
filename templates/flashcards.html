@@ -1,0 +1,323 @@
+{% extends "side_bar.html" %}
+
+{% block title%}
+Flashcards
+{%endblock%}
+{%block head%}
+<style>
+    .container {
+        font-family: 'Poppins', sans-serif;
+        background-color: #5865f2;
+        padding: 20px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 27px;
+        font-weight: 500;
+    }
+
+    .deck {
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+        background-color: white;
+        border-radius: 5px;
+        margin: 7px;
+        padding: 5px;
+    }
+
+    .btn-new {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7ebd53;
+        color: #fff;
+        border-radius: 15px;
+        position: flex;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+    .btn-new:hover {
+        background-color: #f0f0f0; /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+        color: #000;
+    }
+
+
+    .edit {
+        background-color: rgb(103, 103, 233);
+        cursor: pointer;
+    }
+
+    .delet {
+        background-color: #ed4245;
+        cursor: pointer;
+    }
+
+    .new {
+        width: 200px;
+        background-color: #fee75c;
+        border: none;
+        font-weight: 600;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        /* Começa fora da tela */
+        width: 100%;
+        height: 100%;
+        transform: translate(0%, 10%);
+        overflow: auto;
+        animation: modal-slide-in 0.5s ease-out forwards;
+    }
+    .mdl-delet{
+        width: 30%;
+        transform: translate(120%, 20%);
+    }
+    .modal-content {
+        background-color: #5865f2;
+        margin: 0 auto;
+        border-radius: 10px;
+        padding: 20px;
+        width: 80%;
+    }
+
+    @keyframes modal-slide-in {
+        from {
+            top: -100%;
+            /* Começa fora da tela */
+        }
+
+        to {
+            top: 0;
+            /* Desliza para dentro da tela */
+        }
+    }
+
+    @keyframes modal-slide-out {
+        from {
+            top: 0;
+            /* Começa na tela */
+        }
+
+        to {
+            top: -100%;
+            /* Desliza para fora da tela */
+        }
+    }
+
+    /* Close button styles */
+    .fechar {
+        color: black;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .fechar:hover,
+    .fechar:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    .deck-form {
+        margin: 1rem;
+        /* Add some margin for spacing */
+    }
+
+    .deck-form label {
+        display: block;
+        /* Make labels display on their own line */
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        /* Add some space below labels */
+    }
+
+    .error {
+        color: #ed4245;
+        /* Display errors in red */
+        font-size: 0.8rem;
+        /* Make error messages slightly smaller */
+        margin-top: 0.25rem;
+        /* Add some space above error messages */
+    }
+
+    .deck-form input[type="text"],
+    .deck-form textarea {
+        /* Style input fields and textareas */
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100%;
+        /* Make fields full width */
+    }
+
+    textarea {
+        resize: none;
+    }
+</style>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="header">
+        <h1>Meus Baralhos</h1>
+        <div class="btn-new" id="abrirModalNew">
+            <i class="fas fa-plus"></i>
+        </div>
+    {% for deck in decks %}
+    <div class="deck">
+        <h2>{{ deck.nome }}</h2>
+        <div>
+            <button class="add btn"><i class="fa-solid fa-folder-open"></i></button>
+            <button class="edit btn"><i class="fa-solid fa-pen"></i></button>
+            <button class="delet btn" data-deck-id="{{ deck.id }}" data-deck-title="{{ deck.nome }}"><i
+                    class="fa-solid fa-trash"></i></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- Modal para adicionar um novo Baralho-->
+<div id="ModalNew" class="modal">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <h1>Criar Baralho</h1>
+        <form method="post" class="deck-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nome" class="form-label">Nome do Deck:</label>
+                {{ deck_form.nome }}
+                <div class="error"> {{ deck_form.nome.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descricao" class="form-label">Descrição do Deck:</label>
+                {{ deck_form.descricao }}
+                <div class="error"> {{ deck_form.descricao.errors }}
+                </div>
+            </div>
+            <button class="btn new" type="submit">Criar Baralho</button>
+        </form>
+    </div>
+</div>
+<!-- Modal para Deletar Baralho-->
+<div id="modalConfirm" class="modal mdl-delet">
+    <div class="modal-content">
+        <h1>Deseja realmente excluir o baralho <span id="deckTitle"></span>?</h1>
+        <button class="btn" style="background-color: #57f287; width: 120px;" id="confirmDelete">Sim</button>
+        <button class="btn" style="background-color: #ed4245; width: 120px;" id="cancelDelete">Não</button>
+    </div>
+</div>
+<script>
+    var abrirModalNew = document.getElementById("abrirModalNew");
+    var ModalNew = document.getElementById("ModalNew");
+    var fecharBtn = document.querySelector("#ModalNew .fechar");
+
+    abrirModalNew.onclick = function () {
+        ModalNew.style.display = "block";
+    }
+
+    fecharBtn.onclick = function () {
+        ModalNew.style.animation = 'modal-slide-out 0.5s ease-in forwards';
+        setTimeout(function () {
+            ModalNew.style.display = "none";
+            ModalNew.style.animation = '';
+        }, 500);
+    }
+
+    window.onclick = function (event) {
+        if (event.target == ModalNew) {
+            ModalNew.style.animation = 'modal-slide-out 0.5s ease-in forwards';
+            setTimeout(function () {
+                ModalNew.style.display = "none";
+                ModalNew.style.animation = '';
+            }, 500);
+        }
+
+        const modalConfirm = document.getElementById('modalConfirm');
+        if (event.target == modalConfirm) {
+            modalConfirm.style.animation = 'modal-slide-out 0.5s ease-in forwards';
+            setTimeout(function () {
+                modalConfirm.style.display = "none";
+                modalConfirm.style.animation = '';
+            }, 500);
+        }
+
+    }
+
+    document.querySelectorAll('.delet').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const deckId = btn.dataset.deckId;
+            const deckTitle = btn.dataset.deckTitle; // Obtém o nome do deck
+            const modalConfirm = document.getElementById('modalConfirm');
+            const deckTitleSpan = document.getElementById('deckTitle');
+
+            modalConfirm.style.display = 'block';
+            deckTitleSpan.textContent = deckTitle; // Define o nome do deck no modal de confirmação
+
+            const confirmDeleteBtn = document.getElementById('confirmDelete');
+            const cancelDeleteBtn = document.getElementById('cancelDelete');
+
+            confirmDeleteBtn.onclick = function () {
+                // Aqui você pode adicionar a lógica para excluir o baralho
+                fetch(`/deletar_deck/${deckId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        console.error('Ocorreu um erro ao excluir o deck.');
+                    }
+                }).catch(error => {
+                    console.error('Ocorreu um erro ao excluir o deck:', error);
+                });
+
+                modalConfirm.style.animation = 'modal-slide-out 0.5s ease-in forwards';
+                setTimeout(function () {
+                    modalConfirm.style.display = "none";
+                    modalConfirm.style.animation = '';
+                }, 500);
+            };
+            cancelDeleteBtn.onclick = function () {
+                modalConfirm.style.animation = 'modal-slide-out 0.5s ease-in forwards';
+                setTimeout(function () {
+                    modalConfirm.style.display = "none";
+                    modalConfirm.style.animation = '';
+                }, 500);
+            };
+
+        });
+    });
+
+</script>
+
+
+{%endblock%}

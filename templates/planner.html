@@ -1,0 +1,457 @@
+{% extends "side_bar.html" %}
+
+{% block title %}
+Planner
+{% endblock %}
+
+{% block head %}
+<style>
+    .container {
+        width: 98%;
+        height: 98%;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #d9d9d9;
+    }
+
+    .days-container {
+        display: flex;
+        justify-content: space-between;
+        margin-right: -10px;
+    }
+
+    .day-column {
+        width: calc(15% - 10px);
+        margin-right: 10px;
+        padding: 5px;
+        justify-content: center;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+
+    .day-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .day-header {
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .day-box {
+        flex-grow: 1;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 6px;
+        padding: 4px;
+        border-radius: 8px;
+        background-color: #6a0dad;
+        color: #fff;
+    }
+
+    .box-name {        
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .modal-form {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        transition: opacity 0.3s ease-in-out;
+        transform: scale(0.9);
+    }
+
+    .modal-content-form {
+        background-color: #28232d;
+        color: #fff;
+        margin: 7% auto;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 21%;
+        animation: modal-in 0.3s ease-in-out;
+    }
+
+    .modal-delet {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        transition: opacity 0.3s ease-in-out;
+        transform: scale(0.9);
+    }
+
+    .modal-content-delet {
+        background-color: #28232d;
+        color: #fff;
+        margin: 7% auto;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 30%;
+        animation: modal-in 0.3s ease-in-out;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btn-save {
+        height: 30px;
+        width: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7ebd53;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .btn-save:hover {
+        background-color: #f0f0f0;
+        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+        color: #000;
+    }
+
+    .btn-newform {
+        height: 40px;
+        width: 40px;
+        margin-left: 1270px;
+        margin-top: -73px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7ebd53;
+        color: #fff;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+    .btn-newform:hover {
+        background-color: #f0f0f0;
+        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+        color: #000;
+    }
+
+    .btn-delet {
+        height: 40px;
+        width: 40px;
+        margin-left: 1215px;
+        margin-top: -73px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #b0413e;
+        color: #fff;
+        border-radius: 15px;
+        position: absolute;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .btn-delet:hover {
+        background-color: #f0f0f0;
+        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+        color: #000;
+    }
+
+    .form-control {
+        width: 100%;
+        border: 1px solid #ced4da;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+
+    .form-check-input {
+        margin-left: 10px;
+    }
+
+    @keyframes modal-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .fechar {
+        color: #fff;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: -10px
+    }
+
+    .fechar:hover,
+    .fechar:focus {
+        color: #aaa;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <h1>Planner Semanal</h1><br>
+
+        <a class="" id="btnModalForm">
+            <div class="btn-newform">
+                <i class="fas fa-plus"></i>
+            </div>
+        </a>
+
+        <a class="" id="btnModalDelet">
+            <div class="btn-delet">
+                <i class="fas fa-trash"></i>
+            </div>
+        </a>
+
+        <div class="days-container">
+            {% for dia, planejamentos in planejamentos.items %}
+            <div class="day-column" id="{{ dia }}">
+                <div class="day-header">
+                    <h3>{{ dia|capfirst }}</h3><br>
+                </div>
+                <div class="day-content">
+                    {% for planejamento in planejamentos %}
+                    <div class="day-box">
+                        <div class="box-name">{{ planejamento.name }}</div>
+                        <div> {{ planejamento.hora }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Modal de Adição -->
+        <div id="modalForm" class="modal-form">
+            <div class="modal-content-form">
+                <span class="fechar">&times;</span>
+                <h3>
+                    <form method="post">
+                        <h2>Lembrete</h2>
+                        {% csrf_token %}
+                        {{ form }}
+                        <br>
+                        <input type="hidden" name="data" id="dataSelecionada">
+                        <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                            <input class="btn-save" type="submit" value="Salvar">
+                        </a>
+                    </form>
+                </h3>
+            </div>
+        </div>
+
+        <!-- Modal de Exclusão -->
+        <div id="modalDelet" class="modal-delet">
+            <div class="modal-content-delet">
+                <span class="fechar">&times;</span>
+                <h2>Confirmar Exclusão</h2>
+                <p>Selecione os planejamentos que deseja excluir:</p>
+                <form id="formExcluirEvento" method="POST" action="{% url 'deletar_planejamentos' %}">
+                    {% csrf_token %}
+                    {% for dia, planejamentos in planejamentos.items %}
+                    <div id="{{ dia }}">
+                        <div class="day-content">
+                            {% for planejamento in planejamentos %}
+                            <div>
+                                <input type="checkbox" id="planejamento{{ planejamento.id }}" name="planejamentos"
+                                    value="{{ planejamento.id }}">
+                                <label for="planejamento{{ planejamento.id }}">{{ planejamento.name }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <button type="submit" class="btn-save"
+                        style="width: 100px; background-color: #b0413e;">Confirmar</button>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var btnModalForm = document.getElementById("btnModalForm");
+            var modalForm = document.getElementById("modalForm");
+
+            btnModalForm.onclick = function () {
+                modalForm.style.display = "block";
+            }
+
+            var fecharBtn = document.getElementsByClassName("fechar")[0];
+            fecharBtn.onclick = function () {
+                modalForm.style.display = "none";
+            }
+
+            var btnModalDelet = document.getElementById("btnModalDelet");
+            var modalDelet = document.getElementById("modalDelet");
+
+            btnModalDelet.onclick = function () {
+                modalDelet.style.display = "block";
+            }
+
+            var fecharDeletBtn = document.getElementsByClassName("fechar")[1];
+            fecharDeletBtn.onclick = function () {
+                modalDelet.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modalForm) {
+                    modalForm.style.display = "none";
+                }
+                if (event.target == modalDelet) {
+                    modalDelet.style.display = "none";
+                }
+            }
+
+            var formExcluirEvento = document.getElementById("formExcluirEvento");
+            formExcluirEvento.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                var planejamentosSelecionados = [];
+                var checkboxes = formExcluirEvento.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(function (checkbox) {
+                    if (checkbox.checked) {
+                        planejamentosSelecionados.push(checkbox.value);
+                    }
+                });
+            });
+
+            var btnConfirmarExclusao = document.querySelector('#modalDelet .btn-save');
+            btnConfirmarExclusao.addEventListener('click', function () {
+                formExcluirEvento.submit();
+            });
+
+
+            var checkboxes = document.querySelectorAll('#modalDelet input[type="checkbox"]');
+            var valoresUnicos = new Set();
+
+            checkboxes.forEach(function (checkbox) {
+                if (!valoresUnicos.has(checkbox.value)) {
+                    valoresUnicos.add(checkbox.value);
+                } else {
+                    checkbox.parentNode.style.display = 'none';
+                }
+            });
+
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('click', function () {
+                    var planejamentosSelecionados = new Set();
+                    checkboxes.forEach(function (checkbox) {
+                        if (checkbox.checked) {
+                            planejamentosSelecionados.add(checkbox.value);
+                        }
+                    });
+                    checkboxes.forEach(function (checkbox) {
+                        if (checkbox.checked && planejamentosSelecionados.has(checkbox.value)) {
+                            checkbox.checked = true;
+                        } else {
+                            checkbox.checked = false;
+                        }
+                    });
+                });
+            });
+
+            var limite = 25;
+            function limitarCaracteres(texto, limite) {
+                if (texto.length > limite) {
+                    return texto.substring(0, limite) + '...';
+                } else {
+                    return texto;
+                }
+            }
+
+            var checkboxes = document.querySelectorAll('#modalDelet input[type="checkbox"]');
+            checkboxes.forEach(function (checkbox) {
+                var textoCheckbox = checkbox.parentNode.querySelector('label').textContent.trim();
+                var textoLimitado = limitarCaracteres(textoCheckbox, limite);
+                checkbox.parentNode.querySelector('label').textContent = textoLimitado;
+            });
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('click', function () {
+                    var textoCheckbox = checkbox.parentNode.querySelector('label').textContent.trim();
+                    var textoLimitado = limitarCaracteres(textoCheckbox, limite);
+                    checkbox.parentNode.querySelector('label').textContent = textoLimitado;
+                });
+            });
+
+
+            var dayBoxes = document.querySelectorAll('.box-name');
+            dayBoxes.forEach(function (box) {
+                var text = box.textContent.trim();
+                var words = text.split(' ');
+                var newText = '';
+                words.forEach(function (word, index) {
+                    if (word.length > 13) {
+                        var splitWord = word.match(/.{1,13}/g);
+                        splitWord.forEach(function (part, partIndex) {
+                            newText += part;
+                            if (partIndex !== splitWord.length - 1 || index !== words.length - 1) {
+                                newText += ' ';
+                            }
+                        });
+                    } else {
+                        newText += word;
+                        if (index !== words.length - 1) {
+                            newText += ' ';
+                        }
+                    }
+                });
+                box.innerHTML = newText.trim();
+            });
+
+
+
+
+
+
+
+
+
+        });
+    </script>
+
+</body>
+{% endblock %}

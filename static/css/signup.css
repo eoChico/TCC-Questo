@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.main-singup {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    background: #5865f2;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.right-singup {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.right-singup>h1 {
+    color: #fff;
+    font-size: 2.3vw;
+}
+
+.right-singup>img {
+    width: 43vw;
+}
+
+.left-singup {
+    width: 55vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-singup {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px 27px;
+    background: #23272a;
+    border-radius: 20px;
+}
+
+.card-singup>h1 {
+    color: #fff;
+    font-weight: 800;
+    margin: 0;
+}
+
+.textfield {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+    color: #00000056;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+label {
+    color: #f0ffffde;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+button {
+    width: 100%;
+    padding: 16px 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: #fee75c;
+    color: #000A12;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #23272a;
+}
+
+ul {
+    font-weight: 700;
+    color: #ed4245;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    margin: 5px 0px;
+}
+
+a {
+    font-weight: 500;
+    color: #fff;
+}
+
+a:hover {
+    font-weight: 500;
+    text-decoration: underline;
+    color: #ed4245;
+}

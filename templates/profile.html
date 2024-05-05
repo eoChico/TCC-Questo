@@ -1,0 +1,14 @@
+{% extends "side_bar.html" %}
+
+{% block title%}
+Profile
+{%endblock%}
+
+{%block content%}   
+    <h1>Usuário:{{request.user.username}}</h1>
+    <h1>Email: {{request.user.email}}</h1>
+    
+    <a href="{% url 'account_logout'%}">Sair</a>
+    <a href="{% url 'account_reset_password' %}">Resetar Senha</a>
+    
+{%endblock%}

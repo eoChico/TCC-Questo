@@ -1,0 +1,149 @@
+{% extends "side_bar.html" %}
+
+{% block title %}
+Exams
+{% endblock %}
+
+{% block head %}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #fff;
+        border-radius: 20px;
+    }
+
+    .main {
+        display: flex;
+        height: 95vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 1000px;
+        height: 600px;
+        padding: 30px;
+        display: flex;
+        border-radius: 15px;
+        flex-direction: column;
+        background-color: #d9d9d9;
+    }
+
+    .exams {
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .folder {
+        font-weight: bold;
+        color: #000;
+    }
+
+    .hierarquia {
+        margin-left: 20px;
+    }
+
+    .folder-item {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        padding: 5px;
+        margin-right: 15px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .container a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .container a:hover {
+        text-decoration: underline;
+    }
+
+    .folder:hover {
+        color: #555;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="main">
+    <div class="container">
+        <h1>Vestibulares</h1><br>
+        <div class="exams">
+            <ul>
+                {% for nivel in niveis %}
+                <li class="folder-item" style="background-color: #6a0dad;"onclick="toggleFolder('nivel_{{ forloop.counter }}', event)">
+                    <div class="hierarquia" id="nivel_{{ forloop.counter }}">
+                        <span class="folder" style="color: #fff;">{{ nivel.ensino }}</span>
+                        <ul class="hidden">
+                            {% for vestibular in nivel.vestibular_set.all %}
+                            <li class="folder-item" style="background-color: #ae81d6;" id="vestibular_{{ forloop.parentloop.counter }}_{{ forloop.counter }}" onclick="toggleFolder('vestibular_{{ forloop.parentloop.counter }}_{{ forloop.counter }}', event)">
+                                <div class="hierarquia">
+                                    <span class="folder">{{ vestibular.nome }}</span>
+                                    <ul class="hidden">
+                                        {% for prova in vestibular.prova_set.all %}
+                                        <li class="folder-item" id="prova_{{ forloop.parentloop.parentloop.counter }}_{{ forloop.parentloop.counter }}_{{ forloop.counter }}" onclick="toggleFolder('prova_{{ forloop.parentloop.parentloop.counter }}_{{ forloop.parentloop.counter }}_{{ forloop.counter }}', event)">
+                                            <div class="hierarquia">
+                                                <span class="folder">{{ prova.titulo }}</span>
+                                                <ul class="hidden">
+                                                    {% for caderno in prova.caderno_set.all %}
+                                                    <li class="folder-item">
+                                                        <div class="hierarquia">
+                                                            <a href="{{ caderno.urlProva }}">{{ caderno }}</a><br>
+                                                            <a href="{{ caderno.correcao.urlCorrecao }}">{{ caderno.correcao }}</a>
+                                                        </div>
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function toggleFolder(elementId, event) {
+        event.stopPropagation();
+        var divElement = document.getElementById(elementId);
+        var ulElement = divElement.querySelector('ul');
+        ulElement.classList.toggle("hidden");
+        if (!ulElement.classList.contains("hidden")) {
+            var children = ulElement.querySelectorAll('.folder + ul');
+            children.forEach(function (child) {
+                child.classList.add("hidden");
+            });
+        }
+    }
+</script>
+{% endblock %}

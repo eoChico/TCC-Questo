@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.main-login {
+    width: 100vw;
+    height: 100vh;
+    background: #5865f2;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-login {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-login>img {
+    width: 32vw;
+}
+
+.left-login>h1 {
+    color: #fff;
+    font-size: 2.7vw;
+}
+
+.right-login {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: #23272a;
+    border-radius: 20px;
+
+}
+
+.card-login>h1 {
+    color: #fff;
+    font-weight: 800;
+    margin: 0;
+}
+
+.textfild {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+    color: #00000056;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+label {
+    color: #f0ffffde;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+button {
+    width: 100%;
+    padding: 16px 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #000A12;
+    background: #fee75c;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+}
+
+.link-urls {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    font-weight: 500;
+    color: #fff;
+}
+
+.left-login-image {
+    width: 35vw;
+}
+
+a:hover {
+    font-weight: 500;
+    text-decoration: underline;
+    color: #ed4245;
+}

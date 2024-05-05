@@ -1,0 +1,530 @@
+{% extends 'side_bar.html' %}
+{% load static %}
+
+{%block head%}
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="left">
+        <div class="calendar">
+            <div class="month">
+                <i class="fa fa-angle-left prev"></i>
+                <div class="date"></div>
+                <i class="fa fa-angle-right next"></i>
+            </div>
+            <div class="weekdays">
+                <div>Dom</div>
+                <div>Seg</div>
+                <div>Ter</div>
+                <div>Qua</div>
+                <div>Qui</div>
+                <div>Sex</div>
+                <div>Sáb</div>
+            </div>
+            <div class="days">
+                <div class="day">01</div>
+                <div class="day">02</div>
+                <div class="day">03</div>
+                <div class="day">04</div>
+                <div class="day">05</div>
+                <div class="day">06</div>
+                <div class="day">07</div>
+                <div class="day">08</div>
+                <div class="day">09</div>
+                <div class="day">10</div>
+                <div class="day">11</div>
+                <div class="day">12</div>
+                <div class="day">13</div>
+                <div class="day">14</div>
+                <div class="day">15</div>
+                <div class="day">16</div>
+                <div class="day">17</div>
+                <div class="day">18</div>
+                <div class="day">19</div>
+                <div class="day">20</div>
+                <div class="day">21</div>
+                <div class="day">22</div>
+                <div class="day">23</div>
+                <div class="day">24</div>
+                <div class="day">25</div>
+                <div class="day">26</div>
+                <div class="day">27</div>
+                <div class="day">28</div>
+                <div class="day">29</div>
+                <div class="day">30</div>
+                <div class="day">31</div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="today-date">
+
+            <div class="event-day"></div>
+            <a class="" id="btnModalForm">
+                <div class="btn-newform">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </a>
+            <div class="event-date" style="margin-right:100px"></div>
+
+            <!-- Modal de Adição -->
+            <div id="modalForm" class="modal-form">
+                <div class="modal-content-form">
+                    <span class="fechar">&times;</span>
+                    <h3>
+                    <form method="post">
+                        <h2>Lembrete</h2>
+                        {% csrf_token %}
+                        {{ form }}
+                        <br>
+                        <input type="hidden" name="data" id="dataSelecionada">
+                        <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                            <input class="btn-save" type="submit" value="Salvar">
+                        </a>
+                    </form>
+                    </h3>
+                </div>
+            </div>
+
+            <!-- Modal de Edição -->
+            <div id="modalEdit" class="modal-edit">
+                <div class="modal-content-edit">
+                    <span class="fechar">&times;</span>
+                    <h2>Editar Evento</h2>
+                    <form id="formEditEvento">
+                        <label for="modalEditTitulo">Título:</label>
+                        <input class="form-control" type="text" id="modalEditTitulo" name="novoTitulo"><br>
+                        
+                        <label for="modalEditDescricao">Descrição:</label>
+                        <textarea class="form-control" id="modalEditDescricao" name="novaDescricao" rows="8"></textarea><br>
+                        
+                        <label for="modalEditHora">Hora:</label>
+                        <input class="form-control" type="time" id="modalEditHora" name="novaHora"><br>
+                        
+                        <input class="form-control" type="hidden" id="modalEditData" name="novaData"><br>
+                        
+                        <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                            <input class="btn-save" type="submit" value="Salvar" id="btnSalvarEdit" >
+                        </a>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal de Exclusão -->
+            <div id="modalDelet" class="modal-delet">
+                <div class="modal-content-delet">
+                    <span class="fechar">&times;</span>
+                    <h2>Confirmar Exclusão</h2>
+                    <p>Você tem certeza de que deseja excluir este evento?</p>
+                    <form id="formExcluirEvento" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" id="eventoId" name="eventoId"> <!-- Adicione o campo eventoIdExcluir oculto -->
+
+                        <br>
+                        <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                            <input class="btn-save" type="submit" value="Confirmar" id="btnDelet" style="width: 100px; background-color: #b0413e;">
+                        </a>
+
+                    </form>
+                </div>
+            </div>
+
+            <div id="eventosDaDataSelecionada" style="height:434px; margin-top:8px; margin-right:5px; margin-left:-20px; overflow:auto; overflow-x:hidden;";>
+                {% for evento in eventos %}
+                <div class="evento"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const dateElement = document.querySelector('.date');
+        const daysContainer = document.querySelector('.days');
+        const daysOfWeek = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+        const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        renderCalendar(currentMonth, currentYear);
+
+        prevBtn.addEventListener('click', () => {
+            if (currentMonth === 0) {
+                currentMonth = 11;
+                currentYear -= 1;
+            } else {
+                currentMonth -= 1;
+            }
+            renderCalendar(currentMonth, currentYear);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentMonth === 11) {
+                currentMonth = 0;
+                currentYear += 1;
+            } else {
+                currentMonth += 1;
+            }
+            renderCalendar(currentMonth, currentYear);
+        });
+
+        daysContainer.addEventListener('click', (event) => {
+            const selectedDay = event.target;
+            const activeDay = document.querySelector('.day.active');
+
+            if (selectedDay.classList.contains('day') && !selectedDay.classList.contains('inactive') && !selectedDay.classList.contains('active')) {
+                if (activeDay) {
+                    activeDay.classList.remove('active');
+                }
+                selectedDay.classList.add('active');
+
+                // Obter o mês e o ano selecionados
+                const monthYear = document.querySelector('.date').textContent.split(' ');
+                const selectedMonth = monthYear[0];
+                const selectedYear = monthYear[1];
+
+                updateTodayDate(selectedDay.textContent, selectedMonth, selectedYear);
+                getSelectedDate(selectedDay.textContent, selectedMonth, selectedYear);
+            }
+        });
+
+        function updateTodayDate(selectedDate, selectedMonth, selectedYear) {
+            // Mapeando o nome do mês para o índice do mês no array monthNames
+            const monthIndex = monthNames.indexOf(selectedMonth);
+
+            // Criando a data com o índice do mês corrigido
+            const selectDate = new Date(selectedYear, monthIndex, selectedDate);
+
+            // Obtendo o nome do dia da semana da data específica
+            const currentDayOfWeekIndex = selectDate.getDay();
+            const currentDayOfWeek = daysOfWeek[currentDayOfWeekIndex];
+
+            const eventDayElement = document.querySelector('.event-day');
+            const eventDateElement = document.querySelector('.event-date');
+
+            eventDayElement.textContent = `${currentDayOfWeek}`;
+            eventDateElement.textContent = `${selectedDate} de ${selectedMonth} de ${selectedYear}`;
+        }
+
+        var eventIdToUpdate;
+
+        function getSelectedDate(selectedDate, selectedMonth, selectedYear) {
+            const monthNumber = monthNames.indexOf(selectedMonth) + 1;
+            const formattedDate = `${selectedYear}-${monthNumber.toString().padStart(2, '0')}-${selectedDate.padStart(2, '0')}`;
+            document.getElementById('dataSelecionada').value = formattedDate;
+
+            var dataAtiva = $("#dataSelecionada").val();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'calendar' %}",  // Substitua 'url_do_seu_view' pela URL correta do seu view em Django
+                data: {
+                    'dataAtiva': dataAtiva,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'  // Adicione o token CSRF para proteger contra CSRF attacks
+                },
+
+                success: function (response) {
+                    // Atualizar eventos com base na resposta do servidor
+                    $('#eventosDaDataSelecionada').empty();  // Limpar eventos antigos
+                    response.eventos.forEach(function(evento) {
+                        $('#eventosDaDataSelecionada').append(`
+                        <div class="evento"
+                            style=
+                            "
+                                background-color: #6a0dad;
+                                color: #fff;
+                                width:420px;
+                                word-wrap:break-word;
+                                margin:8px;
+                                padding:8px;
+                                padding-left:10px;
+                                border-radius:8px;
+                            "
+                        >
+                            <h3>${ evento.titulo }</h3>                        
+                            <p>${ evento.descricao }</p>
+                            <p>${ evento.hora }</p>
+                                <div style="margin-left: 83%; margin-top: -25px;">
+                                    <a class="btnModalEdit" evento-id="${evento.id}">
+                                        <div class="btn-edit">
+                                            <i class="fas fa-pen"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div style="margin-left: 92.5%; margin-top: -30px;">
+                                    <a class="btnModalDelet" evento-id="${evento.id}">
+                                        <div class="btn-delet">
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                        </div>`);
+                        $(".btnModalEdit").click(function() {
+                            var eventoId = $(this).attr('evento-id');
+                            eventIdToUpdate = eventoId;
+                        
+                            $('#modalEdit #eventoId').val(eventoId);                            
+                            $('#btnSalvarEdit').attr('data-evento-id', eventoId);
+                            
+                            $.ajax({
+                                type: "GET",
+                                url: "{% url 'detalhes_event' %}",
+                                data: {
+                                    'eventoId': eventoId,
+                                },
+                                success: function (response) {
+                                    $('#modalEditTitulo').val(response.titulo);
+                                    $('#modalEditDescricao').val(response.descricao);
+                                    $('#modalEditHora').val(response.hora);
+                                    $('#modalEditData').val(response.data);
+                                    
+                                    $('#modalEdit').css('display', 'block');
+                                },
+                                error: function (error) {
+                                    console.error("Erro ao obter detalhes do evento:", error);
+                                }
+                            });
+                        });
+                    
+                        $("#btnSalvarEdit").click(function() {
+                            var eventoId = eventIdToUpdate;
+                            var novoTitulo = $('#modalEditTitulo').val();
+                            var novaDescricao = $('#modalEditDescricao').val();
+                            var novaHora = $('#modalEditHora').val();
+                            var novaData = $('#modalEditData').val();
+                        
+                            novaHora = novaHora.split(':').slice(0, 2).join(':');
+                        
+                            $.ajax({
+                                type: "POST",
+                                url: "{% url 'edit_event' %}",
+                                data: {
+                                    'eventoId': eventoId,
+                                    'novoTitulo': novoTitulo,
+                                    'novaDescricao': novaDescricao,
+                                    'novaHora': novaHora,
+                                    'novaData': novaData,
+                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                },
+                                success: function (response) {
+                                    $('#modalEdit').css('display', 'none');
+                                    location.reload();
+                                },
+                                error: function (error) {
+                                    console.error("Erro ao editar evento:", error.responseText);
+                                }
+                            });
+                        });
+                        
+                        $("#btnDelet").click(function() {
+                            var eventoId = $('#eventoId').val();
+                            $.ajax({
+                                type: "POST",
+                                url: "{% url 'delete_event' %}",
+                                data: {
+                                    'eventoId': eventoId,
+                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                },
+                                success: function(data) {
+                                    location.reload();
+                                },
+                                error: function(error) {
+                                    console.error("Erro ao excluir o evento:", error);
+                                }
+                            });
+                        });
+                        
+                    });
+                },
+                error: function (error) {
+                    console.error("Erro ao enviar dado para Django:", error);
+                }
+            });
+        }
+
+        function verificarEnter(event) {
+            // Verifica se a tecla pressionada é Enter (código 13)
+            if (event.keyCode === 13) {
+                // Aciona o clique no botão
+                document.getElementsByClassName("btn-save").click();
+            }
+        }
+
+        var btnModalForm = document.getElementById("btnModalForm");
+        var modalForm = document.getElementById("modalForm");
+        btnModalForm.onclick = function () {
+            modalForm.style.display = "block";
+        }        
+
+        var fecharBtn = document.getElementsByClassName("fechar")[0]; 
+        fecharBtn.onclick = function () {
+            modalForm.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modalForm) {
+                modalForm.style.display = "none";
+            }
+        }
+
+        function openEditModal(eventoId) {
+            // Exibe o modal de edição
+            $("#modalEdit").css("display", "block");
+            // Define o eventoId no input hidden do formulário de edição
+        }
+        
+        // Função para fechar o modal de edição
+        function closeEditModal() {
+            // Oculta o modal de edição
+            $("#modalEdit").css("display", "none");
+        }
+        
+        // Função para abrir o modal de exclusão
+        function openDeleteModal(eventoId) {
+            // Exibe o modal de exclusão
+            $("#modalDelet").css("display", "block");
+            // Define o eventoId no input hidden do formulário de exclusão
+            $("#eventoId").val(eventoId);
+        }
+        
+        // Função para fechar o modal de exclusão
+        function closeDeleteModal() {
+            // Oculta o modal de exclusão
+            $("#modalDelet").css("display", "none");
+        }        
+        
+        // Adiciona evento de clique ao botão de edição
+        $(document).on('click', '.btn-edit', function() {
+            // Obtém o eventoId associado ao botão de edição
+            var eventoId = $(this).closest('.evento').data('evento-id');
+            // Abre o modal de edição com o eventoId
+            openEditModal(eventoId);
+        });
+        
+        // Adiciona evento de clique ao botão de exclusão
+        $(document).on('click', '.btn-delet', function() {
+            // Obtém o eventoId associado ao botão de exclusão
+            var eventoId = $(this).closest('.evento').data('evento-id');
+            // Abre o modal de exclusão com o eventoId
+            openDeleteModal(eventoId);
+        });
+        
+        // Adiciona evento de clique ao botão de fechar dos modais
+        $(document).on('click', '.fechar', function() {
+            // Fecha ambos os modais de edição e exclusão
+            closeEditModal();
+            closeDeleteModal();
+        });
+        
+        // Adiciona evento de clique ao fundo dos modais para fechá-los
+        $(document).on('click', function(event) {
+            if ($(event.target).hasClass('modal-edit') || $(event.target).hasClass('modal-delet')) {
+                closeEditModal();
+                closeDeleteModal();
+            }
+        });
+        
+
+        // Adiciona evento de clique ao botão de edição
+        $(document).on('click', '.btnModalEdit', function() {
+            // Obtém o evento-id associado ao botão de edição
+            var eventoId = $(this).attr('evento-id');
+            // Atualiza o valor do campo oculto no formulário de edição no modal de edição
+            $('#modalEdit #eventoId').val(eventoId);
+        });
+
+        // Adiciona evento de clique ao botão de exclusão
+        $(document).on('click', '.btnModalDelet', function() {
+            // Obtém o evento-id associado ao botão de exclusão
+            var eventoId = $(this).attr('evento-id');
+            // Atualiza o valor do campo oculto no formulário de exclusão no modal de exclusão
+            $('#modalDelet #eventoId').val(eventoId);
+        });
+        
+
+        function renderCalendar(month, year) {
+            const firstDay = new Date(year, month).getDay();
+            const lastDay = new Date(year, month + 1, 0).getDate();
+            const today = new Date().getDate(); // Dia atual
+            const currentMonth = new Date().getMonth(); // Mês atual
+            const currentYear = new Date().getFullYear(); // Ano atual
+            const daysContainer = document.querySelector('.days');
+            const lastMonthLastDay = new Date(year, month, 0).getDate(); // Último dia do mês anterior
+
+            const formattedToday = `${year}-${month+1}-${today}`;
+            document.getElementById('dataSelecionada').value = formattedToday;
+
+            dateElement.textContent = `${monthNames[month]} ${year}`;
+            daysContainer.innerHTML = '';
+
+            // Adicionar dias do mês anterior
+            for (let i = firstDay - 1; i >= 0; i--) {
+                const day = document.createElement('div');
+                day.classList.add('day', 'inactive');
+                day.textContent = lastMonthLastDay - i;
+                daysContainer.appendChild(day);
+            }
+
+            // Adicionar dias do mês atual
+            for (let i = 1; i <= lastDay; i++) {
+                const day = document.createElement('div');
+                day.classList.add('day');
+                day.textContent = i;
+                if (i === today && month === currentMonth && year === currentYear) {
+                    day.classList.add('today');
+                }
+                if (hasEvent(year, month, i)) {
+                    day.classList.add('event');
+                }
+                daysContainer.appendChild(day);
+            }
+
+            // Adicionar dias do próximo mês
+            const remainingDays = 42 - (firstDay + lastDay); // Total de dias - (dias do mês atual + dias do mês anterior)
+            for (let i = 1; i <= remainingDays; i++) {
+                const day = document.createElement('div');
+                day.classList.add('day', 'inactive');
+                day.textContent = i;
+                daysContainer.appendChild(day);
+            }
+
+            const eventDayElement = document.querySelector('.event-day');
+            const eventDateElement = document.querySelector('.event-date');           
+
+            const currentDate = new Date(currentYear,currentMonth,today);
+            const currentDayOfWeekIndex = currentDate.getDay();
+            const currentDayOfWeek = daysOfWeek[currentDayOfWeekIndex];
+
+            eventDayElement.textContent = `${currentDayOfWeek}`;
+            eventDateElement.textContent = `${today} de ${monthNames[currentMonth]} de ${currentYear}`;
+        }
+
+        function hasEvent(year, month, day) {
+            var minhaLista = [];
+
+            {% for day in lista_data_evento %}
+                minhaLista.push("{{ day }}");
+            {% endfor %}
+            
+            const eventList = minhaLista; // Atribua os valores da sua lista Django para eventList
+            const dateString = `${year}-${month + 1}-${day < 10 ? '0' + day : day}`;
+            // Verificar se a data está na lista de eventos ou se está dentro do mês correspondente
+            return eventList.includes(dateString) || eventList.some(eventDate => {
+                const [eventYear, eventMonth, eventDay] = eventDate.split('-').map(Number);
+                return eventYear === year && eventMonth - 1 === month && eventDay === day;
+            });
+        }
+    });
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% endblock %}
