@@ -1,25 +1,25 @@
 {% extends "side_bar.html" %}
+{%load static%}
 
 {% block title%}
-Flashcards
+Baralhos
 {%endblock%}
+
+
 {%block head%}
 <style>
     .container {
         font-family: 'Poppins', sans-serif;
-        background-color: #5865f2;
         padding: 20px;
+        color: #fff;
+        width: 100%;    
         border-radius: 5px;
-        display: flex;
-        flex-direction: column;
         align-items: center;
     }
 
     .main {
         display: flex;
         height: 100vh;
-        justify-content: center;
-        align-items: center;
     }
 
     h1 {
@@ -29,42 +29,38 @@ Flashcards
 
     .deck {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        word-break: break-all;
         justify-content: space-between;
-        width: 600px;
-        background-color: white;
+        width: 175px;
+        color:#000;
+        height: 200px;
+        background-color: #d9d9d9;
         border-radius: 5px;
         margin: 7px;
         padding: 5px;
     }
 
-    .btn-new {
-        height: 40px;
+    .btn {
         width: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #7ebd53;
-        color: #fff;
-        border-radius: 15px;
-        position: flex;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
         cursor: pointer;
-        font-size: 25px;
     }
 
-    .btn-new:hover {
-        background-color: #f0f0f0; /* Mudando a cor de fundo quando o mouse passa sobre o botão */
-        color: #000;
+    .add {
+        background-color: #57f287;
+        cursor: pointer;
     }
-
 
     .edit {
         background-color: rgb(103, 103, 233);
-        cursor: pointer;
     }
 
     .delet {
         background-color: #ed4245;
-        cursor: pointer;
     }
 
     .new {
@@ -77,7 +73,7 @@ Flashcards
     .header {
         display: flex;
         justify-content: space-between;
-        width: 600px;
+        width: 100%;
     }
 
     /* Modal styles */
@@ -93,10 +89,12 @@ Flashcards
         overflow: auto;
         animation: modal-slide-in 0.5s ease-out forwards;
     }
-    .mdl-delet{
+
+    .mdl-delet {
         width: 30%;
         transform: translate(120%, 20%);
     }
+
     .modal-content {
         background-color: #5865f2;
         margin: 0 auto;
@@ -181,26 +179,43 @@ Flashcards
     textarea {
         resize: none;
     }
+
+    .container-decks {
+        margin-top: 10px;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
 {%endblock%}
 {%block content%}
 <div class="container">
     <div class="header">
         <h1>Meus Baralhos</h1>
-        <div class="btn-new" id="abrirModalNew">
-            <i class="fas fa-plus"></i>
-        </div>
-    {% for deck in decks %}
-    <div class="deck">
-        <h2>{{ deck.nome }}</h2>
-        <div>
-            <button class="add btn"><i class="fa-solid fa-folder-open"></i></button>
-            <button class="edit btn"><i class="fa-solid fa-pen"></i></button>
-            <button class="delet btn" data-deck-id="{{ deck.id }}" data-deck-title="{{ deck.nome }}"><i
-                    class="fa-solid fa-trash"></i></button>
-        </div>
+        <button class="add btn" id="abrirModalNew"><i class="fa-solid fa-plus"></i></button>
     </div>
-    {% endfor %}
+    <div class="container-decks">
+        {%if not decks%}
+        <div style = "text-align: center;width: 100%;">
+            <img src="{%static 'img/no-data.svg'%}" width="450" height="450" alt="mulher estudando">
+            <h1 >Parece que ainda não tem nenhum baralho</h1>
+        </div>
+        {%else%}
+        {% for deck in decks %}
+        <div class="deck">
+            <h2>{{ deck.nome }}</h2>
+            <div>
+                <button class="add btn"><i class="fa-solid fa-folder-open"></i>
+                <button class="edit btn" data-deck-id="{{ deck.id }}" data-deck-nome="{{ deck.nome }}"
+                    data-deck-descricao="{{ deck.descricao }}"><i class="fa-solid fa-pen"></i></button>
+                <button class="delet btn" data-deck-id="{{ deck.id }}" data-deck-title="{{ deck.nome }}"><i
+                        class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        {% endfor %}
+        {%endif%}
+    </div>
+</div>
 </div>
 <!-- Modal para adicionar um novo Baralho-->
 <div id="ModalNew" class="modal">
@@ -225,30 +240,64 @@ Flashcards
         </form>
     </div>
 </div>
+<!-- Modal para editar um Baralho -->
+<div id="ModalEdit" class="modal">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <h1>Editar Baralho</h1>
+        <span id="deckTitleEdit"></span> <!-- Aqui será exibido o título do baralho a ser editado -->
+        <form method="post" id="deck-form" class="deck-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="edit_nome" class="form-label">Novo Nome do Deck:</label>
+                <input type="text" id="edit_nome" name="edit_nome" class="form-control">
+                <div class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="edit_descricao" class="form-label">Nova Descrição do Deck:</label>
+                <textarea id="edit_descricao" name="edit_descricao" class="form-control"></textarea>
+                <div class="error"></div>
+            </div>
+            <button class="btn edit new" type="submit">Salvar Alterações</button>
+        </form>
+    </div>
+</div>
+
+
 <!-- Modal para Deletar Baralho-->
 <div id="modalConfirm" class="modal mdl-delet">
     <div class="modal-content">
         <h1>Deseja realmente excluir o baralho <span id="deckTitle"></span>?</h1>
-        <button class="btn" style="background-color: #57f287; width: 120px;" id="confirmDelete">Sim</button>
+        <button class="btn" style="background-color: #57f287; width: 120px; " id="confirmDelete">Sim</button>
         <button class="btn" style="background-color: #ed4245; width: 120px;" id="cancelDelete">Não</button>
     </div>
 </div>
 <script>
     var abrirModalNew = document.getElementById("abrirModalNew");
     var ModalNew = document.getElementById("ModalNew");
-    var fecharBtn = document.querySelector("#ModalNew .fechar");
+    var fecharBtnNew = document.querySelector("#ModalNew .fechar");
+    var fecharBtnEdit = document.querySelector("#ModalEdit .fechar");
+    var modalEdit = document.getElementById("ModalEdit");
 
     abrirModalNew.onclick = function () {
         ModalNew.style.display = "block";
     }
 
-    fecharBtn.onclick = function () {
+    fecharBtnNew.onclick = function () {
         ModalNew.style.animation = 'modal-slide-out 0.5s ease-in forwards';
         setTimeout(function () {
             ModalNew.style.display = "none";
             ModalNew.style.animation = '';
         }, 500);
     }
+
+    fecharBtnEdit.onclick = function () {
+        modalEdit.style.animation = 'modal-slide-out 0.5s ease-in forwards';
+        setTimeout(function () {
+            modalEdit.style.display = "none";
+            modalEdit.style.animation = '';
+        }, 500);
+    };
 
     window.onclick = function (event) {
         if (event.target == ModalNew) {
@@ -267,8 +316,49 @@ Flashcards
                 modalConfirm.style.animation = '';
             }, 500);
         }
-
     }
+
+    document.querySelectorAll('.edit').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const deckId = btn.dataset.deckId;
+            const deckTitle = btn.dataset.deckTitle; // Obtém o nome do deck
+            const modalEdit = document.getElementById('ModalEdit');
+            const deckTitleSpan = document.getElementById('deckTitleEdit');
+
+            // Define os valores iniciais no modal de edição
+            modalEdit.style.display = 'block';
+            deckTitleSpan.textContent = deckTitle; // Define o nome do deck no modal de edição
+
+            // Define a URL de atualização com base no ID do deck
+            const updateUrl = `/editar_deck/${deckId}/`;
+
+            // Adiciona um evento de envio ao formulário de edição
+            modalEdit.querySelector('.deck-form').addEventListener('submit', event => {
+                event.preventDefault();
+
+                // Obtém os dados do formulário
+                const formData = new FormData(event.target);
+
+                // Envia os dados para a URL de atualização via AJAX
+                fetch(updateUrl, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: formData
+                }).then(response => {
+                    if (response.ok) {
+                        // Atualiza a página ou realiza alguma outra ação após a atualização bem-sucedida
+                        window.location.reload();
+                    } else {
+                        console.error('Ocorreu um erro ao atualizar o deck.');
+                    }
+                }).catch(error => {
+                    console.error('Ocorreu um erro ao atualizar o deck:', error);
+                });
+            });
+        });
+    });
 
     document.querySelectorAll('.delet').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -317,7 +407,27 @@ Flashcards
         });
     });
 
-</script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var botoesEdicao = document.querySelectorAll(".edit.btn");
+        var modalEdit = document.getElementById("ModalEdit");
 
+        botoesEdicao.forEach(function (botao) {
+            botao.addEventListener("click", function () {
+                // Obtém os dados do baralho correspondente
+                var nome = botao.getAttribute("data-deck-nome");
+                var descricao = botao.getAttribute("data-deck-descricao");
+
+                // Preenche os campos do modal de edição
+                document.getElementById("edit_nome").value = nome;
+                document.getElementById("edit_descricao").value = descricao;
+
+                // Abre o modal de edição
+                modalEdit.style.display = "block";
+            });
+        });
+    });
+
+
+</script>
 
 {%endblock%}

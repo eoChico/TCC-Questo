@@ -4,11 +4,30 @@
 Profile
 {%endblock%}
 
-{%block content%}   
-    <h1>Usuário:{{request.user.username}}</h1>
-    <h1>Email: {{request.user.email}}</h1>
-    
-    <a href="{% url 'account_logout'%}">Sair</a>
-    <a href="{% url 'account_reset_password' %}">Resetar Senha</a>
+{%block head%}
+<style>
+    .main{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .container{
+        background-color:#d9d9d9;
+        padding: 20px;
+        border-radius: 15px;
+        width: 500px;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+    <div class="container">
+        <h1>Usuário:{{request.user.username}}</h1>
+        <h1>Email: {{request.user.email}}</h1>
+        
+        <a href="{% url 'account_logout'%}">Sair</a>
+        <a href="{% url 'account_reset_password' %}">Resetar Senha</a>
+    </div>
     
 {%endblock%}
