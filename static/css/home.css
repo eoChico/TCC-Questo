@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Oi&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
     scroll-behavior: smooth;
     scrollbar-width: none;
-    font-family: 'Poppins', sans-serif;
 }
 body{
     background-image: linear-gradient(
         to bottom,
-        #23272a 0%,
-        #23272a 40%,
-        #5865f2 40%,
-        #5865f2 100%
+        #1E1428 0%,
+        #1E1428 40%,
+        #4D1980 40%,
+        #4D1980 100%
     );
 }
 .banner {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     position: relative;
@@ -32,8 +32,7 @@ body{
 }
 
 .navbar {
-    font-family: 'Poppins', sans-serif;
-    background-color: #333;
+    background-color: #1E1428;
     overflow: hidden;
     position: fixed;
     width: 100%;
@@ -47,7 +46,7 @@ body{
     float: left;
     display: block;
     color: #f2f2f2;
-    font-family: 'Poppins', sans-serif;
+    font-family: Poppins;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
@@ -57,8 +56,28 @@ body{
     float: right;
 }
 
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ac6cff; /* Cor da barrinha */
+    transition: width 0.3s ease; /* Efeito de transição */
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    
+}
+
 .button {
-    background-color: #5865f2;
+    background-color: #ac6cff;
     /* Roxo */
     border: none;
     border-radius: 20px;
@@ -74,15 +93,9 @@ body{
     cursor: pointer;
 }
 
-.navbar .logo {
-    text-align: left;
-    padding-left: 20px;
-    color: #f2f2f2;
-    font-family: Oi;
-    font-size: 30px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    font-family: 'Poppins', sans-serif;
+.navbar .logo img {
+    width: 90px;
+    height: 90px;
 }
 
 .homepage {
@@ -120,7 +133,7 @@ body{
 }
 
 .text-content h1 {
-    color: #5865f2;
+    color: #ac6cff;
     font-family: Poppins;
     font-weight: bold;
     font-size: 50px;
@@ -136,7 +149,7 @@ body{
 }
 
 .text-content .btn-cadastrar {
-    background-color: #5865f2;
+    background-color: #ac6cff;
     color: white;
     padding: 20px 40px;
     border-radius: 20px;
@@ -149,10 +162,10 @@ body{
 
 .text-content .btn-login {
     background-color: transparent;
-    color: #fff;
+    color: white;
     padding: 20px 40px;
     border-radius: 20px;
-    border: 2px solid #fff;
+    border: 2px solid #ac6cff;
     cursor: pointer;
     font-weight: bold;
     font-family: Poppins;
@@ -180,7 +193,7 @@ body{
 }
 
 .div-texto-primeiro h2 {
-    font-family: 'Poppins', sans-serif;
+    font-family: Oi;
     font-size: 50px;
     margin-top: 20px;
     color: white;
@@ -188,7 +201,7 @@ body{
 }
 
 .div-texto-segundo h2 {
-    font-family: 'Poppins', sans-serif;
+    font-family: Poppins;
     font-size: 40px;
     font-weight: 700;
     margin: 20px;
@@ -216,7 +229,7 @@ body{
     color: #fff;
     padding: 7px;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
+    font-family: Poppins;
 }
 .icon {
     display: inline-flex;
@@ -225,8 +238,7 @@ body{
     width: 100px;
     height: 100px;
     font-size: 24px;
-    background-color: #fee75c;
-    border: 2px solid #23272a;
+    background-color: #ac6cff;
     border-radius: 50%;
 }
 .icon img{
@@ -240,7 +252,8 @@ body{
 
 .div-texto-principal h2 {
     margin-top: 100px;
-    font-family: 'Poppins', sans-serif;
+    font-family: Oi;
+    font-size: 40px;
     color: white;
     z-index: 20;
 
@@ -248,7 +261,7 @@ body{
 
 .div-subtexto h2 {
     font-size: 20px;
-    font-family: 'Poppins' sans-serif;
+    font-family: Poppins;
     font-weight: 600;
     margin-top: 15px;
     color: white;
@@ -258,7 +271,7 @@ body{
 .coluna-dois {
     flex: 1;
     text-align: center;
-    background-color: #fee75c;
+    background-color: #ac6cff;
     margin: 20px;
     border-radius: 10px;
     padding: 40px;
@@ -266,12 +279,11 @@ body{
     height: 250px;
 }
 .coluna-dois p{
-    font-family: Poppins ;
+    font-family: Poppins;
     font-style: oblique;
-    color:#23272a;
+    color:#fff;
     font-size: 20px;
     padding-top: 10px;
-    font-weight: 400;
 }
 .texto-centralizado h2 {
     text-align: center;
@@ -280,11 +292,11 @@ body{
     font-size: 30px;
     margin-top: 100px;
     color: white;
+
 }
 
 .container-centralizado {
     width: 80%;
-    height: 350px;
     max-width: 750px;
     margin: 0 auto;
     display: flex;
@@ -292,7 +304,7 @@ body{
     align-items: center;
     text-align: center;
     margin-top: 20px;
-    background-color: #fee75c;
+    background-color: #ac6cff;
     padding: 25px;
     border-radius: 30px;
 }
@@ -315,8 +327,6 @@ body{
     font-family: Poppins;
     font-size: 20px;
     font-weight: 700;
-    font-style: italic;
-
 }
 
 .palavra {
@@ -353,15 +363,13 @@ body{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    padding: 10px 20px;
     border: none;
-    cursor: pointer;
+    background-color: transparent;
 }
 
 .prev {
     left: 350px;
     margin-top: 80px;
-    background-color: transparent;
 
 }
 
@@ -373,13 +381,14 @@ body{
 .next {
     right: 350px;
     margin-top: 80px;
-    background-color: transparent;
+
 }
 
 .next img{
     width: 30px;
     height: 30px;
 }
+
 /* TESTE */
 
 .container-final {
@@ -408,28 +417,23 @@ body{
     width: 550px;
     height:120px;
     border-radius: 30px;
+    padding: 10px;
 }
 
 .icone img{
     width: 50px; /* largura do círculo */
-    height: 50px; /* altura do círculo */
-    margin-top: 10px;
+    height: 50px; /* altura do círculo */  
+}
+.icone{
+    background-color: #1E1428;
+    padding: 15px;
+    border-radius: 50%;
 }
 .texto {
-    color: #23272a;
+    color: #2f1c48;
+    padding: 0;
 }
 
-.testeAAA{
-    width: 70px; /* largura do círculo */
-    height: 70px; /* altura do círculo */
-    border-radius: 50%; /* torna o elemento redondo */
-    background-color: #fee75c; /* cor do círculo */
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
 
 .containeeer {
     max-width: 1200px; /* Define a largura máxima do container */
@@ -437,54 +441,43 @@ body{
     padding: 0 20px; /* Adiciona um padding interno ao container */
     box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho do container */
 }
+
 .footer {
-    background-color: #fff;
-    width: auto;
+    background-color: #1E1428;
+    padding: 20px;
+}
+
+.linha-footer {
+    height: 1px;
+    background-color: #ac6cff;
+    margin: 20px 0;
+}
+
+.conteudo-footer {
     display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    justify-content: space-around;
 }
 
-.logo  h1{
-    font-size: 30px;
-    color: #23272a;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-family: Poppins;
+.coluna-imagem-footer img {
+    flex: 0 0 auto; /* Fica do tamanho necessário */
+    margin-right: 170px; /* Espaçamento entre a imagem e o conteúdo */
+    width: 200px;
+    height: 200px;
 }
-
 
 .coluna-contato,
-.coluna-sobre,
-.coluna-redes-sociais {
-    flex: 1;
-    margin-left: 50px;
-    text-align: left;
-    
+.coluna-sobre {
+    flex: 1; /* Ocupa o restante do espaço disponível */
+    align-items: center;
 }
-.coluna-redes-sociais {
-    margin-right: 0;
+.coluna-contato p{
+    color: #fff;
 }
 
-.coluna-redes-sociais ul {
-    list-style-type: none;
-    padding: 0;
+.coluna-contato h4,
+.coluna-sobre h4 {
+    margin-top: 0; /* Remove o espaçamento superior do título */
+    color: #fff;
 }
-
-.coluna-redes-sociais ul li {
-    margin-bottom: 5px;
-}
-
-.coluna-redes-sociais ul li a {
-    color: #23272a;
-    text-decoration: none;
-}
-
-.coluna-redes-sociais ul li a:hover {
-    text-decoration: underline;
-}
-
 
 .coluna-sobre ul {
     list-style-type: none;
@@ -495,21 +488,16 @@ body{
     margin-bottom: 5px;
 }
 
-.coluna-sobre ul li a {
-    color: #23272a;
+.coluna-sobre  ul li a {
+    color: #fff;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
 .coluna-sobre ul li a:hover {
-    text-decoration: underline;
+    color: #ac6cff;
 }
-.linha-footer {
-    width: 87%;
-    height: 1px;
-    background-color: #23272a;
-    margin: 20px 0;
-    display: flexbox;
-  }
+
 /* Estilos para telas menores */
 @media screen and (max-width: 768px) {
     .containeeer {
