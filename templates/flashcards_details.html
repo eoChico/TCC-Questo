@@ -6,9 +6,40 @@ Baralho {{deck.nome}}
 {%endblock%}
 
 {%block head%}
-{%endblock%}
+    <link rel="stylesheet" href="{%static 'css/flashcards-details.css' %}">
+{%endblock %}
 
 {%block content%}
-    <h1>Flashcards</h1>
-    <h3>{{deck.nome}}</h3>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>{{deck.nome}}</h1>
+                <p>{{deck.descricao}}</p>
+            </div>
+            <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div class="containers-flashcards">
+            <div class="flahscards">
+                {%if not flashcards %}
+                    <div style="text-align:center;">
+                        <img src="{%static 'img/no-data.svg'%}" width="420" height="420" alt="mulher estudando">
+                        <h1 >Parece que ainda não tem nenhum flashcard nesse baralho</h1>
+                    </div>
+                {%else%}
+                    {%for flashcard in flashcards%}
+                    <div class="flashcard">
+                        <div class="flipper">
+                            <div class="front">
+                                <h5>{{flashcard.pergunta}}</h5>
+                            </div>
+                            <div class="back">
+                                <h5>{{flashcard.resposta}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+    </div>
 {%endblock%}

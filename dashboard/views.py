@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import DeckForm, EventoForm, PlannerForm
 from django.http import HttpResponse, JsonResponse, HttpResponseServerError
-from .models import Evento, Deck, Nivel, Vestibular, Prova, Caderno, Correcao, DayOfWeek, Planejamento
+from .models import Evento,Flashcard, Deck, Nivel, Vestibular, Prova, Caderno, Correcao, DayOfWeek, Planejamento
 from django.views.decorators.csrf import csrf_exempt
 from datetime import date, datetime, time
 import json
@@ -134,7 +134,8 @@ def flashcards(request):
 @login_required
 def flashcards_details(request,deck_id):
     deck = get_object_or_404(Deck, id=deck_id)
-    return render(request, 'flashcards_details.html', {'deck': deck})
+    flashcards = Flashcard.objects.filter(deck_id=deck_id)
+    return render(request, 'flashcards_details.html', {'deck': deck, 'flashcards': flashcards})
 
 
 

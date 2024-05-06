@@ -1,12 +1,13 @@
 from django.contrib import admin
 
-from .models import Deck, Evento, Nivel, Prova, Vestibular, Caderno, Correcao, DayOfWeek, Planejamento
+from .models import Deck,Flashcard, Evento, Nivel, Prova, Vestibular, Caderno, Correcao, DayOfWeek, Planejamento
 
 # Register your models here.
 
 admin.site.register(Deck)
 
 admin.site.register(Evento)
+admin.site.register(Flashcard)
 
 admin.site.register(Nivel)
 admin.site.register(Vestibular)
