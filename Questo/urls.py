@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', views.profile, name='profile'),
     path('accounts/flashcards/', views.flashcards, name='flashcards'),
+    path('accounts/flashcards_details/<int:deck_id>/', views.flashcards_details, name='flashcards_details'),
     path('deletar_deck/<int:deck_id>/', views.deletar_deck, name='deletar_deck'),
     path('accounts/calendar/', views.calendar, name='calendar'),
     path('detalhes_event/', views.detalhes_event, name='detalhes_event'),

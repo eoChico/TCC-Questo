@@ -1,14 +1,14 @@
-{% extends "account/base_manage.html" %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Sign Out" %}
-{% endblock head_title %}
+{%load static%}
+<link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+<link rel="stylesheet" href="{% static 'css/logout.css'%}">
+<title>Sair</title>
+<main>
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    <p>{% trans 'Are you sure you want to sign out?' %}</p>
+<img class ="logo"src="{%static 'img/logoQuesto.png'%}" alt="Logo" height="100">
+    <h1>{% trans 'Are you sure you want to sign out?' %}</h1>
     {% url 'account_logout' as action_url %}
+    <img src="{%static 'img/logout.svg'%}" alt="Tem certeza que deseja sair da conta ?" height="400">
     {% element form method="post" action=action_url no_visible_fields=True %}
         {% slot body %}
             {% csrf_token %}
@@ -24,4 +24,6 @@
             {% endelement %}
         {% endslot %}
     {% endelement %}
+    <a class="btn-voltar "href="{%url 'profile'%}">voltar</a>
 {% endblock content %}
+</main>

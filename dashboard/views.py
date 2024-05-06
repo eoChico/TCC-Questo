@@ -115,6 +115,7 @@ def delete_event(request):
             return JsonResponse({'status': 'error', 'message': 'Evento não encontrado ou você não tem permissão para excluí-lo.'})
     return JsonResponse({'status': 'error', 'message': 'Método de requisição não suportado.'})
 
+@login_required
 def flashcards(request):
     decks = Deck.objects.filter(usuario=request.user)
     if request.method == 'POST':
@@ -130,6 +131,14 @@ def flashcards(request):
     # Renderize o template com o formulário e os decks do usuário atual
     return render(request, 'flashcards.html', {'decks': decks, 'deck_form': deck_form})
 
+@login_required
+def flashcards_details(request,deck_id):
+    deck = get_object_or_404(Deck, id=deck_id)
+    return render(request, 'flashcards_details.html', {'deck': deck})
+
+
+
+@login_required
 def deletar_deck(request, deck_id):
     deck = get_object_or_404(Deck, id=deck_id)
     if request.method == 'POST':
@@ -137,6 +146,7 @@ def deletar_deck(request, deck_id):
         return redirect('flashcards')
     return redirect('flashcards')
 
+@login_required
 def exams(request):
     niveis = Nivel.objects.all()
     return render(request, 'exams.html', {'niveis': niveis})

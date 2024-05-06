@@ -205,9 +205,11 @@ Baralhos
         <div class="deck">
             <h2>{{ deck.nome }}</h2>
             <div>
-                <button class="add btn"><i class="fa-solid fa-folder-open"></i>
+                <button class="add btn"><a href="{%url 'flashcards_details' deck.pk%}"><i class="fa-solid fa-folder-open"></i></a></button>
+
                 <button class="edit btn" data-deck-id="{{ deck.id }}" data-deck-nome="{{ deck.nome }}"
                     data-deck-descricao="{{ deck.descricao }}"><i class="fa-solid fa-pen"></i></button>
+
                 <button class="delet btn" data-deck-id="{{ deck.id }}" data-deck-title="{{ deck.nome }}"><i
                         class="fa-solid fa-trash"></i></button>
             </div>
