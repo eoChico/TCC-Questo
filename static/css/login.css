@@ -11,7 +11,7 @@
 .main-login {
     width: 100vw;
     height: 100vh;
-    background: #5865f2;
+    background: #1E1428;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: #23272a;
+    background: #4D1980;
     border-radius: 20px;
 
 }
@@ -102,9 +102,9 @@ button {
     font-weight: 800;
     letter-spacing: 3px;
     color: #000A12;
-    background: #fee75c;
+    background: #ac6cff;
     cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #00ff8052;
+    box-shadow: 0px 10px 40px -12px #ac6cff;
 }
 
 .link-urls {
