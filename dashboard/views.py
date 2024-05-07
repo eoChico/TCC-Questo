@@ -177,3 +177,7 @@ def deletar_planejamentos(request):
             except:
                 return redirect('planner')
     return redirect('planner')
+
+@login_required
+def funcionalidades(request):
+    return render(request,'funcionalidades.html')
