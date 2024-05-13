@@ -1,48 +1,63 @@
 {% extends "side_bar.html" %}
-{%load static%}
+{% load static %}
 
-{% block title%}
-Baralho {{deck.nome}}
-{%endblock%}
+{% block title %}
+Baralho {{ deck.nome }}
+{% endblock %}
 
-{%block head%}
-    <link rel="stylesheet" href="{%static 'css/flashcards-details.css' %}">
-{%endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/flashcards-details.css' %}">
+<script src="{% static 'scripts/flashcards_details.js' %}"></script> <!-- Include your JavaScript -->
+{% endblock %}
 
-{%block content%}
-    <div class="container">
-        <div class="header">
-            <div>
-                <h1>{{deck.nome}}</h1>
-                <p>{{deck.descricao}}</p>
-            </div>
-            <div>
-                <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
-                <button class="btn-start"><i class="fa-solid fa-play"></i></button>
-            </div>
+{% block content %}
+<div class="container">
+    <div class="header">
+        <div>
+            <h1>{{ deck.nome }}</h1>
+            <p>{{ deck.descricao }}</p>
         </div>
-        <div class="containers-flashcards">
-            <div class="flahscards">
-                {%if not flashcards %}
-                    <div style="text-align:center;">
-                        <img src="{%static 'img/no-data.svg'%}" width="420" height="420" alt="mulher estudando">
-                        <h1 >Parece que ainda não tem nenhum flashcard nesse baralho</h1>
-                    </div>
-                {%else%}
-                    {%for flashcard in flashcards%}
-                    <div class="flashcard">
-                        <div class="flipper">
-                            <div class="front">
-                                <h5>{{flashcard.pergunta}}</h5>
-                            </div>
-                            <div class="back">
-                                <h5>{{flashcard.resposta}}</h5>
-                            </div>
-                        </div>
-                    </div>
-                    {%endfor%}
-                {%endif%}
-            </div>
+        <div>
+            <button class="btn-add" id="open-add-modal"><i class="fa-solid fa-plus"></i></button> <!-- Button to open modal -->
+            <button class="btn-start"><i class="fa-solid fa-play"></i></button>
         </div>
     </div>
-{%endblock%}
+    <div class="containers-flashcards">
+        <div class="flashcards">
+            {% if not flashcards %}
+            <div style="text-align:center;">
+                <img src="{% static 'img/no-data.svg' %}" width="420" height="420" alt="mulher estudando">
+                <h1>Parece que ainda não tem nenhum flashcard nesse baralho</h1>
+            </div>
+            {% else %}
+            {% for flashcard in flashcards %}
+            <div class="flashcard">
+                <div class="flipper">
+                    <div class="front">
+                        <h5>{{ flashcard.pergunta }}</h5>
+                    </div>
+                    <div class="back">
+                        <h5>{{ flashcard.resposta }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div class="modal" id="add-modal">
+    <div class="modal-content">
+        <span class="close" id="close-add-modal">&times;</span> <!-- Para fechar o modal -->
+        <h2>Adicionar Flashcard</h2>
+        <form method="post" id="add-flashcard-form" class="flashcards-form"> <!-- Formulário para adicionar flashcards -->
+            {% csrf_token %} <!-- Proteção contra CSRF -->
+            {{ flashcards_form.as_p }} <!-- Renderiza o formulário -->
+            <button type="submit" class="btn-submit">Adicionar</button> <!-- Botão para submeter -->
+        </form>
+    </div>
+</div>
+
+{% endblock %}

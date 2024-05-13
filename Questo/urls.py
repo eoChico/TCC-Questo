@@ -36,7 +36,7 @@ urlpatterns = [
     path('accounts/exams/', views.exams, name='exams'),
     path('accounts/planner/', views.planner, name='planner'),
     path('deletar-planejamentos/', views.deletar_planejamentos, name='deletar_planejamentos'),
- 
+    path('accounts/funcionalidades/', views.funcionalidades, name='funcionalidades'),
 
    
 ]

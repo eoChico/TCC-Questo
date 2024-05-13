@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import DeckForm, EventoForm, PlannerForm
+from .forms import FlashcardForm,DeckForm, EventoForm, PlannerForm
 from django.http import HttpResponse, JsonResponse, HttpResponseServerError
 from .models import Evento,Flashcard, Deck, Nivel, Vestibular, Prova, Caderno, Correcao, DayOfWeek, Planejamento
 from django.views.decorators.csrf import csrf_exempt
@@ -132,11 +132,35 @@ def flashcards(request):
     return render(request, 'flashcards.html', {'decks': decks, 'deck_form': deck_form})
 
 @login_required
-def flashcards_details(request,deck_id):
+def flashcards_details(request, deck_id):
+    # Obter o deck e os flashcards associados ao deck
     deck = get_object_or_404(Deck, id=deck_id)
-    flashcards = Flashcard.objects.filter(deck_id=deck_id)
-    return render(request, 'flashcards_details.html', {'deck': deck, 'flashcards': flashcards})
+    flashcards = Flashcard.objects.filter(deck=deck)
 
+    # Criar um formulário vazio se o método for GET
+    if request.method == 'POST':
+        flashcards_form = FlashcardForm(request.POST)
+        if flashcards_form.is_valid():
+            # Salvar o flashcard com referência ao deck
+            flashcard = flashcards_form.save(commit=False)
+            flashcard.deck = deck
+            flashcard.save()
+
+            # Redirecionar para a mesma página para evitar reenvio do formulário
+            return redirect('flashcards_details', deck_id=deck_id)
+    else:
+        flashcards_form = FlashcardForm()  # Formulário vazio para GET
+
+    # Renderizar a página com o deck, flashcards e o formulário
+    return render(
+        request,
+        'flashcards_details.html',
+        {
+            'deck': deck,
+            'flashcards': flashcards,
+            'flashcards_form': flashcards_form
+        }
+    )
 
 
 @login_required
@@ -177,3 +201,7 @@ def deletar_planejamentos(request):
             except:
                 return redirect('planner')
     return redirect('planner')
+
+@login_required
+def funcionalidades(request):
+    return render(request,'funcionalidades.html')
