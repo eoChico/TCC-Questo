@@ -39,6 +39,7 @@ class Nivel(models.Model):
 class Vestibular(models.Model):
     nome = models.CharField(max_length=200)
     ensino = models.ForeignKey(Nivel, on_delete=models.CASCADE)
+    urlImg = models.URLField()
     def __str__(self):
         return self.nome
 
