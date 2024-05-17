@@ -44,7 +44,8 @@
     padding: 10px;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    flex-wrap: wrap;
 }
 .flashcard {
     margin: 10px;
@@ -55,6 +56,8 @@
 }
 .flashcards{
     display: flex;
+    flex-wrap: wrap;
+    margin-left: 50px;
 }
 
 .flipper {
@@ -70,6 +73,7 @@
 }
 
 .front, .back {
+    z-index: 1;
     padding: 10px;
     border-radius: 10px;
     background-color: #d9d9d9;
@@ -77,6 +81,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    word-break: break-word;
     width: 100%;
     height: 100%;
     backface-visibility: hidden; /* Torna o lado não visível invisível */
