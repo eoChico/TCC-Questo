@@ -16,6 +16,7 @@ body {
 }
 
 .sidebar {
+    z-index: 3;
     position: fixed;
     top: 0;
     left: 0;
@@ -144,3 +145,33 @@ body {
     padding-top: 5px;
 }
 
+<<<<<<< HEAD
+=======
+/* Estilos para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    .sidebar{
+        border: none;
+        background-color: transparent;
+    }
+    .sidebar.active{
+        background-color: #4d1980;
+    }
+    .sidebar.active .list-item{
+        display: block;
+    }
+    .sidebar .logout i{
+        display: none;
+    }
+    .sidebar.active .logout i{
+        display: block;
+    }
+    .sidebar .list-item {
+        display: none;
+    }
+    #content{
+        margin-top: 20px;
+        margin-left: 0;
+    }
+  }
+  
+>>>>>>> 91c7512facc1b39fcdfec1d817a9642af3d0668e

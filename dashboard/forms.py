@@ -18,6 +18,10 @@ class FlashcardForm(forms.ModelForm):
             'pergunta': 'Pergunta',
             'resposta': 'Resposta',
         }
+        widgets = {
+            'pergunta': forms.TextInput(attrs={'maxlength': 220}),
+            'resposta': forms.TextInput(attrs={'maxlength': 220}),
+        }
 
 class EventoForm(forms.ModelForm):
     class Meta:
