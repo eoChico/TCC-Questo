@@ -1,6 +1,5 @@
 from django import forms
 from .models import Deck, Flashcard, Evento, Planejamento
-import datetime
 
 class DeckForm(forms.ModelForm):
     class Meta:

@@ -20,18 +20,19 @@ textarea {
 }
 
 h3 {
-    font-weight: 300;
+    font-weight: 600;
 }
 
 .main {
     display: flex;
-    height: 95vh;
+    height: 100%;
+    margin-top: 4%;
     justify-content: center;
     align-items: center;
 }
 
 .container {
-    width: 1000px;
+    width: 65%;
     min-height: 520px;
     margin: 0 auto;
     padding: 25px;
@@ -72,12 +73,29 @@ h3 {
     text-transform: capitalize;
 }
 
+.prev,
+.next {
+    width: 37px;
+    height: 37px;
+    align-content: center;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 15px;
+}
+
 .calendar .month .prev,
 .calendar .month .next {
-    padding: 7px 10px;
     background-color: #eee;
     border: 2px solid #eee;
-    border-radius: 15px;
+    color: #000;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    color: #000;
+    cursor: pointer;
 }
 
 .calendar .month .prev:hover,
@@ -191,6 +209,11 @@ h3 {
     padding-left: 30px;
 }
 
+.date {
+    text-align: center;
+    cursor: pointer;
+}
+
 .right .today-date {
     position: absolute;
     width: 100%;
@@ -290,6 +313,55 @@ h3 {
     color: #000;
 }
 
+.controles-ano {
+    margin: 10px;
+    display: flex;
+}
+
+.calendario-meses {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    flex-direction: column;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.calendario-meses button {
+    background-color: transparent;
+    color: #fff;
+    border: transparent;
+    padding: 7px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    font-weight: 700;
+}
+
+.calendario-meses button:hover {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    color: #000;
+    cursor: pointer;
+}
+
+.modal-meses {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;    
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
 .modal-form {
     display: none;
     position: fixed;
@@ -329,47 +401,43 @@ h3 {
     transform: scale(0.9);
 }
 
-.modal-content-form {
+.modal-content {
     background-color: #28232d;
     color: #fff;
     margin: 7% auto;
     border-radius: 10px;
     padding: 20px;
     border: 1px solid #888;
-    width: 21%;
-    animation: modal-in 0.3s ease-in-out;
-    /* Add animation for modal entrance */
-}
-
-.modal-content-edit {
-    background-color: #28232d;
-    color: #fff;
-    margin: 7% auto;
-    border-radius: 10px;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 21%;
-    animation: modal-in 0.3s ease-in-out;
-    /* Add animation for modal entrance */
-}
-
-.modal-content-delet {
-    background-color: #28232d;
-    color: #fff;
-    margin: 7% auto;
-    border-radius: 10px;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 21%;
+    width: 23%;
     animation: modal-in 0.3s ease-in-out;
     /* Add animation for modal entrance */
 }
 
 .form-control {
     width: 100%;
+    padding: 3px;
     border: 1px solid #ced4da;
-    border-radius: 10px;
+    border-radius: 5px;
     box-sizing: border-box;
+}
+
+.evento {
+    background-color: #6a0dad;
+    color: #fff;
+    width: 97%;
+    word-wrap: break-word;
+    margin: 8px;
+    padding: 8px;
+    padding-left: 10px;
+    border-radius: 8px;
+}
+
+.eventos-lista {
+    height: 433%;
+    margin-top: 8px;
+    margin-left: -20px;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 @keyframes modal-in {
@@ -390,7 +458,8 @@ h3 {
     float: right;
     font-size: 28px;
     font-weight: bold;
-    margin-top: -10px
+    margin-top: -10px;
+    margin-left: -20px;
 }
 
 .fechar:hover,
@@ -398,4 +467,42 @@ h3 {
     color: #aaa;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+    .container {
+        width: 100%;
+        min-height: 1000px;
+        height: auto;
+        padding: 10px;
+        flex-direction: column;
+    }
+
+    .left {
+        width: 100%;
+        height: 80%;
+    }
+
+    .container .right {
+        width: 100%;
+    }
+
+    .calendar .weekdays {
+        height: 30px;
+    }
+
+    .modal-content {
+        width: 70%;
+    }
+
+    .btn-newform {
+        margin-left: 70%;
+    }
+    .eventos-lista {
+        width: 98%;
+    }
+
+    .evento {
+        width: 95%;
+    }
 }

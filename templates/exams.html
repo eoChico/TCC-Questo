@@ -21,19 +21,31 @@ Exams
 
     .main {
         display: flex;
-        height: 95vh;
+        height: 70%;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    .container {
-        width: 1200px;
-        height: 650px;
-        padding: 30px;
+    .title {
+        width: 100%;
         display: flex;
-        border-radius: 15px;
-        flex-direction: column;
-        background-color: #d9d9d9;
+    }
+
+    .container {
+        font-family: 'Poppins', sans-serif;
+        padding: 20px;
+        color: #fff;
+        width: 100%;
+        border-radius: 5px;
+        align-items: center;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px;
     }
 
     .exams {
@@ -58,6 +70,7 @@ Exams
     }
 
     .folder-item {
+        display: flex;
         border: 1px solid #ccc;
         border-radius: 10px;
         background-color: #f9f9f9;
@@ -88,13 +101,19 @@ Exams
 
 {% block content %}
 
-<div class="main">
-    <div class="container">
-        <h1>Vestibulares</h1><br>
+<div class="container">
+
+
+    <div class="header">
+        <h1>Vestibulares</h1>
+    </div>
+    <div class="main">
+
         <div class="exams">
             <ul>
                 {% for nivel in niveis %}
-                <li class="folder-item" style="display: flex;  background-color: #6a0dad;" onclick="toggleFolder('nivel_{{ forloop.counter }}', event)">
+                <li class="folder-item" style="display: flex;  background-color: #6a0dad;"
+                    onclick="toggleFolder('nivel_{{ forloop.counter }}', event)">
                     <div class="hierarquia" id="nivel_{{ forloop.counter }}">
                         <span class="folder" style="color: #fff;">{{ nivel.ensino }}</span>
                         <ul class="hidden">
@@ -105,20 +124,23 @@ Exams
                                     id="vestibular_{{ forloop.parentloop.counter }}_{{ forloop.counter }}"
                                     onclick="toggleFolder('vestibular_{{ forloop.parentloop.counter }}_{{ forloop.counter }}', event)">
                                     <div class="hierarquia" style="align-items: center;">
-                                        <img class="folder" style="max-width: 165px; height: auto; margin: 20px;" src="{{ vestibular.urlImg }}">
+                                        <img class="folder" style="max-width: 165px; height: auto; margin: 20px;"
+                                            src="{{ vestibular.urlImg }}">
                                         <ul class="hidden">
                                             {% for prova in vestibular.prova_set.all %}
-                                            <li class="folder-item"
+                                            <li class="folder-item" style="justify-content: center;"
                                                 id="prova_{{ forloop.parentloop.parentloop.counter }}_{{ forloop.parentloop.counter }}_{{ forloop.counter }}"
                                                 onclick="toggleFolder('prova_{{ forloop.parentloop.parentloop.counter }}_{{ forloop.parentloop.counter }}_{{ forloop.counter }}', event)">
                                                 <div class="hierarquia">
-                                                    <span class="folder" style="display: flex; justify-content: center;">{{ prova.titulo }}</span>
+                                                    <span class="folder"
+                                                        style="display: flex; justify-content: center;">{{ prova.titulo }}</span>
                                                     <ul class="hidden">
                                                         {% for caderno in prova.caderno_set.all %}
-                                                        <li class="folder-item">
+                                                        <li class="folder-item" style="justify-content: center;">
                                                             <div class="hierarquia">
                                                                 <a target="_blank" href="{{ caderno.urlProva }}">{{ caderno }}</a>
-                                                                <a target="_blank" href="{{ caderno.correcao.urlCorrecao }}">{{ caderno.correcao }}</a>
+                                                                <a target="_blank"
+                                                                    href="{{ caderno.correcao.urlCorrecao }}">{{ caderno.correcao }}</a>
                                                             </div>
                                                         </li>
                                                         {% endfor %}
