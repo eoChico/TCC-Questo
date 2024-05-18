@@ -1,56 +1,217 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'img/favicon.png' %}"
+    />
     <title>QUESTO</title>
-</head>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO" />
+      </div>
+      <div class="nav-links">
+        <a href="#" class="nav-link">Inicio</a>
+        <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
+        <a href="#provas" class="nav-link">Provas</a>
+        <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>
+      </div>
+      <div class="navbar-right">
+        <a href="{% url 'account_login' %}" class="button">Acessar</a>
+      </div>
+    </div>
 
-<body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-            </div>
-          </nav>
-
-    <section class="container-principal">
-        <div class="logo-texto">
-            <div class="logo-principal">
-                <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO">
-            </div>
-            <div class="texto-principal">
-                <h1>Questo é um website voltado para ajudar os vestibulando se organizarem para as provas mais importantes de suas vidas. Aqui você irá encontrar diversas ferramentas que vai te ajudar a organizar e a estudar de forma mais facil.</h1>
-                <div class="button-principal">
-                    <a href="{% url 'account_signup' %}" class="button">Comece Agora</a>
-                </div>
-            </div>
+    <div class="container-inicio">
+        <div class="texto-principal-inicio">
+            <h1>ORGANIZE A SUA MANEIRA DE ESTUDAR EM LUGAR SÓ!</h1>
+            <p>Questo é um website que te ajuda a estudar e organizar sua rotina de estudo.</p>
         </div>
-    </section>
+        <div class="incio-button">
+            <a href="{% url 'account_signup' %}" class="button">Comece agora!</a>
+          </div>
+    </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const logo = document.querySelector('.logo-principal img');
-            logo.classList.add('animate');
+    <div class="container-funcionalidades" id="funcionalidades">
+      <div class="texto-principal-funcionalidades">
+          <h1>Funcionalidades</h1>
+          <p>As principais funcionalidades que o Questo oferece para você!</p>
+      </div>
+
+    <div class="box-calendario">
+      <div class="img-calendario">
+        <img src="{% static 'img/home/calendario-fun.png' %}" alt="QUESTO-LOGO" />
+      </div>
+      <div class="texto-calendario">
+        <h1>Calendario</h1>
+        <p>É uma ferramenta essencial para organizar eventos importantes e datas de provas. Além disso, ele auxilia na gestão de compromissos, prazos de projetos, reuniões e outras atividades diárias, garantindo uma melhor administração do tempo e eficiência na realização das tarefas.</p>
+    </div>
+    </div>
+  </div>
+
+  <div class="box-planner">
+    <div class="texto-planner">
+      <h1>Planner</h1>
+      <p>Um planner é uma ferramenta eficaz para organizar e planejar as atividades a serem realizadas ao longo da semana. Além de permitir a gestão detalhada de tarefas, ele facilita a priorização de compromissos, o acompanhamento do progresso de projetos e a manutenção de um cronograma estruturado, contribuindo para uma melhor produtividade e otimização do tempo.</p>
+  </div>
+    <div class="img-planner">
+      <img src="{% static 'img/home/planner-fun.png' %}" alt="QUESTO-LOGO" />
+    </div>
+  </div>
+
+  <div class="box-provas">
+    <div class="img-provas">
+      <img src="{% static 'img/home/provas-fun.png' %}" alt="QUESTO-LOGO" />
+    </div>
+    <div class="texto-provas">
+      <h1>Provas</h1>
+      <p>Provas com gabarito de diversas universidades e escolas são recursos valiosos para auxiliar nos estudos. Esses materiais permitem a prática e a revisão de conteúdos, ajudam na familiarização com diferentes estilos de questões e melhoram o desempenho acadêmico, proporcionando uma preparação mais robusta e eficiente para exames futuros.</p>
+  </div>
+  </div>
+
+  <div class="container-provas" id="provas">
+    <div class="texto-principal-provas">
+        <h1>Provas</h1>
+        <p>As principais provas que o Questo oferece para você!</p>
+    </div>
+
+      <div class="container-prova">
+        <div class="box-prova" id="prova1">
+          <img src="{% static 'img/funcionalidades/calendario.png' %}" alt="Prova-Enem" />
+        </div>
+        <div class="box-prova" id="prova2">
+          <img src="{% static 'img/funcionalidades/flashcard.png' %}" alt="Prova-Fuvest" />
+        </div>
+        <div class="box-prova" id="prova3">
+          <img src="{% static 'img/funcionalidades/planner.png' %}" alt="Prova-Fatec" />
+        </div>
+    </div>
+  </div>
+
+  <div class="container-desen" id="desenvolvedores">
+    <div class="texto-principal-desen">
+        <h1>Desenvolvedores</h1>
+        <p>Desenvolvedores do projeto!</p>
+    </div>
+    <!-- CARROSSEL-->
+    <div class="carousel">
+      <div class="slide">
+          <div class="container-centralizado">
+              <div class="imagem">
+                  <img src="{%static 'img/home/julia.jpeg'%}" alt="Julia">
+              </div>
+              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
+              <div class="texto-principal">
+                  "O que achamos do projeto Questo? Foi desafiador, mas o resultado final está incrível. Mal podemos esperar para ver a reação do público!"
+              </div>
+              <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
+              <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
+  
+          </div>
+      </div>
+      <div class="slide">
+          <div class="container-centralizado">
+              <div class="imagem">
+                   <img src="{%static 'img/home/luara.png'%}" alt="Luara">
+              </div>
+              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
+              <div class="texto-principal">
+                  "Desenvolver o QUESTO foi um grande desafio! Aprendemos a trabalhar melhor em equipe, passamos por alguns obstaculos e desafios, mas no final ver ele pronto e rodando valeu muito apena. Espero ajudar os vestibulando a realizarem seus sonhos com o nosso site."
+              </div>
+              <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
+              <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
+  
+          </div>
+      </div>
+      <div class="slide">
+          <div class="container-centralizado">
+              <div class="imagem">
+                   <img src="{%static 'img/home/chico.jpeg'%}" alt="Francisco">
+              </div>
+              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
+              <div class="texto-principal">
+                  "O que achamos do projeto Questo? Foi desafiador, mas o resultado final está incrível. Mal podemos esperar para ver a reação do público!"
+              </div>
+              <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
+              <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
+  
+              
+          </div>
+      </div>
+      <div class="slide">
+          <div class="container-centralizado">
+              <div class="imagem">
+                   <img src="{%static 'img/home/japa.jpeg'%}" alt="Eric">
+              </div>
+              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
+              <div class="texto-principal">
+                  "O que achamos do projeto Questo? Foi desafiador, mas o resultado final está incrível. Mal podemos esperar para ver a reação do público!"
+              </div>
+              
+          </div>
+          <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
+          <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
+      </div>
+  </div>
+<!-- FIM CARROSSEL--> 
+  </div>
+ <footer>
+  CHUPA MEU PAU BEM GOSTOSIN!
+ </footer>
+</div>
+  </body>
+  <script>
+        const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.style.display = 'block';
+            } else {
+                slide.style.display = 'none';
+            }
         });
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+    
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+    
+    showSlide(currentSlide); // Mostrar o primeiro slide inicialmente
     </script>
+    
 </html>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const logo = document.querySelector('.logo-principal img');
-        logo.classList.add('animate');
-    });
-</script>

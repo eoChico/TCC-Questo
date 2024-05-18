@@ -1,14 +1,54 @@
 {% extends "side_bar.html" %}
-{%load static%}
+{% load static %}
 
-{% block title%}
+{% block title %}
 Funcionalidades
-{%endblock%}
+{% endblock %}
 
-{%block head%}
-    
-{%endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/funcionalidades.css' %}" />
+{% endblock %}
 
-{%block content%}
-    <h1> MEU PAU NA SUA MÃO</h1>
-{%endblock%}
+{% block content %}
+    <h1 class="title">Funcionalidades</h1>
+    <div class="container-um">
+        <div class="box" id="box1">
+            <img src="{% static 'img/funcionalidades/calendario.png' %}" alt="Funcionalidade-Calendario" />
+            <div class="info">
+                <p>Calendario serve para você se organizar em datas importantes e datas de provas. </p>
+            </div>
+        </div>
+        <div class="box" id="box2">
+            <img src="{% static 'img/funcionalidades/flashcard.png' %}" alt="Funcionalidade-FlashCards" />
+            <div class="info">
+                <p>FlashCards para ajudar a decorar formulas e outras respostas importante.</p>
+            </div>
+        </div>
+        <div class="box" id="box3">
+            <img src="{% static 'img/funcionalidades/planner.png' %}" alt="Funcionalidade-Planner" />
+            <div class="info">
+                <p>Planner para organizar as atividades que deve ser executada durante a semana.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-dois">
+        <div class="box" id="box4">
+            <img src="{% static 'img/funcionalidades/provas.png' %}" alt="Funcionalidade-Provas" />
+            <div class="info">
+                <p>Provas com gabatiro de varias univerdidades e escolas para auxilar nos estudos.</p>
+            </div>
+        </div>
+            <div class="box" id="box5">
+                <img src="{% static 'img/funcionalidades/blocodenotas.png' %}" alt="Funcionalidade-Bloco de Notas" />
+                <div class="info">
+                    <p>Bloco de notas para informações importantes.</p>
+                </div>
+            </div>
+                <div class="box" id="box6">
+                    <img src="{% static 'img/funcionalidades/redacao.png' %}" alt="'Funcionalidade-Redação" />
+                    <div class="info">
+                        <p>Redação com temas sortidos para treinar a escrita.</p>
+                </div>
+        </div>
+    </div>
+{% endblock %}
