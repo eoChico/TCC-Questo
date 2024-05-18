@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+
+* {
+    font-family: "Noto Sans JP", sans-serif;
+    font-style: normal;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1.title {
+    position: relative;
+    top: -5%;
+    left: -12%;
+    color: #fff;
+}
+
+.container-um {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 8px;
+}
+
+.container-dois {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 8px;
+}
+
+.box {
+    position: relative;
+    width: auto;
+    height: 270px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #4d1980;
+   /* background-color: #ac6cff; */
+    border-radius: 10px;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    padding: 10px 10px;
+}
+
+.info {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ocupa toda a altura do box */
+    background: rgba(0, 0, 0, 1);
+    color: white;
+    display: flex; /* Centraliza o texto verticalmente */
+    justify-content: center; /* Centraliza o texto horizontalmente */
+    align-items: center; /* Centraliza o texto verticalmente */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: bottom 0.3s ease-in-out;
+}
+
+.box:hover .info {
+    bottom: 0;
+}
