@@ -60,157 +60,165 @@
 
     <div class="container-funcionalidades" id="funcionalidades">
       <div class="texto-principal-funcionalidades">
-          <h1>Funcionalidades</h1>
-          <p>As principais funcionalidades que o Questo oferece para você!</p>
+        <h1>Funcionalidades</h1>
+        <p>As principais funcionalidades que o Questo oferece para você!</p>
       </div>
-
-    <div class="box-calendario">
-      <div class="img-calendario">
-        <img src="{% static 'img/home/calendario-fun.png' %}" alt="QUESTO-LOGO" />
+    
+      <div class="box-calendario">
+        <div class="img-calendario">
+          <img src="{% static 'img/home/calendario-fun.png' %}" alt="QUESTO-LOGO" />
+        </div>
+        <div class="texto-calendario">
+          <h1>Calendário</h1>
+          <p>É uma ferramenta essencial para organizar eventos importantes e datas de provas. Além disso, ele auxilia na gestão de compromissos, prazos de projetos, reuniões e outras atividades diárias, garantindo uma melhor administração do tempo e eficiência na realização das tarefas.</p>
+        </div>
       </div>
-      <div class="texto-calendario">
-        <h1>Calendario</h1>
-        <p>É uma ferramenta essencial para organizar eventos importantes e datas de provas. Além disso, ele auxilia na gestão de compromissos, prazos de projetos, reuniões e outras atividades diárias, garantindo uma melhor administração do tempo e eficiência na realização das tarefas.</p>
+    
+      <div class="box-planner">
+        <div class="texto-planner">
+          <h1>Planner</h1>
+          <p>Um planner é uma ferramenta eficaz para organizar e planejar as atividades a serem realizadas ao longo da semana. Além de permitir a gestão detalhada de tarefas, ele facilita a priorização de compromissos, o acompanhamento do progresso de projetos e a manutenção de um cronograma estruturado, contribuindo para uma melhor produtividade e otimização do tempo.</p>
+        </div>
+        <div class="img-planner">
+          <img src="{% static 'img/home/planner-fun.png' %}" alt="QUESTO-LOGO" />
+        </div>
+      </div>
+    
+      <div class="box-provas">
+        <div class="img-provas">
+          <img src="{% static 'img/home/provas-fun.png' %}" alt="QUESTO-LOGO" />
+        </div>
+        <div class="texto-provas">
+          <h1>Provas</h1>
+          <p>Provas com gabarito de diversas universidades e escolas são recursos valiosos para auxiliar nos estudos. Esses materiais permitem a prática e a revisão de conteúdos, ajudam na familiarização com diferentes estilos de questões e melhoram o desempenho acadêmico, proporcionando uma preparação mais robusta e eficiente para exames futuros.</p>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
+    
 
-  <div class="box-planner">
-    <div class="texto-planner">
-      <h1>Planner</h1>
-      <p>Um planner é uma ferramenta eficaz para organizar e planejar as atividades a serem realizadas ao longo da semana. Além de permitir a gestão detalhada de tarefas, ele facilita a priorização de compromissos, o acompanhamento do progresso de projetos e a manutenção de um cronograma estruturado, contribuindo para uma melhor produtividade e otimização do tempo.</p>
-  </div>
-    <div class="img-planner">
-      <img src="{% static 'img/home/planner-fun.png' %}" alt="QUESTO-LOGO" />
-    </div>
-  </div>
-
-  <div class="box-provas">
-    <div class="img-provas">
-      <img src="{% static 'img/home/provas-fun.png' %}" alt="QUESTO-LOGO" />
-    </div>
-    <div class="texto-provas">
-      <h1>Provas</h1>
-      <p>Provas com gabarito de diversas universidades e escolas são recursos valiosos para auxiliar nos estudos. Esses materiais permitem a prática e a revisão de conteúdos, ajudam na familiarização com diferentes estilos de questões e melhoram o desempenho acadêmico, proporcionando uma preparação mais robusta e eficiente para exames futuros.</p>
-  </div>
-  </div>
-
-  <div class="container-provas" id="provas">
-    <div class="texto-principal-provas">
-        <h1>Provas</h1>
-        <p>As principais provas que o Questo oferece para você!</p>
-    </div>
-
+    <div class="container-provas" id="provas">
+      <div class="texto-principal-provas">
+          <h1>Provas</h1>
+          <p>As principais provas que o Questo oferece para você!</p>
+      </div>
+  
       <div class="container-prova">
-        <div class="box-prova" id="prova1">
-          <img src="{% static 'img/funcionalidades/calendario.png' %}" alt="Prova-Enem" />
-        </div>
-        <div class="box-prova" id="prova2">
-          <img src="{% static 'img/funcionalidades/flashcard.png' %}" alt="Prova-Fuvest" />
-        </div>
-        <div class="box-prova" id="prova3">
-          <img src="{% static 'img/funcionalidades/planner.png' %}" alt="Prova-Fatec" />
-        </div>
-    </div>
+          <div class="box-prova" id="prova1">
+              <img src="{% static 'img/provas/enem-prova.png' %}" alt="Prova-Enem" />
+          </div>
+          <div class="box-prova" id="prova2">
+              <img src="{% static 'img/provas/fuvest-prova.png' %}" alt="Prova-Fuvest" />
+          </div>
+          <div class="box-prova" id="prova3">
+              <img src="{% static 'img/provas/fatec-prova.png' %}" alt="Prova-Fatec" />
+          </div>
+      </div>
   </div>
-
+  
   <div class="container-desen" id="desenvolvedores">
     <div class="texto-principal-desen">
         <h1>Desenvolvedores</h1>
-        <p>Desenvolvedores do projeto!</p>
+        <p>O que os desenvovedores acharam de fazer esse projeto.</p>
     </div>
     <!-- CARROSSEL-->
     <div class="carousel">
-      <div class="slide">
-          <div class="container-centralizado">
-              <div class="imagem">
-                  <img src="{%static 'img/home/julia.jpeg'%}" alt="Julia">
+      <div class="carousel-slide active">
+          <div class="carousel-content">
+              <div class="carousel-image">
+                  <img src="{% static 'img/home/julia.jpeg' %}" alt="Julia">
               </div>
-              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
-              <div class="texto-principal">
+              <div class="carousel-caption">
+                  Julia<br>Equipe de Desenvolvimento
+              </div>
+              <div class="carousel-text">
                   "O que achamos do projeto Questo? Foi desafiador, mas o resultado final está incrível. Mal podemos esperar para ver a reação do público!"
               </div>
-              <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
-              <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
-  
           </div>
       </div>
-      <div class="slide">
-          <div class="container-centralizado">
-              <div class="imagem">
-                   <img src="{%static 'img/home/luara.png'%}" alt="Luara">
-              </div>
-              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
-              <div class="texto-principal">
-                  "Desenvolver o QUESTO foi um grande desafio! Aprendemos a trabalhar melhor em equipe, passamos por alguns obstaculos e desafios, mas no final ver ele pronto e rodando valeu muito apena. Espero ajudar os vestibulando a realizarem seus sonhos com o nosso site."
-              </div>
-              <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
-              <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
   
+      <div class="carousel-slide">
+          <div class="carousel-content">
+              <div class="carousel-image">
+                  <img src="{% static 'img/home/luara.png' %}" alt="Luara">
+              </div>
+              <div class="carousel-caption">
+                  Luara<br>Equipe de Desenvolvimento
+              </div>
+              <div class="carousel-text">
+                  "Desenvolver o QUESTO foi um grande desafio! Aprendemos a trabalhar melhor em equipe, passamos por alguns obstáculos e desafios, mas no final ver ele pronto e rodando valeu muito a pena. Espero ajudar os vestibulandos a realizarem seus sonhos com o nosso site."
+              </div>
           </div>
       </div>
-      <div class="slide">
-          <div class="container-centralizado">
-              <div class="imagem">
-                   <img src="{%static 'img/home/chico.jpeg'%}" alt="Francisco">
+  
+      <div class="carousel-slide">
+          <div class="carousel-content">
+              <div class="carousel-image">
+                  <img src="{% static 'img/home/chico.jpeg' %}" alt="Francisco">
               </div>
-              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
-              <div class="texto-principal">
+              <div class="carousel-caption">
+                  Francisco<br>Equipe de Desenvolvimento
+              </div>
+              <div class="carousel-text">
                   "O que achamos do projeto Questo? Foi desafiador, mas o resultado final está incrível. Mal podemos esperar para ver a reação do público!"
               </div>
-              <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
-              <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
-  
-              
           </div>
       </div>
-      <div class="slide">
-          <div class="container-centralizado">
-              <div class="imagem">
-                   <img src="{%static 'img/home/japa.jpeg'%}" alt="Eric">
+  
+      <div class="carousel-slide">
+          <div class="carousel-content">
+              <div class="carousel-image">
+                  <img src="{% static 'img/home/japa.jpeg' %}" alt="Eric">
               </div>
-              <div class="texto-abaixo-imagem">Questo<br>Equipe de Desenvolvimento</div>
-              <div class="texto-principal">
+              <div class="carousel-caption">
+                  Eric<br>Equipe de Desenvolvimento
+              </div>
+              <div class="carousel-text">
                   "O que achamos do projeto Questo? Foi desafiador, mas o resultado final está incrível. Mal podemos esperar para ver a reação do público!"
               </div>
-              
           </div>
-          <button class="prev" onclick="prevSlide()"><img src="{%static 'img/home/angulo-esquerdo.png'%}" alt="mulher estudando"></button>
-          <button class="next" onclick="nextSlide()"><img src="{%static 'img/home/angulo-direito.png'%}" alt="mulher estudando"></button>
       </div>
+  
+      <button class="carousel-button prev" onclick="prevSlide()">
+          <img src="{% static 'img/home/angulo-esquerdo.png' %}" alt="Previous">
+      </button>
+      <button class="carousel-button next" onclick="nextSlide()">
+          <img src="{% static 'img/home/angulo-direito.png' %}" alt="Next">
+      </button>
   </div>
+  
+  
+
 <!-- FIM CARROSSEL--> 
   </div>
  <footer>
-  CHUPA MEU PAU BEM GOSTOSIN!
+      <h1>© Copyright 2024 Questo. Todos os direitos reservados.</h1>
  </footer>
 </div>
   </body>
   <script>
-        const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
     
     function showSlide(index) {
         slides.forEach((slide, i) => {
-            if (i === index) {
-                slide.style.display = 'block';
-            } else {
-                slide.style.display = 'none';
-            }
+            slide.classList.toggle('active', i === index);
         });
     }
     
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-    
     function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
         showSlide(currentSlide);
     }
     
-    showSlide(currentSlide); // Mostrar o primeiro slide inicialmente
+    function nextSlide() {
+        currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+        showSlide(currentSlide);
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        showSlide(currentSlide);
+    });
+    
     </script>
     
 </html>

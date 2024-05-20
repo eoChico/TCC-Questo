@@ -9,6 +9,7 @@ body {
     background-color: #fff;
 }
 
+/*************************************** HEADER ***************************************/
 .navbar {
     background-color: #ac6cff;
     overflow: hidden;
@@ -18,7 +19,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10%; /* Added padding for centering */
+    padding: 0 10%;
     box-shadow: 0px 5px 20px -12px #2a0954;
 }
 
@@ -26,20 +27,20 @@ body {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 10px 40px; /* Reduced padding for less space between links */
+    padding: 10px 40px; 
     text-decoration: none;
 }
 
 .navbar .nav-links {
     display: flex;
     flex-grow: 1;
-    justify-content: center; /* Centering the links */
+    justify-content: center;
 }
 
 .navbar-right {
     display: flex;
-    justify-content: center; /* Centering the button */
-    flex-basis: 20%; /* Adjusting the size */
+    justify-content: center; 
+    flex-basis: 20%;
 }
 
 .nav-link {
@@ -66,7 +67,7 @@ body {
     border: none;
     border-radius: 20px;
     color: white;
-    padding: 10px 20px; /* Adjusted padding for better centering */
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -81,42 +82,45 @@ body {
     height: 90px;
 }
 
+/*************************************** INICIO ***************************************/
 .container-inicio {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     text-align: center;
     background-color: #ac6cff;
 }
 
 .texto-principal-inicio h1 {
-    font-size: 3em; /* Large font size for the main title */
-    font-family: Poppins, sans-serif;
+    font-size: 3em; 
     color: #333;
     margin-bottom: 20px;
 }
 
 .texto-principal-inicio p {
-    font-size: 1.25em; /* Smaller font size for the subtitle */
-    font-family: Poppins, sans-serif;
+    font-size: 1.25em; 
     color: #666;
     margin-bottom: 40px;
 }
 
 .inicio-button .button {
-    font-size: 1em; /* Font size for the button */
+    font-size: 1em;
     padding: 10px 20px;
 }
 
+.inicio-button a{
+    text-decoration: none;
+}
+/*************************************** FUNCIONALIDADES ***************************************/
 .container-funcionalidades {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
     text-align: center;
     background-color: #fff;
+
 }
   
 .texto-principal-funcionalidades h1 {
@@ -126,7 +130,7 @@ body {
 }
   
 .texto-principal-funcionalidades p {
-    font-size: 1.25em; /* Smaller font size for the subtitle */
+    font-size: 1.25em; 
     color: #666;
     margin-bottom: 40px;
 }
@@ -136,18 +140,18 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: center;
-    margin: 0 20px; /* Optional: Adding margin to the container */
+    padding-bottom: 50px;
 }
   
 .img-calendario img {
-    width: 75%;
+    width: 600px;
     border-radius: 25px;
+    margin-right: 60px;
 }
   
 .texto-calendario {
     text-align: justify;
     max-width: 600px;
-    margin: 0 30px; /* Reduced margin */
 }
 
 .box-planner {
@@ -155,54 +159,51 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: center;
-    margin: 0 20px; /* Optional: Adding margin to the container */
-    margin-top: 30px;
+    padding-bottom: 50px;
 }
   
 .img-planner img {
-    width: 75%;
+    width: 600px;
     border-radius: 25px;
+    margin-left: 60px;
 }
   
 .texto-planner {
     text-align: justify;
     max-width: 600px;
-    margin: 0 30px; /* Reduced margin */
 }
 
 .box-provas {
     display: flex;
     flex-direction: row;
     align-items: center;
-    text-align: center;
-    margin: 0 20px; /* Optional: Adding margin to the container */
-    margin-top:80px;
-    margin-bottom: 40px;
+    padding-bottom: 50px;
 }
   
 .img-provas img {
-    width: 75%;
+    width: 600px;
     border-radius: 25px;
+    margin-right: 60px;
 }
   
 .texto-provas {
     text-align: justify;
     max-width: 600px;
-    margin: 30px; /* Reduced margin */
 }
-  
+
+/*************************************** PROVAS ***************************************/
 .container-provas{
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
     text-align: center;
-    background-color: #2a0954;
+    background-color: #ac6cff;
 }
 
 .texto-principal-provas h1{
     font-size: 3em;
-    color: #fff;
+    color: #000;
     margin-top: 120px;
 }
 
@@ -215,6 +216,7 @@ body {
 .container-prova{
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }
 
 .box-prova {
@@ -223,19 +225,18 @@ body {
     height: 270px;
     overflow: hidden;
     cursor: pointer;
-    background-color: #4d1980;
+    background-color: #fff;
    /* background-color: #ac6cff; */
     border-radius: 10px;
 }
 
 .box-prova img {
-    width: 100%;
+    width: 300px;
     height: 100%;
-    object-fit: cover;
-    display: block;
     padding: 10px 10px;
 }
 
+/*************************************** DESENVOLVEDORES ***************************************/
 .container-desen{
     display: flex;
     flex-direction: column;
@@ -253,105 +254,95 @@ body {
 }
 
 .texto-principal-desen p{
-    font-size: 1.25em; /* Smaller font size for the subtitle */
+    font-size: 1.25em;
     color: #666;
     margin-bottom: 40px;
 }
 
-.container-centralizado {
-    width: 80%;
-    max-width: 750px;
-    margin: 0 auto;
+/*************************************** CARROSSEL ***************************************/
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide {
+    display: none;
+    width: 50%;
+    height: 100%;
+    background: #ac6cff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+    position: relative;
+}
+
+.carousel-slide.active {
+    display: block;
+}
+
+.carousel-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 20px;
-    background-color: #ac6cff;
-    padding: 25px;
-    border-radius: 30px;
+    height: 100%;
 }
 
-.imagem img{
-    width: 80px;
-    height: 80px;
+.carousel-image img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    margin-bottom: 10px;
 }
 
-.texto-abaixo-imagem {
-    margin-top: 10px;
-    font-size: 16px;
+.carousel-caption {
     font-weight: bold;
+
 }
 
-.texto-principal {
-    margin-top: 40px;
-    font-size: 20px;
-    font-weight: 700;
+.carousel-text {
+    text-align:center;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
-.palavra {
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 30px;
-}
-
-.coluna-texto .linha .texto {
-    margin-left: 40px;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.carousel {
-    display: flex;
-    overflow-x: hidden;
-}
-
-.slide {
-    flex: 0 0 100%;
-    position: relative;
-}
-
-.carousel .slide .container-centralizado {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.prev, .next {
+.carousel-button {
+    background: none;
+    border: none;
+    cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    border: none;
-    background-color: transparent;
+    z-index: 10;
 }
 
-.prev {
-    left: 350px;
-    margin-top: 80px;
-
+.carousel-button.prev {
+    left: 400px;
 }
 
-.prev img{
+.carousel-button.next {
+    right: 400px;
+}
+
+.carousel-button img {
     width: 30px;
     height: 30px;
 }
 
-.next {
-    right: 350px;
-    margin-top: 80px;
-
-}
-
-.next img{
-    width: 30px;
-    height: 30px;
-}
 
 footer{
     background-color: #ac6cff;
     text-align: center;
-    height: 50px;
-    padding: 20px;
+    height: 100%;
+    padding: 10px;
+}
+
+footer h1{
+    font-size: 15px;
 }
