@@ -24,18 +24,26 @@ from dashboard import views
 urlpatterns = [
     path('',views.home,name="home"),
     path('admin/', admin.site.urls),
+
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', views.profile, name='profile'),
+
     path('accounts/flashcards/', views.flashcards, name='flashcards'),
     path('accounts/flashcards_details/<int:deck_id>/', views.flashcards_details, name='flashcards_details'),
     path('deletar_deck/<int:deck_id>/', views.deletar_deck, name='deletar_deck'),
+
     path('accounts/calendar/', views.calendar, name='calendar'),
     path('detalhes_event/', views.detalhes_event, name='detalhes_event'),
     path('edit_event/', views.edit_event, name='edit_event'),
     path('delete_event/', views.delete_event, name='delete_event'),
+
     path('accounts/exams/', views.exams, name='exams'),
+    path('vestibulares/<int:pk>/', views.vestibulares, name='vestibulares'),
+    path('provas/<int:pk>/', views.provas, name='provas'),
+
     path('accounts/planner/', views.planner, name='planner'),
     path('deletar-planejamentos/', views.deletar_planejamentos, name='deletar_planejamentos'),
+
     path('accounts/funcionalidades/', views.funcionalidades, name='funcionalidades'),
 
    

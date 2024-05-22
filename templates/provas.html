@@ -1,0 +1,123 @@
+{% extends "side_bar.html" %}
+
+{% block title %}
+{{ ensino.nivel }}
+{% endblock %}
+
+{% block head %}
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #fff;
+        border-radius: 20px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .main {
+        display: flex;
+        height: 100vh;
+    }
+
+    .container {
+        padding: 20px;
+        width: 100%;
+        border-radius: 5px;
+        align-items: center;
+    }
+
+    .title {
+        background-color: #d9d9d9;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: justify;
+    }
+
+    .folder {
+        font-weight: bold;
+        color: #000;
+    }
+
+    .hierarquia {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .folder-item {
+        display: flex;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        padding: 5px;
+        margin-right: 15px;
+        margin: 5px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    <h1 style="color: #fff;">{{ vestibulares.nome }}</h1>
+
+    <div class="title">
+        <h4>{{ vestibulares.desc }}</h4>
+    </div>
+
+    <div class="exams">
+        <ul>
+            {% for prova in provas %}
+            <li class="folder-item" style="display: flex;  background-color: #6a0dad;"
+                onclick="toggleFolder('prova_{{ forloop.counter }}', event)">
+                <div class="hierarquia" id="prova_{{ forloop.counter }}">
+                    <span class="folder" style="color: #fff;">Ano {{ prova.ano }}</span>
+                    <ul class="hidden">
+                        {% for caderno in prova.caderno_set.all %}
+                        <li class="folder-item" style="justify-content: center;">
+                            <div class="hierarquia">
+                                <span class="folder">Prova:</span>
+                                <span class="folder">{{ prova.titulo }}</span>
+                                <ul class="hidden">
+                                    <li class="folder-item">
+                                        <div class="hierarquia">
+                                            <a target="_blank" href="{{ caderno.urlProva }}">Caderno {{ caderno.numero }}</a>
+                                            <a target="_blank" href="{{ caderno.correcao.urlCorrecao }}">Gabarito</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script>
+    function toggleFolder(elementId, event) {
+        event.stopPropagation();
+        var divElement = document.getElementById(elementId);
+        var ulElement = divElement.querySelector('ul');
+        ulElement.classList.toggle("hidden");
+        if (!ulElement.classList.contains("hidden")) {
+            var children = ulElement.querySelectorAll('.folder + ul');
+            children.forEach(function (child) {
+                child.classList.add("hidden");
+            });
+        }
+    }
+</script>
+{% endblock %}

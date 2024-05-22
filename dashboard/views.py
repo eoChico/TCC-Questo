@@ -171,10 +171,24 @@ def deletar_deck(request, deck_id):
         return redirect('flashcards')
     return redirect('flashcards')
 
+
+
 @login_required
 def exams(request):
     niveis = Nivel.objects.all()
     return render(request, 'exams.html', {'niveis': niveis})
+
+@login_required
+def vestibulares(request, pk):
+    nivel = get_object_or_404(Nivel, pk=pk)
+    vestibulares = nivel.vestibular_set.all()
+    return render(request, 'vestibulares.html', {'nivel': nivel, 'vestibulares': vestibulares})
+
+@login_required
+def provas(request, pk):
+    vestibulares = get_object_or_404(Vestibular, pk=pk)
+    provas = vestibulares.prova_set.all()
+    return render(request, 'provas.html', {'vestibulares': vestibulares, 'provas': provas})
 
 
 

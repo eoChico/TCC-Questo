@@ -6,10 +6,6 @@ Exams
 
 {% block head %}
 <style>
-    * {
-        box-sizing: border-box;
-    }
-
     ::-webkit-scrollbar {
         width: 8px;
     }
@@ -21,162 +17,43 @@ Exams
 
     .main {
         display: flex;
-        height: 70%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .title {
-        width: 100%;
-        display: flex;
+        height: 100vh;
     }
 
     .container {
-        font-family: 'Poppins', sans-serif;
         padding: 20px;
-        color: #fff;
         width: 100%;
         border-radius: 5px;
         align-items: center;
     }
 
-    .header {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+    .button {
+        background-color: #6a0dad;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
         margin: 10px;
-    }
-
-    .exams {
-        width: 100%;
-        overflow-y: auto;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .folder {
-        font-weight: bold;
-        color: #000;
-    }
-
-    .hierarquia {
-        display: flex;
-        flex-direction: column;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    .folder-item {
-        display: flex;
-        border: 1px solid #ccc;
         border-radius: 10px;
-        background-color: #f9f9f9;
-        padding: 5px;
-        margin-right: 15px;
-        margin: 5px;
         cursor: pointer;
     }
 
-    li {
-        list-style: none;
-    }
-
-    .container a {
-        color: #007bff;
-        text-decoration: none;
-    }
-
-    .container a:hover {
-        text-decoration: underline;
-    }
-
-    .folder:hover {
-        color: #555;
+    .button:hover {
+        background-color: #ae81d6;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-
 <div class="container">
-
-
-    <div class="header">
-        <h1>Vestibulares</h1>
-    </div>
-    <div class="main">
-
-        <div class="exams">
-            <ul>
-                {% for nivel in niveis %}
-                <li class="folder-item" style="display: flex;  background-color: #6a0dad;"
-                    onclick="toggleFolder('nivel_{{ forloop.counter }}', event)">
-                    <div class="hierarquia" id="nivel_{{ forloop.counter }}">
-                        <span class="folder" style="color: #fff;">{{ nivel.ensino }}</span>
-                        <ul class="hidden">
-                            <div style="display: inline-flex; flex-wrap: wrap;">
-                                {% for vestibular in nivel.vestibular_set.all %}
-                                <li class="folder-item"
-                                    style="display: flex; align-items: center; min-height: 300px; height: max-content; background-color: #ae81d6;"
-                                    id="vestibular_{{ forloop.parentloop.counter }}_{{ forloop.counter }}"
-                                    onclick="toggleFolder('vestibular_{{ forloop.parentloop.counter }}_{{ forloop.counter }}', event)">
-                                    <div class="hierarquia" style="align-items: center;">
-                                        <img class="folder" style="max-width: 165px; height: auto; margin: 20px;"
-                                            src="{{ vestibular.urlImg }}">
-                                        <ul class="hidden">
-                                            {% for prova in vestibular.prova_set.all %}
-                                            <li class="folder-item" style="justify-content: center;"
-                                                id="prova_{{ forloop.parentloop.parentloop.counter }}_{{ forloop.parentloop.counter }}_{{ forloop.counter }}"
-                                                onclick="toggleFolder('prova_{{ forloop.parentloop.parentloop.counter }}_{{ forloop.parentloop.counter }}_{{ forloop.counter }}', event)">
-                                                <div class="hierarquia">
-                                                    <span class="folder"
-                                                        style="display: flex; justify-content: center;">{{ prova.titulo }}</span>
-                                                    <ul class="hidden">
-                                                        {% for caderno in prova.caderno_set.all %}
-                                                        <li class="folder-item" style="justify-content: center;">
-                                                            <div class="hierarquia">
-                                                                <a target="_blank" href="{{ caderno.urlProva }}">{{ caderno }}</a>
-                                                                <a target="_blank"
-                                                                    href="{{ caderno.correcao.urlCorrecao }}">{{ caderno.correcao }}</a>
-                                                            </div>
-                                                        </li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </div>
-                        </ul>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    <h1 style="color: #fff;">Escolha o nível de ensino</h1><br>
+    {% for niveis in niveis %}
+    <a href="{% url 'vestibulares' niveis.pk %}">
+        <h2>{{ niveis.ensino }}</h2>
+    </a>
+    {% endfor %}
 </div>
-
-
-
-<script>
-    function toggleFolder(elementId, event) {
-        event.stopPropagation();
-        var divElement = document.getElementById(elementId);
-        var ulElement = divElement.querySelector('ul');
-        ulElement.classList.toggle("hidden");
-        if (!ulElement.classList.contains("hidden")) {
-            var children = ulElement.querySelectorAll('.folder + ul');
-            children.forEach(function (child) {
-                child.classList.add("hidden");
-            });
-        }
-    }
-</script>
-
 {% endblock %}

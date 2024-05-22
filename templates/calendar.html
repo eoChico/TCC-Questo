@@ -312,20 +312,22 @@
                             <h3>${evento.titulo}</h3>                        
                             <p>${evento.descricao}</p>
                             <p>${evento.hora}</p>
-                                <div style="margin-left: 82%; margin-top: -25px;">
+                            <div class="box-botao">
+                                <div>
                                     <a class="btnModalEdit" evento-id="${evento.id}">
                                         <div class="btn-edit">
                                             <i class="fas fa-pen"></i>
                                         </div>
                                     </a>
                                 </div>
-                                <div style="margin-left: 92%; margin-top: -30px;">
+                                <div">
                                     <a class="btnModalDelet" evento-id="${evento.id}">
                                         <div class="btn-delet">
                                             <i class="fas fa-trash"></i>
                                         </div>
                                     </a>
                                 </div>
+                            </div>
                         </div>`);
                         $(".btnModalEdit").click(function () {
                             var eventoId = $(this).attr('evento-id');

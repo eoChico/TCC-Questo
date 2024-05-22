@@ -40,6 +40,7 @@ class Vestibular(models.Model):
     nome = models.CharField(max_length=200)
     ensino = models.ForeignKey(Nivel, on_delete=models.CASCADE)
     urlImg = models.URLField()
+    desc = models.TextField()
     def __str__(self):
         return self.nome
 
