@@ -56,14 +56,13 @@ class Caderno(models.Model):
     numero = models.IntegerField()
     urlProva = models.URLField()
     def __str__(self):
-        return f"Caderno {self.numero}"
+        return f"Caderno {self.numero} da prova do {self.prova.titulo}"
 
 class Correcao(models.Model):
     caderno = models.OneToOneField(Caderno, on_delete=models.CASCADE)
     urlCorrecao = models.URLField()
     def __str__(self):
-        return f"Correção"
-
+        return f"Correção do caderno {self.caderno.numero} da prova do {self.caderno.prova.titulo}"
 
 
 

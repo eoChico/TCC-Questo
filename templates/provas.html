@@ -21,7 +21,6 @@
 
     .main {
         display: flex;
-        height: 100vh;
     }
 
     .container {
@@ -29,6 +28,7 @@
         width: 100%;
         border-radius: 5px;
         align-items: center;
+
     }
 
     .title {
@@ -71,39 +71,31 @@
     <h1 style="color: #fff;">{{ vestibulares.nome }}</h1>
 
     <div class="title">
-        <h4>{{ vestibulares.desc }}</h4>
+        <h3>{{ vestibulares.desc }}</h3>
     </div>
 
-    <div class="exams">
-        <ul>
-            {% for prova in provas %}
-            <li class="folder-item" style="display: flex;  background-color: #6a0dad;"
-                onclick="toggleFolder('prova_{{ forloop.counter }}', event)">
-                <div class="hierarquia" id="prova_{{ forloop.counter }}">
-                    <span class="folder" style="color: #fff;">Ano {{ prova.ano }}</span>
-                    <ul class="hidden">
-                        {% for caderno in prova.caderno_set.all %}
-                        <li class="folder-item" style="justify-content: center;">
-                            <div class="hierarquia">
-                                <span class="folder">Prova:</span>
-                                <span class="folder">{{ prova.titulo }}</span>
-                                <ul class="hidden">
-                                    <li class="folder-item">
-                                        <div class="hierarquia">
-                                            <a target="_blank" href="{{ caderno.urlProva }}">Caderno {{ caderno.numero }}</a>
-                                            <a target="_blank" href="{{ caderno.correcao.urlCorrecao }}">Gabarito</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+    <ul>
+        {% for prova in provas %}
+        <li class="folder-item" style="display: flex;  background-color: #6a0dad;"
+            onclick="toggleFolder('prova_{{ forloop.counter }}', event)">
+            <div class="hierarquia" id="prova_{{ forloop.counter }}">
+                <span class="folder" style="color: #fff;">
+                    <h2>{{ prova }}</h2>
+                </span>
+                <ul class="hidden">
+                    {% for caderno in prova.caderno_set.all %}
+                    <li class="folder-item" style="justify-content: center;">
+                        <div class="hierarquia">
+                            <a target="_blank" href="{{ caderno.urlProva }}">{{ caderno }}</a><br>
+                            <a target="_blank" href="{{ caderno.correcao.urlCorrecao }}">{{ caderno.correcao }}</a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 <script>
