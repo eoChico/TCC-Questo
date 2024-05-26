@@ -140,13 +140,13 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 70px;
 }
   
 .img-calendario img {
     width: 600px;
     border-radius: 25px;
-    margin-right: 60px;
+    margin-right: 100px;
 }
   
 .texto-calendario {
@@ -159,13 +159,13 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 70px;
 }
   
 .img-planner img {
     width: 600px;
     border-radius: 25px;
-    margin-left: 60px;
+    margin-left: 170px;
 }
   
 .texto-planner {
@@ -177,13 +177,13 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-bottom: 50px;
+    padding-bottom: 70px;
 }
   
 .img-provas img {
     width: 600px;
     border-radius: 25px;
-    margin-right: 60px;
+    margin-right: 100px;
 }
   
 .texto-provas {
