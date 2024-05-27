@@ -1,0 +1,105 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.main {
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    padding: 20px;
+    width: 100%;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.button {
+    background-color: #6a0dad;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ae81d6;
+}
+
+.provas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1%;
+}
+
+.box {
+    width: 23%;
+    min-width: 220px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.image-box {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.img {
+    height: auto;
+    width: 200px;
+}
+
+.hidden {
+    display: none;
+}
+
+.title {
+    background-color: #d9d9d9;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: justify;
+}
+
+.folder {
+    font-weight: bold;
+    color: #000;
+}
+
+.hierarquia {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.folder-item {
+    display: flex;
+    border-radius: 10px;
+    background-color: #6a0dad;
+    padding: 5px;
+    margin: 7px;
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}

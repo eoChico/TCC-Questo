@@ -1,247 +1,30 @@
 {% extends "side_bar.html" %}
-
-{% block title %}
-Planner
-{% endblock %}
+{% load static %}
 
 {% block head %}
-<style>
-    .container {
-        width: 98%;
-        height: 98%;
-        margin: 10px;
-        padding: 20px;
-        border-radius: 15px;
-        background-color: #d9d9d9;
-    }
-
-    .days-container {
-        display: flex;
-        justify-content: space-between;
-        margin-right: -10px;
-    }
-
-    .day-column {
-        width: calc(15% - 10px);
-        margin-right: 10px;
-        padding: 5px;
-        justify-content: center;
-        background-color: #fff;
-        border-radius: 10px;
-    }
-
-    .day-content {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .day-header {
-        margin: 5px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .day-box {
-        flex-grow: 1;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 6px;
-        padding: 4px;
-        border-radius: 8px;
-        background-color: #6a0dad;
-        color: #fff;
-    }
-
-    .box-name {        
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    h3 {
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    .modal-form {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        transition: opacity 0.3s ease-in-out;
-        transform: scale(0.9);
-    }
-
-    .modal-content-form {
-        background-color: #28232d;
-        color: #fff;
-        margin: 7% auto;
-        border-radius: 10px;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 21%;
-        animation: modal-in 0.3s ease-in-out;
-    }
-
-    .modal-delet {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        transition: opacity 0.3s ease-in-out;
-        transform: scale(0.9);
-    }
-
-    .modal-content-delet {
-        background-color: #28232d;
-        color: #fff;
-        margin: 7% auto;
-        border-radius: 10px;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 30%;
-        animation: modal-in 0.3s ease-in-out;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .btn-save {
-        height: 30px;
-        width: 65px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #7ebd53;
-        color: #fff;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .btn-save:hover {
-        background-color: #f0f0f0;
-        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
-        color: #000;
-    }
-
-    .btn-newform {
-        height: 40px;
-        width: 40px;
-        margin-left: 85%;
-        margin-top: -73px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #7ebd53;
-        color: #fff;
-        border-radius: 15px;
-        position: absolute;
-        cursor: pointer;
-        font-size: 25px;
-    }
-
-    .btn-newform:hover {
-        background-color: #f0f0f0;
-        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
-        color: #000;
-    }
-
-    .btn-delet {
-        height: 40px;
-        width: 40px;
-        margin-left: 81.5%;
-        margin-top: -73px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #b0413e;
-        color: #fff;
-        border-radius: 15px;
-        position: absolute;
-        cursor: pointer;
-        font-size: 20px;
-    }
-
-    .btn-delet:hover {
-        background-color: #f0f0f0;
-        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
-        color: #000;
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 3px;
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-        box-sizing: border-box;
-    }
-
-    .form-check-input {
-        margin-left: 10px;
-    }
-
-    @keyframes modal-in {
-        from {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    .fechar {
-        color: #fff;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        margin-top: -10px
-    }
-
-    .fechar:hover,
-    .fechar:focus {
-        color: #aaa;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/planner.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <body>
     <div class="container">
-        <h1>Planner Semanal</h1><br>
+        <div class="top">
+            <h1>Planner Semanal</h1>
 
-        <a class="" id="btnModalForm">
-            <div class="btn-newform">
-                <i class="fas fa-plus"></i>
+            <div class="btn-container">
+                <a class="" id="btnModalForm">
+                    <div class="btn-newform">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </a>
+                <a class="" id="btnModalDelet">
+                    <div class="btn-delet">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </a>
             </div>
-        </a>
-
-        <a class="" id="btnModalDelet">
-            <div class="btn-delet">
-                <i class="fas fa-trash"></i>
-            </div>
-        </a>
+        </div>
 
         <div class="days-container">
             {% for dia, planejamentos in planejamentos.items %}
@@ -417,40 +200,6 @@ Planner
                     checkbox.parentNode.querySelector('label').textContent = textoLimitado;
                 });
             });
-
-
-            var dayBoxes = document.querySelectorAll('.box-name');
-            dayBoxes.forEach(function (box) {
-                var text = box.textContent.trim();
-                var words = text.split(' ');
-                var newText = '';
-                words.forEach(function (word, index) {
-                    if (word.length > 13) {
-                        var splitWord = word.match(/.{1,13}/g);
-                        splitWord.forEach(function (part, partIndex) {
-                            newText += part;
-                            if (partIndex !== splitWord.length - 1 || index !== words.length - 1) {
-                                newText += ' ';
-                            }
-                        });
-                    } else {
-                        newText += word;
-                        if (index !== words.length - 1) {
-                            newText += ' ';
-                        }
-                    }
-                });
-                box.innerHTML = newText.trim();
-            });
-
-
-
-
-
-
-
-
-
         });
     </script>
 

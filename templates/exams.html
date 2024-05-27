@@ -1,50 +1,8 @@
-{% extends "side_bar.html" %}
+{% extends 'side_bar.html' %}
+{% load static %}
 
-{% block title %}
-Exams
-{% endblock %}
-
-{% block head %}
-<style>
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: #fff;
-        border-radius: 20px;
-    }
-
-    .main {
-        display: flex;
-        height: 100vh;
-    }
-
-    .container {
-        padding: 20px;
-        width: 100%;
-        border-radius: 5px;
-        align-items: center;
-    }
-
-    .button {
-        background-color: #6a0dad;
-        border: none;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px;
-        border-radius: 10px;
-        cursor: pointer;
-    }
-
-    .button:hover {
-        background-color: #ae81d6;
-    }
-</style>
+{%block head%}
+<link rel="stylesheet" href="{% static 'css/exams.css' %}">
 {% endblock %}
 
 {% block content %}

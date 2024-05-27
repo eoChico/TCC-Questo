@@ -1,73 +1,9 @@
-{% extends "side_bar.html" %}
+{% extends 'side_bar.html' %}
+{% load static %}
 
-{% block title %}
-{{ ensino.nivel }}
+{%block head%}
+<link rel="stylesheet" href="{% static 'css/exams.css' %}">
 {% endblock %}
-
-{% block head %}
-<style>
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: #fff;
-        border-radius: 20px;
-    }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    .main {
-        display: flex;
-        height: 100vh;
-    }
-
-    .container {
-        padding: 20px;
-        width: 100%;
-        border-radius: 5px;
-        align-items: center;
-    }
-
-    .provas {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding: 1%;
-    }
-
-    .box {
-        width: 23%;
-        min-width: 220px;
-        min-height: 220px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        padding: 5px;
-        margin: 8px;
-        border-radius: 10px;
-        cursor: pointer;
-    }
-
-    .image-box {
-        display: flex;
-        align-items: center;
-        height: 100%;
-    }
-
-    .img {
-        height: auto;
-        width: 200px;
-    }
-</style>
-{% endblock %}
-
-
 
 {% block content %}
 <div class="container">
@@ -76,7 +12,7 @@
     <div class="provas">
 
         {% for vestibular in vestibulares %}
-        <a class="box" href="{% url 'provas' vestibular.pk %}">
+        <a class="box" style="color: inherit; text-decoration: none;" href="{% url 'provas' vestibular.pk %}">
             <div class="image-box">
                 <img src="{{ vestibular.urlImg }}" alt="{{ vestibular.nome }}" class="img">
             </div>
