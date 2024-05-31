@@ -82,6 +82,34 @@ body {
     height: 90px;
 }
 
+.nav-links.active {
+    display: flex !important;
+}
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .nav-links.active {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ac6cff;
+        box-shadow: 0px 5px 20px -12px #2a0954;
+    }
+    .nav-links.active .nav-link {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .navbar-right {
+        display: flex;
+        justify-content: center;
+        flex-basis: 20%;
+    }
+}
+
 /*************************************** INICIO ***************************************/
 .container-inicio {
     display: flex;
@@ -228,102 +256,66 @@ body {
 }
 
 /*************************************** DESENVOLVEDORES ***************************************/
-.container-desen{
+.container-desen {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
     text-align: center;
-    background-color: #fff;
     margin-bottom: 50px;
 }
 
-.texto-principal-desen h1{
+.texto-principal-desen h1 {
     font-size: 3em;
     color: #333;
     margin-top: 120px;
 }
 
-.texto-principal-desen p{
+.texto-principal-desen p {
     font-size: 1.25em;
     color: #666;
     margin-bottom: 40px;
 }
 
-/*************************************** CARROSSEL ***************************************/
-.carousel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.row-desen {
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-slide {
-    display: none;
-    width: 50%;
-    height: 100%;
-    background: #ac6cff;
-    border-radius: 15px;
+    flex-direction: row; /* Defina a direção para linha */
+    flex-wrap: wrap; /* Permitir quebra de linha */
+    justify-content: center; /* Centralizar os itens */
+    gap: 20px; /* Adicionar espaço entre os itens */
+    width: 100%;
+    max-width: 1200px; /* Opcional: limitar a largura máxima */
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s ease;
-    position: relative;
 }
 
-.carousel-slide.active {
-    display: block;
-}
-
-.carousel-content {
+.colmun-desen {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    height: 100%;
+    width: 250px; /* Definir uma largura fixa para cada coluna */
+    background-color: #ac6cff;
+    gap: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 
-.carousel-image img {
-    width: 100px;
-    height: 100px;
+.img-desen img {
+    width: 100px; /* Ajustar o tamanho conforme necessário */
+    height: 100px; /* Garantir que a altura seja a mesma para um círculo perfeito */
     border-radius: 50%;
-    margin-bottom: 10px;
 }
 
-.carousel-caption {
-    font-weight: bold;
-
+.text-desen h1 {
+    font-size: 1.5em; /* Ajustar o tamanho da fonte */
+    color: #fff;
+    text-align: center;
+    justify-items: center;
 }
 
-.carousel-text {
-    text-align:center;
-    max-width: 80%;
-    margin: 0 auto;
-}
-
-.carousel-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-
-.carousel-button.prev {
-    left: 400px;
-}
-
-.carousel-button.next {
-    right: 400px;
-}
-
-.carousel-button img {
-    width: 30px;
-    height: 30px;
+.text-desen p {
+    font-size: 1em; /* Ajustar o tamanho da fonte */
+    color: #fff;
+    text-align: center;
 }
 
 

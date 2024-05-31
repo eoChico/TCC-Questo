@@ -33,20 +33,23 @@
     <title>QUESTO</title>
   </head>
   <body>
-    <div class="navbar">
-      <div class="logo">
-        <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO" />
-      </div>
-      <div class="nav-links">
-        <a href="#" class="nav-link">Inicio</a>
-        <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
-        <a href="#provas" class="nav-link">Provas</a>
-        <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>
-      </div>
-      <div class="navbar-right">
-        <a href="{% url 'account_login' %}" class="button">Acessar</a>
-      </div>
-    </div>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO" />
+            </div>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Inicio</a>
+                <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
+                <a href="#provas" class="nav-link">Provas</a>
+                <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>
+            </div>
+            <div class="navbar-right">
+                <a href="{% url 'account_login' %}" class="button">Acessar</a>
+            </div>
+        </nav>
+    </header>
 
     <div class="container-inicio">
         <div class="texto-principal-inicio">
@@ -173,16 +176,83 @@
   <div class="container-desen" id="desenvolvedores">
     <div class="texto-principal-desen">
         <h1>Desenvolvedores</h1>
-        <p>O que os desenvovedores acharam de fazer esse projeto.</p>
+        <p>O que os desenvolvedores acharam de fazer esse projeto.</p>
     </div>
-    <!-- CARROSSEL-->
+    <div class="row-desen">
+        <div class="colmun-desen">
+            <div class="img-desen">
+                <img src="{% static 'img/home/japa.jpeg' %}" alt="Eric" />
+            </div>
+            <div class="text-desen">
+                <h1>Eric</h1>
+                <p>"rabalhar neste projeto nos proporcionou inúmeras oportunidades de aprendizado e evolução"</p>
+            </div>
+        </div>
+        <div class="colmun-desen">
+            <div class="img-desen">
+                <img src="{% static 'img/home/chico.jpeg' %}" alt="Francisco" />
+            </div>
+            <div class="text-desen">
+                <h1>Francisco</h1>
+                <p>"Desenvolver este projeto foi uma jornada repleta de desafios e crescimento pessoal"</p>
+            </div>
+        </div>
+        <div class="colmun-desen">
+            <div class="img-desen">
+                <img src="{% static 'img/home/julia.jpeg' %}" alt="Júlia" />
+            </div>
+            <div class="text-desen">
+                <h1>Júlia</h1>
+                <p>"Foi uma experiência enriquecedora e cheia de aprendizado. Superamos muitos obstáculos juntos."</p>
+            </div>
+        </div>
+        <div class="colmun-desen">
+            <div class="img-desen">
+                <img src="{% static 'img/home/luara.png' %}" alt="Luara" />
+            </div>
+            <div class="text-desen">
+                <h1>Luara</h1>
+                <p>"A cada obstáculo superado, nossa equipe se tornou mais forte e unida"</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-desen" id="desenvolvedores">
+  <div class="texto-principal-desen">
+      <h1>Escolhas</h1>
+      <p>O que faz o QUESTO ser sua melhor escolha?</p>
   </div>
-    <!-- FIM CARROSSEL--> 
+
+<div class="container-escolhas">
+  <div class="texto-centralizado" id="plataforma">
+      <h2>O que faz o <u>Questo</u> ser sua melhor escolha?</h2>
+  </div>
+  <div class="row-escolhas">
+      <div class="coluna-imagem-escolhas">
+          <img src="{% static 'img/testeA.avif' %}" alt="mulher estudando">
+      </div>
+      <div class="texto-escolhas">
+              <div class="">
+      </div>
+  </div>
+</div>
+
+
  <footer>
       <h1>© Copyright 2024 Questo. Todos os direitos reservados.</h1>
  </footer>
 </div>
   </body>
+
+  <script>
+
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+}
+</script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       showFeature('calendario_fun');
@@ -197,7 +267,6 @@
         }
       });
     }
-    
     </script>
     
 </html>
