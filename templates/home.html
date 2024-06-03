@@ -38,12 +38,12 @@
             <div class="logo">
                 <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO" />
             </div>
-            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
             <div class="nav-links">
                 <a href="#" class="nav-link">Inicio</a>
+                <a href="#escolhas" class="nav-link">Plataforma</a>
                 <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
                 <a href="#provas" class="nav-link">Provas</a>
-                <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>
+                <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>      
             </div>
             <div class="navbar-right">
                 <a href="{% url 'account_login' %}" class="button">Acessar</a>
@@ -61,74 +61,128 @@
           </div>
     </div>
 
-    <div class="container-funcionalidades" id="funcionalidades">
-      <div class="texto-principal-funcionalidades">
-        <h1>Funcionalidades</h1>
-        <p>As principais funcionalidades que o Questo oferece para você!</p>
-      </div>
-    
-      <div class="carrossel_funcionalidade">
-        <div class="button_fun" onclick="showFeature('calendario_fun')">
-          <a href="#calendario_fun" class="fun_link">
-            <img src="{% static 'img/funcionalidades/calendario.png' %}" alt="CALENDARIO-ICON" />
-          </a>
+  <div class="container-esc" id="escolhas">
+    <div class="texto-principal-esc">
+        <h1>Plataforma</h1>
+        <p>O que faz o QUESTO ser sua melhor escolha?</p>
+    </div>
+    <div class="row-escolhas">
+        <div class="coluna-imagem-escolhas">
+            <img src="{% static 'img/home/Choice.gif' %}" alt="escolha">
         </div>
-        
-        <div class="button_fun" onclick="showFeature('planner_fun')">
-          <a href="#planner_fun" class="fun_link">
-            <img src="{% static 'img/funcionalidades/planner.png' %}" alt="PLANNER-ICON" />
-          </a>
+        <div class="container-escolhas">
+            <div class="escolhas-cont">
+                <div class="campo-escolha">
+                    <div class="imagem-escolhas">
+                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
+                    </div>
+                    <div class="texto-escolhas">
+                        <p>Todos os materiais e ferramentas de estudo em um único lugar.</p>
+                    </div>
+                </div>
+                <div class="campo-escolha">
+                    <div class="imagem-escolhas">
+                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
+                    </div>
+                    <div class="texto-escolhas">
+                        <p>Plataforma totalmente gratuita e acessível para todos.</p>
+                    </div>
+                </div>
+                <div class="campo-escolha">
+                    <div class="imagem-escolhas">
+                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
+                    </div>
+                    <div class="texto-escolhas">
+                        <p>Ferramentas personalizáveis para um estudo eficaz.</p>
+                    </div>
+                </div>
+                <div class="campo-escolha">
+                    <div class="imagem-escolhas">
+                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
+                    </div>
+                    <div class="texto-escolhas">
+                        <p>Flashcards para facilitar a memorização ativa.</p>
+                    </div>
+                </div>
+                <div class="campo-escolha">
+                    <div class="imagem-escolhas">
+                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
+                    </div>
+                    <div class="texto-escolhas">
+                        <p>Pratique com provas anteriores de diversas instituições.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="button_fun" onclick="showFeature('prova_fun')">
-          <a href="#prova_fun" class="fun_link">
-            <img src="{% static 'img/funcionalidades/provas.png' %}" alt="PROVA-ICON" />
-          </a>
-        </div>
-        
-        <div class="button_fun" onclick="showFeature('flashcard_fun')">
-          <a href="#flashcard_fun" class="fun_link">
-            <img src="{% static 'img/funcionalidades/flashcard.png' %}" alt="FALSHCARD-ICON" />
-          </a>
-        </div>
-        
-        <div class="button_fun" onclick="showFeature('redacao_fun')">
-          <a href="#redacao_fun" class="fun_link">
-            <img src="{% static 'img/funcionalidades/redacao.png' %}" alt="REDAÇÃO-ICON" />
-          </a>
-        </div>
-        
-        <div class="button_fun" onclick="showFeature('blocodenotas_fun')">
-          <a href="#blocodenotas_fun" class="fun_link">
-            <img src="{% static 'img/funcionalidades/blocodenotas.png' %}" alt="BLOCO-DE-NOTAS-ICON" />
-          </a>
-        </div>
-        
-      </div>
-    
-      <div class="box-fun">
-        <div class="img-fun" id="calendario_fun">
-          <img src="{% static 'img/home/calendario-fun.png' %}" alt="QUESTO-LOGO" />
-        </div>
-        <div class="img-fun" id="planner_fun">
-          <img src="{% static 'img/home/planner-fun.png' %}" alt="QUESTO-LOGO" />
-        </div>
-        <div class="img-fun" id="prova_fun">
-          <img src="{% static 'img/home/provas-fun.png' %}" alt="QUESTO-LOGO" />
-        </div>
-        <div class="img-fun" id="flashcard_fun">
-          <img src="{% static 'img/home/flashcard-fun.png' %}" alt="QUESTO-LOGO" />
-        </div>
-        <div class="img-fun" id="redacao_fun">
-          <img src="{% static 'img/home/redacao-fun.png' %}" alt="QUESTO-LOGO" />
-        </div>
-        <div class="img-fun" id="blocodenotas_fun">
-          <img src="{% static 'img/home/blocodenotas-fun.png' %}" alt="QUESTO-LOGO" />
-        </div>
-      </div>
+    </div>
   </div>
-    
-    
+
+  <div class="container-funcionalidades" id="funcionalidades">
+    <div class="texto-principal-funcionalidades">
+      <h1>Funcionalidades</h1>
+      <p>As principais funcionalidades que o Questo oferece para você!</p>
+    </div>
+  
+    <div class="carrossel_funcionalidade">
+      <div class="button_fun" onclick="showFeature('calendario_fun')">
+        <a href="#calendario_fun" class="fun_link">
+          <img src="{% static 'img/funcionalidades/calendario.png' %}" alt="CALENDARIO-ICON" />
+        </a>
+      </div>
+      
+      <div class="button_fun" onclick="showFeature('planner_fun')">
+        <a href="#planner_fun" class="fun_link">
+          <img src="{% static 'img/funcionalidades/planner.png' %}" alt="PLANNER-ICON" />
+        </a>
+      </div>
+      
+      <div class="button_fun" onclick="showFeature('prova_fun')">
+        <a href="#prova_fun" class="fun_link">
+          <img src="{% static 'img/funcionalidades/provas.png' %}" alt="PROVA-ICON" />
+        </a>
+      </div>
+      
+      <div class="button_fun" onclick="showFeature('flashcard_fun')">
+        <a href="#flashcard_fun" class="fun_link">
+          <img src="{% static 'img/funcionalidades/flashcard.png' %}" alt="FALSHCARD-ICON" />
+        </a>
+      </div>
+      
+      <div class="button_fun" onclick="showFeature('redacao_fun')">
+        <a href="#redacao_fun" class="fun_link">
+          <img src="{% static 'img/funcionalidades/redacao.png' %}" alt="REDAÇÃO-ICON" />
+        </a>
+      </div>
+      
+      <div class="button_fun" onclick="showFeature('blocodenotas_fun')">
+        <a href="#blocodenotas_fun" class="fun_link">
+          <img src="{% static 'img/funcionalidades/blocodenotas.png' %}" alt="BLOCO-DE-NOTAS-ICON" />
+        </a>
+      </div>
+      
+    </div>
+  
+    <div class="box-fun">
+      <div class="img-fun" id="calendario_fun">
+        <img src="{% static 'img/home/calendario-fun.png' %}" alt="QUESTO-LOGO" />
+      </div>
+      <div class="img-fun" id="planner_fun">
+        <img src="{% static 'img/home/planner-fun.png' %}" alt="QUESTO-LOGO" />
+      </div>
+      <div class="img-fun" id="prova_fun">
+        <img src="{% static 'img/home/provas-fun.png' %}" alt="QUESTO-LOGO" />
+      </div>
+      <div class="img-fun" id="flashcard_fun">
+        <img src="{% static 'img/home/flashcard-fun.png' %}" alt="QUESTO-LOGO" />
+      </div>
+      <div class="img-fun" id="redacao_fun">
+        <img src="{% static 'img/home/redacao-fun.png' %}" alt="QUESTO-LOGO" />
+      </div>
+      <div class="img-fun" id="blocodenotas_fun">
+        <img src="{% static 'img/home/blocodenotas-fun.png' %}" alt="QUESTO-LOGO" />
+      </div>
+    </div>
+</div>
 
     <div class="container-provas" id="provas">
       <div class="texto-principal-provas">
@@ -139,35 +193,19 @@
 
       <div class="container-prova">
         <div class="card" style="width: 18rem;">
-          <img src="{% static 'img/provas/enem-prova.png' %}" class="card-img-top" alt="ENEM-PROVA" />
-          <div class="card-body">
-            <h5 class="card-title">ENEM</h5>
-            <p style="text-align: left;" class="card-text">Inícios Inscrições: 00/00/2024<br>Termino Inscrições: 00/00/2024<br>Valor: 00,00.</p>
-          </div>
+          <img style="box-shadow: 0px 5px 20px -12px #2a0954;"src="{% static 'img/provas/enem-prova.png' %}" class="card-img-top" alt="ENEM-PROVA" />
         </div>
         
           <div class="card" style="width: 18rem;">
-            <img style="align-items: center;" src="{% static 'img/provas/fatec-prova.png' %}" class="card-img-top" alt="FATEC-PROVA" />
-            <div class="card-body">
-              <h5 class="card-title">FATEC</h5>
-              <p style="text-align: left;" class="card-text">Inícios Inscrições: 00/00/2024<br>Termino Inscrições: 00/00/2024<br>Valor: 00,00.</p>
-            </div>
+            <img  style="box-shadow: 0px 5px 20px -12px #2a0954;" src="{% static 'img/provas/fatec-prova.png' %}" class="card-img-top" alt="FATEC-PROVA" />
           </div>
 
             <div class="card" style="width: 18rem;">
-              <img src="{% static 'img/provas/fuvest-prova.png' %}" class="card-img-top" alt="FUVEST-PROVA" />
-              <div class="card-body">
-                <h5 class="card-title">FUVEST</h5>
-                <p style="text-align: left;" class="card-text">Inícios Inscrições: 00/00/2024<br>Termino Inscrições: 00/00/2024<br>Valor: 00,00.</p>
-              </div>
+              <img  style="box-shadow: 0px 5px 20px -12px #2a0954;" src="{% static 'img/provas/fuvest-prova.png' %}" class="card-img-top" alt="FUVEST-PROVA" />
             </div>
 
           <div class="card" style="width: 18rem;">
-            <img src="{% static 'img/provas/etec-prova.webp' %}" class="card-img-top" alt="ETEC-PROVA" />
-            <div class="card-body">
-              <h5 class="card-title">ETEC</h5>
-              <p style="text-align: left;" class="card-text">Inícios Inscrições: 00/00/2024<br>Termino Inscrições: 00/00/2024<br>Valor: 00,00.</p>
-            </div>
+            <img  style="box-shadow: 0px 5px 20px -12px #2a0954;" src="{% static 'img/provas/etec-prova.webp' %}" class="card-img-top" alt="ETEC-PROVA" />
           </div>
 
       </div>
@@ -217,27 +255,6 @@
         </div>
     </div>
 </div>
-
-<div class="container-desen" id="desenvolvedores">
-  <div class="texto-principal-desen">
-      <h1>Escolhas</h1>
-      <p>O que faz o QUESTO ser sua melhor escolha?</p>
-  </div>
-
-<div class="container-escolhas">
-  <div class="texto-centralizado" id="plataforma">
-      <h2>O que faz o <u>Questo</u> ser sua melhor escolha?</h2>
-  </div>
-  <div class="row-escolhas">
-      <div class="coluna-imagem-escolhas">
-          <img src="{% static 'img/testeA.avif' %}" alt="mulher estudando">
-      </div>
-      <div class="texto-escolhas">
-              <div class="">
-      </div>
-  </div>
-</div>
-
 
  <footer>
       <h1>© Copyright 2024 Questo. Todos os direitos reservados.</h1>

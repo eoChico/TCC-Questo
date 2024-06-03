@@ -217,7 +217,6 @@ body {
     align-items: center;
     height: 100vh;
     text-align: center;
-    background-color: #ac6cff;
 }
 
 .texto-principal-provas h1{
@@ -318,7 +317,87 @@ body {
     text-align: center;
 }
 
+/*************************************** PLATAFORMA ***************************************/
+.container-esc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
 
+.texto-principal-esc h1 {
+    font-size: 3em;
+    color: #333;
+    margin-top: 120px;
+}
+
+.texto-principal-esc p {
+    font-size: 1.25em;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.row-escolhas {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px; /* Espaço entre a imagem e os campos */
+    width: 80%; /* Centraliza o conteúdo dentro da largura disponível */
+}
+
+.coluna-imagem-escolhas {
+    flex-shrink: 0; /* Garante que a coluna da imagem não encolha */
+}
+
+.coluna-imagem-escolhas img {
+    max-width: 65%;
+    height:auto;
+}
+
+.container-escolhas {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.escolhas-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campo-escolha {
+    display: flex;
+    align-items: center;
+    background-color: #ac6cff;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+}
+
+.imagem-escolhas {
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.imagem-escolhas img {
+    display: block;
+    max-width: 40px;
+    height: auto;
+}
+
+.texto-escolhas p {
+    margin: 0;
+}
+
+
+
+/*************************************** FOOTER ***************************************/
 footer{
     background-color: #ac6cff;
     text-align: center;
