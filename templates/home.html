@@ -31,26 +31,37 @@
       href="{% static 'img/favicon.png' %}"
     />
     <title>QUESTO</title>
+
+    <script>
+      function toggleMenu() {
+          var navLinks = document.querySelector('.nav-links');
+          navLinks.classList.toggle('active');
+      }
+  </script>
+
+  
   </head>
   <body>
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO" />
-            </div>
-            <div class="nav-links">
-                <a href="#" class="nav-link">Inicio</a>
-                <a href="#escolhas" class="nav-link">Plataforma</a>
-                <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
-                <a href="#provas" class="nav-link">Provas</a>
-                <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>      
-            </div>
-            <div class="navbar-right">
-                <a href="{% url 'account_login' %}" class="button">Acessar</a>
-            </div>
-        </nav>
-    </header>
-
+      <nav class="navbar">
+          <div class="logo">
+              <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO" />
+          </div>
+          <div class="nav-links">
+              <a href="#" class="nav-link">Inicio</a>
+              <a href="#escolhas" class="nav-link">Plataforma</a>
+              <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
+              <a href="#provas" class="nav-link">Provas</a>
+              <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>
+              <a href="{% url 'account_login' %}" class="nav-link button">Acessar</a>
+          </div>
+          <div class="hamburger" onclick="toggleMenu()">
+              &#9776;
+          </div>
+      </nav>
+  </header>
+  
+  
     <div class="container-inicio">
         <div class="texto-principal-inicio">
             <h1>ORGANIZE A SUA MANEIRA DE ESTUDAR EM LUGAR SÓ!</h1>
@@ -73,45 +84,35 @@
         <div class="container-escolhas">
             <div class="escolhas-cont">
                 <div class="campo-escolha">
-                    <div class="imagem-escolhas">
-                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
-                    </div>
                     <div class="texto-escolhas">
                         <p>Todos os materiais e ferramentas de estudo em um único lugar.</p>
                     </div>
                 </div>
                 <div class="campo-escolha">
-                    <div class="imagem-escolhas">
-                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
-                    </div>
                     <div class="texto-escolhas">
                         <p>Plataforma totalmente gratuita e acessível para todos.</p>
                     </div>
                 </div>
                 <div class="campo-escolha">
-                    <div class="imagem-escolhas">
-                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
-                    </div>
                     <div class="texto-escolhas">
                         <p>Ferramentas personalizáveis para um estudo eficaz.</p>
                     </div>
                 </div>
                 <div class="campo-escolha">
-                    <div class="imagem-escolhas">
-                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
-                    </div>
                     <div class="texto-escolhas">
                         <p>Flashcards para facilitar a memorização ativa.</p>
                     </div>
                 </div>
                 <div class="campo-escolha">
-                    <div class="imagem-escolhas">
-                        <img src="{% static 'img/home/luara.png' %}" alt="ícone">
-                    </div>
                     <div class="texto-escolhas">
                         <p>Pratique com provas anteriores de diversas instituições.</p>
                     </div>
                 </div>
+                <div class="campo-escolha">
+                  <div class="texto-escolhas">
+                      <p>Recursos interativos para maximizar o aprendizado.</p>
+                  </div>
+              </div>
             </div>
         </div>
     </div>
@@ -262,29 +263,6 @@
 </div>
   </body>
 
-  <script>
-
-function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-}
-</script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      showFeature('calendario_fun');
-    });
-    
-    function showFeature(featureId) {
-      const features = document.querySelectorAll('.img-fun');
-      features.forEach(feature => {
-        feature.classList.remove('active');
-        if (feature.id === featureId) {
-          feature.classList.add('active');
-        }
-      });
-    }
-    </script>
-    
+<script src="{% static 'script/home.js' %}"></script>
 </html>
 
