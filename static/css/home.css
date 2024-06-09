@@ -89,6 +89,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+    .navbar {
+        padding: 0 5%;
+    }
     .nav-links {
         display: none;
         flex-direction: column;
@@ -111,6 +114,9 @@ body {
     }
     .hamburger {
         display: block;
+        font-size: 30px;
+        cursor: pointer;
+        color: #f2f2f2;
     }
     .logo img {
         width: 70px;
@@ -122,7 +128,6 @@ body {
         margin: 10px 0;
     }
 }
-
 
 /*************************************** INICIO ***************************************/
 .container-inicio {
@@ -229,9 +234,8 @@ body {
 }
 
 .img-fun img {
-    width: 100%;
-    height: auto;
-    max-width: 450px;
+    width: auto;
+    max-width: 600px;
     border-radius: 10px;
     box-shadow: 0px 5px 20px -12px #2a0954;
 }
@@ -242,8 +246,16 @@ body {
 
 @media screen and (max-width: 768px) {
     .carrossel_funcionalidade {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        padding: 10px;
+    }
+
+    .img-fun img {
+        width: auto;
+        max-width: 400px;
+        border-radius: 10px;
+        padding: 10px;
     }
 
     .button_fun {
@@ -332,12 +344,11 @@ body {
 }
 
 /* Row Container */
-.row-desen,
-.row-escolhas {
+.row-desen {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 70px;
     width: 100%;
     max-width: 1200px;
     padding: 20px;
@@ -378,26 +389,27 @@ body {
 
 /* Escolhas Container */
 .row-escolhas {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    width: 80%;
+    align-items: center;
 }
 
 .coluna-imagem-escolhas {
-    flex-shrink: 0;
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
 }
 
 .coluna-imagem-escolhas img {
-    max-width: 65%;
+    max-width: 100%;
     height: auto;
 }
 
 .container-escolhas {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
 }
 
 .escolhas-cont {
@@ -407,131 +419,38 @@ body {
 }
 
 .campo-escolha {
-    display: flex;
-    align-items: center;
+    padding: 20px;
     background-color: #ac6cff;
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .texto-escolhas p {
     margin: 0;
 }
 
-/* Responsividade */
-@media screen and (max-width: 1200px) {
-    .row-desen,
-    .row-escolhas {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .colmun-desen {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .coluna-imagem-escolhas img {
-        max-width: 80%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .texto-principal-desen h1,
-    .texto-principal-esc h1 {
-        font-size: 2.5em;
-        margin-top: 80px;
-    }
-
-    .texto-principal-desen p,
-    .texto-principal-esc p {
-        font-size: 1em;
-        margin-bottom: 30px;
-    }
-
-    .row-desen,
-    .row-escolhas {
-        padding: 10px;
-        gap: 15px;
-    }
-
-    .colmun-desen {
-        width: 100%;
-        max-width: 250px;
-    }
-
-    .img-desen img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .text-desen h1 {
-        font-size: 1.2em;
-    }
-
-    .text-desen p {
-        font-size: 0.9em;
-    }
-
-    .coluna-imagem-escolhas img {
-        max-width: 100%;
-    }
-
-    .campo-escolha {
-        padding: 8px;
-        border-radius: 8px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .texto-principal-desen h1,
+/* Responsive Styles */
+@media (max-width: 768px) {
     .texto-principal-esc h1 {
         font-size: 2em;
-        margin-top: 60px;
     }
 
-    .texto-principal-desen p,
     .texto-principal-esc p {
-        font-size: 0.9em;
-        margin-bottom: 20px;
-    }
-
-    .row-desen,
-    .row-escolhas {
-        padding: 5px;
-        gap: 10px;
-    }
-
-    .colmun-desen {
-        width: 100%;
-        max-width: 200px;
-    }
-
-    .img-desen img {
-        width: 60px;
-        height: 60px;
-    }
-
-    .text-desen h1 {
         font-size: 1em;
     }
 
-    .text-desen p {
-        font-size: 0.8em;
+    .row-escolhas {
+        flex-direction: column;
     }
 
-    .coluna-imagem-escolhas img {
-        max-width: 100%;
+    .coluna-imagem-escolhas, .container-escolhas {
+        min-width: 100%;
     }
 
-    .campo-escolha {
-        padding: 6px;
-        border-radius: 6px;
+    .container-escolhas {
+        padding-top: 0;
     }
 }
-
 
 /*************************************** FOOTER ***************************************/
 footer{

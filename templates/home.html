@@ -47,14 +47,14 @@
           <div class="logo">
               <img src="{% static 'img/logoQuesto.png' %}" alt="QUESTO-LOGO" />
           </div>
-          <div class="nav-links">
+          <div class="nav-links" id="navLinks">
               <a href="#" class="nav-link">Inicio</a>
               <a href="#escolhas" class="nav-link">Plataforma</a>
               <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
               <a href="#provas" class="nav-link">Provas</a>
               <a href="#desenvolvedores" class="nav-link">Desenvolvedores</a>
-              <a href="{% url 'account_login' %}" class="nav-link button">Acessar</a>
           </div>
+          <a href="{% url 'account_login' %}" class="button">Acessar</a>
           <div class="hamburger" onclick="toggleMenu()">
               &#9776;
           </div>
@@ -72,52 +72,51 @@
           </div>
     </div>
 
-  <div class="container-esc" id="escolhas">
-    <div class="texto-principal-esc">
-        <h1>Plataforma</h1>
-        <p>O que faz o QUESTO ser sua melhor escolha?</p>
-    </div>
-    <div class="row-escolhas">
-        <div class="coluna-imagem-escolhas">
-            <img src="{% static 'img/home/Choice.gif' %}" alt="escolha">
-        </div>
-        <div class="container-escolhas">
-            <div class="escolhas-cont">
-                <div class="campo-escolha">
-                    <div class="texto-escolhas">
-                        <p>Todos os materiais e ferramentas de estudo em um único lugar.</p>
-                    </div>
-                </div>
-                <div class="campo-escolha">
-                    <div class="texto-escolhas">
-                        <p>Plataforma totalmente gratuita e acessível para todos.</p>
-                    </div>
-                </div>
-                <div class="campo-escolha">
-                    <div class="texto-escolhas">
-                        <p>Ferramentas personalizáveis para um estudo eficaz.</p>
-                    </div>
-                </div>
-                <div class="campo-escolha">
-                    <div class="texto-escolhas">
-                        <p>Flashcards para facilitar a memorização ativa.</p>
-                    </div>
-                </div>
-                <div class="campo-escolha">
-                    <div class="texto-escolhas">
-                        <p>Pratique com provas anteriores de diversas instituições.</p>
-                    </div>
-                </div>
-                <div class="campo-escolha">
-                  <div class="texto-escolhas">
-                      <p>Recursos interativos para maximizar o aprendizado.</p>
+    <div class="container-esc" id="escolhas">
+      <div class="texto-principal-esc">
+          <h1>Plataforma</h1>
+          <p>O que faz o QUESTO ser sua melhor escolha?</p>
+      </div>
+      <div class="row-escolhas">
+          <div class="coluna-imagem-escolhas">
+              <img src="{% static 'img/home/Choice.gif' %}" alt="escolha">
+          </div>
+          <div class="container-escolhas">
+              <div class="escolhas-cont">
+                  <div class="campo-escolha">
+                      <div class="texto-escolhas">
+                          <p>Todos os materiais e ferramentas de estudo em um único lugar.</p>
+                      </div>
                   </div>
+                  <div class="campo-escolha">
+                      <div class="texto-escolhas">
+                          <p>Plataforma totalmente gratuita e acessível para todos.</p>
+                      </div>
+                  </div>
+                  <div class="campo-escolha">
+                      <div class="texto-escolhas">
+                          <p>Ferramentas personalizáveis para um estudo eficaz.</p>
+                      </div>
+                  </div>
+                  <div class="campo-escolha">
+                      <div class="texto-escolhas">
+                          <p>Flashcards para facilitar a memorização ativa.</p>
+                      </div>
+                  </div>
+                  <div class="campo-escolha">
+                      <div class="texto-escolhas">
+                          <p>Pratique com provas anteriores de diversas instituições.</p>
+                      </div>
+                  </div>
+                  <div class="campo-escolha">
+                    <div class="texto-escolhas">
+                        <p>Recursos interativos para maximizar o aprendizado.</p>
+                    </div>
+                </div>
               </div>
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
   </div>
-
   <div class="container-funcionalidades" id="funcionalidades">
     <div class="texto-principal-funcionalidades">
       <h1>Funcionalidades</h1>
@@ -165,22 +164,22 @@
   
     <div class="box-fun">
       <div class="img-fun" id="calendario_fun">
-        <img src="{% static 'img/home/calendario-fun.png' %}" alt="QUESTO-LOGO" />
+        <img src="{% static 'img/home/calendario-fun.png' %}" alt="CALENDARIO" />
       </div>
       <div class="img-fun" id="planner_fun">
-        <img src="{% static 'img/home/planner-fun.png' %}" alt="QUESTO-LOGO" />
+        <img src="{% static 'img/home/planner-fun.png' %}" alt="PLANNER" />
       </div>
       <div class="img-fun" id="prova_fun">
-        <img src="{% static 'img/home/provas-fun.png' %}" alt="QUESTO-LOGO" />
+        <img src="{% static 'img/home/provas-fun.png' %}" alt="PROVAS" />
       </div>
       <div class="img-fun" id="flashcard_fun">
-        <img src="{% static 'img/home/flashcard-fun.png' %}" alt="QUESTO-LOGO" />
+        <img src="{% static 'img/home/flashcard-fun.png' %}" alt="FLASHCARD" />
       </div>
       <div class="img-fun" id="redacao_fun">
-        <img src="{% static 'img/home/redacao-fun.png' %}" alt="QUESTO-LOGO" />
+        <img src="{% static 'img/home/redacao-fun.png' %}" alt="REDAÇÃO" />
       </div>
       <div class="img-fun" id="blocodenotas_fun">
-        <img src="{% static 'img/home/blocodenotas-fun.png' %}" alt="QUESTO-LOGO" />
+        <img src="{% static 'img/home/blocodenotas-fun.png' %}" alt="BLOCO DE NOTAS" />
       </div>
     </div>
 </div>
@@ -254,6 +253,15 @@
                 <p>"A cada obstáculo superado, nossa equipe se tornou mais forte e unida"</p>
             </div>
         </div>
+        <div class="colmun-desen">
+          <div class="img-desen">
+              <img src="{% static 'img/home/lucas.jpeg' %}" alt="Luara" />
+          </div>
+          <div class="text-desen">
+              <h1>Lucas</h1>
+              <p>"Cada desafio enfrentado solidificou nosso compromisso e aprimorou nossas habilidades coletivas."</p>
+          </div>
+      </div>
     </div>
 </div>
 
@@ -263,6 +271,31 @@
 </div>
   </body>
 
-<script src="{% static 'script/home.js' %}"></script>
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
+}
+</script>
+
+<script> 
+  
+  function showFeature(featureId) {
+  // Remove active class from all img-fun divs
+  document.querySelectorAll('.box-fun .img-fun').forEach(function(div) {
+    div.classList.remove('active');
+  });
+
+  // Add active class to the clicked feature
+  document.getElementById(featureId).classList.add('active');
+}
+
+// Prevent default link behavior to avoid page jump
+document.querySelectorAll('.fun_link').forEach(function(link) {
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
+  });
+});
+</script>
 </html>
 
