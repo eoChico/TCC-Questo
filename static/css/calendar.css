@@ -293,6 +293,7 @@ h3 {
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 17px;
 }
 
 .btn-edit:hover {
@@ -312,6 +313,7 @@ h3 {
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 17px;
 }
 
 .btn-delet:hover {

@@ -30,7 +30,10 @@ urlpatterns = [
 
     path('accounts/flashcards/', views.flashcards, name='flashcards'),
     path('accounts/flashcards_details/<int:deck_id>/', views.flashcards_details, name='flashcards_details'),
-    path('deletar_deck/<int:deck_id>/', views.deletar_deck, name='deletar_deck'),
+    path('flashcards/delete/<int:deck_id>/', views.delete_deck, name='delete_deck'),
+    path('flashcards/edit/<int:deck_id>/', views.edit_deck, name='edit_deck'),
+    path('flashcard/delete/<int:id>/', views.delete_flashcard, name='delete_flashcard'),
+    path('flashcard/edit/<int:id>/', views.edit_flashcard, name='edit_flashcard'),
 
     path('accounts/calendar/', views.calendar, name='calendar'),
     path('detalhes_event/', views.detalhes_event, name='detalhes_event'),

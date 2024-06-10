@@ -6,8 +6,267 @@ Baralho {{ deck.nome }}
 {% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/flashcards-details.css' %}">
-<script src="{% static 'scripts/flashcards_details.js' %}"></script> <!-- Include your JavaScript -->
+
+<style>
+    .container {
+        padding: 20px;
+        color: #fff;
+        width: 100%;
+        border-radius: 5px;
+        align-items: center;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .container-flashcards {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .flashcard {
+        margin: 10px;
+        width: 200px;
+        color: #000;
+        height: 250px;
+        perspective: 1000px;
+    }
+
+    .flashcards {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .flipper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 1.5s;
+        transform-style: preserve-3d;
+    }
+
+    .flashcard:hover .flipper {
+        transform: rotateY(180deg);
+    }
+
+    .front,
+    .back {
+        z-index: 1;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #d9d9d9;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        word-break: break-word;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+
+    .front {
+        transform: rotateY(0deg);
+    }
+
+    .back {
+        transform: rotateY(180deg);
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    h3 {
+        font-weight: 600;
+    }
+
+    .btn-container {
+        display: flex;
+        float: right;
+    }
+
+    .btn-save {
+        height: 30px;
+        width: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7ebd53;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .btn-save:hover {
+        background-color: #f0f0f0;
+        color: #000;
+    }
+
+    .btn-newform {
+        height: 40px;
+        width: 40px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7ebd53;
+        color: #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+    .btn-newform:hover {
+        background-color: #f0f0f0;
+        color: #000;
+    }
+
+    .btn-edit {
+        height: 40px;
+        width: 40px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #5e81ac;
+        color: #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .btn-edit:hover {
+        background-color: #f0f0f0;
+        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+        color: #000;
+    }
+
+    .btn-delet {
+        height: 40px;
+        width: 40px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #b0413e;
+        color: #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .btn-delet:hover {
+        background-color: #f0f0f0;
+        /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+        color: #000;
+    }
+
+    .modal-form {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        transition: opacity 0.3s ease-in-out;
+        transform: scale(0.9);
+    }
+
+    .modal-editdeck {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        transition: opacity 0.3s ease-in-out;
+        transform: scale(0.9);
+    }
+
+    .modal-deletdeck {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        transition: opacity 0.3s ease-in-out;
+        transform: scale(0.9);
+    }
+
+    .modal-content {
+        background-color: #28232d;
+        color: #fff;
+        margin: 7% auto;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 23%;
+        animation: modal-in 0.3s ease-in-out;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 3px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .fechar,
+    .close {
+        color: #fff;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: -10px;
+        margin-left: -20px;
+    }
+
+    .fechar:hover,
+    .fechar:focus,
+    .close:hover,
+    .close:focus {
+        color: #aaa;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    @keyframes modal-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
 {% endblock %}
 
 {% block content %}
@@ -15,19 +274,29 @@ Baralho {{ deck.nome }}
     <div class="header">
         <div>
             <h1>{{ deck.nome }}</h1>
-            <p>{{ deck.descricao }}</p>
+            <h3>{{ deck.descricao }}</h3>
         </div>
-        <div>
-            <button class="btn-add" id="open-add-modal"><i class="fa-solid fa-plus"></i></button> <!-- Button to open modal -->
-            <button class="btn-start"><i class="fa-solid fa-play"></i></button>
+        <div class="btn-container">
+            <div id="btnModalEditDeck" class="btn-edit">
+                <i class="fas fa-pen"></i>
+            </div>
+
+            <div id="btnModalDeletDeck" class="btn-delet">
+                <i class="fas fa-trash"></i>
+            </div>
+
+            <div id="btnModalForm" class="btn-newform">
+                <i class="fas fa-plus"></i>
+            </div>
         </div>
     </div>
-    <div class="containers-flashcards">
+    <br>
+    <div class="container-flashcards">
         <div class="flashcards">
             {% if not flashcards %}
-            <div style="text-align:center;">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                 <img src="{% static 'img/no-data.svg' %}" width="420" height="420" alt="mulher estudando">
-                <h1>Parece que ainda não tem nenhum flashcard nesse baralho</h1>
+                <h1 style="width: 80%; text-wrap: wrap;">Parece que ainda não tem nenhum flashcard nesse baralho</h1>
             </div>
             {% else %}
             {% for flashcard in flashcards %}
@@ -37,27 +306,270 @@ Baralho {{ deck.nome }}
                         <h5>{{ flashcard.pergunta }}</h5>
                     </div>
                     <div class="back">
-                        <h5>{{ flashcard.resposta }}</h5>
+                        <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <h5>{{ flashcard.resposta }}</h5>
+                        </div>
+                        <div>
+                            <div class="btn-edit btn-edit-flashcard" data-id="{{ flashcard.id }}"
+                                data-pergunta="{{ flashcard.pergunta }}" data-resposta="{{ flashcard.resposta }}"
+                                style="margin: 0px; float: left; width: 30px; height: 30px; border-radius: 5px; font-size: 17px;">
+                                <i class="fas fa-pen"></i>
+                            </div>
+                            <div class="btn-delet btn-delet-flashcard" data-id="{{ flashcard.id }}"
+                                style="margin: 0px; float: right; width: 30px; height: 30px; border-radius: 5px; font-size: 17px;">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
+
             {% endif %}
         </div>
     </div>
 </div>
 
-<!-- Modal Structure -->
-<div class="modal" id="add-modal">
+<!-- Modal adicionar card -->
+<div id="modalForm" class="modal-form">
     <div class="modal-content">
-        <span class="close" id="close-add-modal">&times;</span> <!-- Para fechar o modal -->
+        <span class="fechar">&times;</span>
         <h2>Adicionar Flashcard</h2>
-        <form method="post" id="add-flashcard-form" class="flashcards-form"> <!-- Formulário para adicionar flashcards -->
-            {% csrf_token %} <!-- Proteção contra CSRF -->
-            {{ flashcards_form.as_p }} <!-- Renderiza o formulário -->
-            <button type="submit" class="btn-submit">Adicionar</button> <!-- Botão para submeter -->
+        <form method="post" id="add-flashcard-form" class="flashcards-form">
+            {% csrf_token %}
+            {{ flashcards_form }}
+            <br>
+            <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                <input class="btn-save" type="submit" value="Salvar" id="btnSalvarEdit">
+            </a>
         </form>
     </div>
 </div>
+
+<!-- Modal para editar um Baralho -->
+<div id="modalEditDeck" class="modal-editdeck">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <h2>Editar Baralho</h2>
+        <form id="edit-deck-form" class="deck-form">
+            {% csrf_token %}
+            <label for="modalEditTitulo">Título:</label>
+            <textarea id="id_nome" name="nome" class="form-control" maxlength="11" required>{{ deck.nome }}</textarea>
+
+            <label for="modalEditDescricao">Descrição:</label>
+            <textarea id="id_descricao" name="descricao" class="form-control" rows="8" maxlength="70" required>{{ deck.descricao }}</textarea>
+            <br><br>
+
+            <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                <input class="btn-save" type="submit" value="Salvar" id="btnSalvarEdit">
+            </a>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para Deletar Baralho -->
+<div id="modalDeletDeck" class="modal-deletdeck">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <h2>Confirmar Exclusão</h2>
+        <p>Você tem certeza de que deseja excluir este deck?</p>
+        <form method="post" action="{% url 'delete_deck' deck.id %}">
+            {% csrf_token %}
+            <br>
+            <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                <input class="btn-save" type="submit" value="Confirmar" id="btnDelet"
+                    style="width: 100px; background-color: #b0413e;">
+            </a>
+        </form>
+    </div>
+</div>
+
+<!-- Modal editar card -->
+<div id="modalEditCard" class="modal-form">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <h2>Editar Flashcard</h2>
+        <form method="post" id="edit-flashcard-form" class="flashcards-form">
+            {% csrf_token %}
+            <input type="hidden" id="flashcard-id" name="flashcard_id">
+
+            <label for="id_pergunta">Pergunta:</label>
+            <textarea id="id_pergunta" name="pergunta" class="form-control" rows="5" required>saddasd</textarea>
+
+            <label for="id_resposta">Resposta:</label>
+            <textarea id="id_resposta" name="resposta" class="form-control" rows="5" required>gsdgasdg</textarea>
+            <br><br>
+
+            <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                <input class="btn-save" type="submit" value="Salvar" id="btnSalvarEdit">
+            </a>
+        </form>
+    </div>
+</div>
+
+<!-- Modal deletar card -->
+<div id="modalDeletCard" class="modal-deletdeck">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <h2>Confirmar Exclusão</h2>
+        <p>Você tem certeza de que deseja excluir este flashcard?</p>
+        <form method="post" id="delete-flashcard-form">
+            {% csrf_token %}
+            <input type="hidden" id="delete-flashcard-id" name="flashcard_id"><br>
+            <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                <input class="btn-save" type="submit" value="Confirmar" id="btnDelet"
+                    style="width: 100px; background-color: #b0413e;">
+            </a>
+        </form>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var btnModalForm = document.getElementById("btnModalForm");
+        var modalForm = document.getElementById("modalForm");
+
+        var btnModalEditDeck = document.getElementById("btnModalEditDeck");
+        var modalEditDeck = document.getElementById("modalEditDeck");
+
+        var btnModalDeletDeck = document.getElementById("btnModalDeletDeck");
+        var modalDeletDeck = document.getElementById("modalDeletDeck");
+
+        var closeModal = document.getElementById("close-modal");
+
+        btnModalForm.onclick = function () {
+            modalForm.style.display = "block";
+        }
+        btnModalEditDeck.onclick = function () {
+            modalEditDeck.style.display = "block";
+        }
+        btnModalDeletDeck.onclick = function () {
+            modalDeletDeck.style.display = "block";
+        }
+
+        function closeAddModal() {
+            modalForm.style.display = "none";
+        }
+        function closeEditDeckModal() {
+            modalEditDeck.style.display = "none";
+        }
+        function closeDeletDeckModal() {
+            modalDeletDeck.style.display = "none";
+        }
+        function closeEditCardModal() {
+            modalEditCard.style.display = "none";
+        }
+        function closeDeletCardModal() {
+            modalDeletCard.style.display = "none";
+        }
+
+        // Adiciona evento de clique ao botão de fechar dos modais
+        $(document).on('click', '.fechar', function () {
+            // Fecha ambos os modais de edição e exclusão
+            closeAddModal();
+            closeEditDeckModal();
+            closeDeletDeckModal();
+            closeEditCardModal();
+            closeDeletCardModal();
+        });
+
+        // Adiciona evento de clique ao fundo dos modais para fechá-los
+        $(document).on('click', function (event) {
+            if ($(event.target).hasClass('modal-form') || $(event.target).hasClass('modal-editdeck') || $(event.target).hasClass('modal-deletdeck')) {
+                closeAddModal();
+                closeEditDeckModal();
+                closeDeletDeckModal();
+                closeEditCardModal();
+                closeDeletCardModal();
+            }
+        });
+
+        // JavaScript para lidar com a submissão do formulário de edição do deck
+        $(document).on('submit', '#edit-deck-form', function (e) {
+            e.preventDefault(); // Impede o comportamento padrão do formulário
+
+            // Obtém os dados do formulário
+            var formData = $(this).serialize();
+
+            // Envia uma requisição AJAX para a view de edição do deck
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'edit_deck' deck.id %}",
+                data: formData,
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    // Se ocorrer um erro durante a edição, exiba uma mensagem de erro adequada
+                    console.error(error);
+                }
+            });
+        });
+
+        // Abrir modal de edição de flashcard
+        $(document).on('click', '.btn-edit-flashcard', function () {
+            var flashcardId = $(this).data('id');
+            var pergunta = $(this).data('pergunta');
+            var resposta = $(this).data('resposta');
+
+            $('#flashcard-id').val(flashcardId);
+            $('#id_pergunta').val(pergunta);
+            $('#id_resposta').val(resposta);
+
+            $('#modalEditCard').show();
+        });
+
+        // Submeter edição de flashcard
+        $(document).on('submit', '#edit-flashcard-form', function (e) {
+            e.preventDefault();
+            var flashcardId = $('#flashcard-id').val();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: `/flashcard/edit/${flashcardId}/`,
+                data: formData,
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+        // Abrir modal de deleção de flashcard
+        $(document).on('click', '.btn-delet-flashcard', function () {
+            var flashcardId = $(this).data('id');
+            $('#delete-flashcard-id').val(flashcardId);
+            $('#modalDeletCard').show();
+        });
+
+        // Submeter deleção de flashcard
+        $(document).on('submit', '#delete-flashcard-form', function (e) {
+            e.preventDefault();
+            var flashcardId = $('#delete-flashcard-id').val();
+
+            $.ajax({
+                type: 'POST',
+                url: `/flashcard/delete/${flashcardId}/`,
+                data: $(this).serialize(),
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+
+</script>
+
+
 
 {% endblock %}

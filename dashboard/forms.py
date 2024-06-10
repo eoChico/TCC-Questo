@@ -9,6 +9,10 @@ class DeckForm(forms.ModelForm):
             'nome': 'Nome do Deck',
             'descricao': 'Descrição do Deck',
         }
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 8}),
+        }
 
 class FlashcardForm(forms.ModelForm):
     class Meta:
@@ -19,8 +23,8 @@ class FlashcardForm(forms.ModelForm):
             'resposta': 'Resposta',
         }
         widgets = {
-            'pergunta': forms.TextInput(attrs={'maxlength': 220}),
-            'resposta': forms.TextInput(attrs={'maxlength': 220}),
+            'pergunta': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+            'resposta': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
         }
 
 class EventoForm(forms.ModelForm):

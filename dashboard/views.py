@@ -9,6 +9,8 @@ from datetime import date, datetime, time
 import json
 from django.utils.html import format_html
 from django.forms.models import model_to_dict
+from django.template.loader import render_to_string
+
 
 # Create your views here.
 def home(request):
@@ -131,6 +133,7 @@ def flashcards(request):
     # Renderize o template com o formulário e os decks do usuário atual
     return render(request, 'flashcards.html', {'decks': decks, 'deck_form': deck_form})
 
+# Função para visualizar os detalhes do deck
 @login_required
 def flashcards_details(request, deck_id):
     # Obter o deck e os flashcards associados ao deck
@@ -161,15 +164,44 @@ def flashcards_details(request, deck_id):
             'flashcards_form': flashcards_form
         }
     )
-
-
+# Função para deletar o deck
 @login_required
-def deletar_deck(request, deck_id):
+def delete_deck(request, deck_id):
     deck = get_object_or_404(Deck, id=deck_id)
     if request.method == 'POST':
         deck.delete()
         return redirect('flashcards')
-    return redirect('flashcards')
+    return render(request, 'flashcards_details.html', {'deck': deck})
+# Função para editar o deck
+@login_required
+def edit_deck(request, deck_id):
+    deck = get_object_or_404(Deck, id=deck_id)
+    if request.method == 'POST':
+        form = DeckForm(request.POST, instance=deck)
+        if form.is_valid():
+            form.save()
+            # Retorna uma resposta JSON com os novos dados do deck
+            return JsonResponse({'nome': deck.nome, 'descricao': deck.descricao})
+    else:
+        form = DeckForm(instance=deck)
+    return render(request, 'flashcards_details.html', {'form': form, 'deck': deck})
+# Função para deletar o card
+def delete_flashcard(request, id):
+    flashcard = get_object_or_404(Flashcard, id=id)
+    flashcard.delete()
+    return JsonResponse({'success': True})
+# Função para editar o card
+def edit_flashcard(request, id):
+    flashcard = get_object_or_404(Flashcard, id=id)
+    if request.method == "POST":
+        form = FlashcardForm(request.POST, instance=flashcard)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)
+
+    
+    
 
 
 

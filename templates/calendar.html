@@ -78,11 +78,13 @@
         <div class="today-date">
 
             <div class="event-day"></div>
+
             <a class="" id="btnModalForm">
                 <div class="btn-newform">
                     <i class="fas fa-plus"></i>
                 </div>
             </a>
+            
             <div class="event-date" style="margin-right:100px"></div>
 
             <!-- Modal de Adição -->
@@ -111,16 +113,15 @@
                     <h2>Editar Evento</h2>
                     <form id="formEditEvento">
                         <label for="modalEditTitulo">Título:</label>
-                        <input class="form-control" type="text" id="modalEditTitulo" name="novoTitulo"><br>
+                        <input class="form-control" type="text" id="modalEditTitulo" name="novoTitulo" required><br>
 
                         <label for="modalEditDescricao">Descrição:</label>
-                        <textarea class="form-control" id="modalEditDescricao" name="novaDescricao"
-                            rows="8"></textarea><br>
+                        <textarea class="form-control" id="modalEditDescricao" name="novaDescricao" rows="8" required></textarea><br>
 
                         <label for="modalEditHora">Hora:</label>
-                        <input class="form-control" type="time" id="modalEditHora" name="novaHora"><br>
+                        <input class="form-control" type="time" id="modalEditHora" name="novaHora" required><br>
 
-                        <input class="form-control" type="hidden" id="modalEditData" name="novaData"><br>
+                        <input class="form-control" type="hidden" id="modalEditData" name="novaData" required><br>
 
                         <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
                             <input class="btn-save" type="submit" value="Salvar" id="btnSalvarEdit">
@@ -140,7 +141,6 @@
                         {% csrf_token %}
                         <input type="hidden" id="eventoId" name="eventoId">
                         <!-- Adicione o campo eventoIdExcluir oculto -->
-
                         <br>
                         <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
                             <input class="btn-save" type="submit" value="Confirmar" id="btnDelet"
