@@ -1,0 +1,25 @@
+{% extends 'side_bar.html' %}
+{% load static %}
+
+{%block head%}
+<link rel="stylesheet" href="{% static 'css/exams.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="color: #fff;">Provas {{ nivel.ensino }}</h1><br>
+
+    <div class="provas">
+
+        {% for vestibular in vestibulares %}
+        <a class="box" style="color: inherit; text-decoration: none;" href="{% url 'provas' vestibular.pk %}">
+            <div class="image-box">
+                <img src="{{ vestibular.urlImg }}" alt="{{ vestibular.nome }}" class="img">
+            </div>
+            <h3>{{ vestibular.nome }}</h3>
+        </a>
+        {% endfor %}
+        
+    </div>
+</div>
+{% endblock %}

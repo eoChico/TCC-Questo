@@ -78,11 +78,13 @@
         <div class="today-date">
 
             <div class="event-day"></div>
+
             <a class="" id="btnModalForm">
                 <div class="btn-newform">
                     <i class="fas fa-plus"></i>
                 </div>
             </a>
+            
             <div class="event-date" style="margin-right:100px"></div>
 
             <!-- Modal de Adição -->
@@ -111,19 +113,18 @@
                     <h2>Editar Evento</h2>
                     <form id="formEditEvento">
                         <label for="modalEditTitulo">Título:</label>
-                        <input class="form-control" type="text" id="modalEditTitulo" name="novoTitulo"><br>
+                        <input class="form-control" type="text" id="modalEditTitulo" name="novoTitulo" required><br>
 
                         <label for="modalEditDescricao">Descrição:</label>
-                        <textarea class="form-control" id="modalEditDescricao" name="novaDescricao"
-                            rows="8"></textarea><br>
+                        <textarea class="form-control" id="modalEditDescricao" name="novaDescricao" rows="8" required></textarea><br>
 
                         <label for="modalEditHora">Hora:</label>
-                        <input class="form-control" type="time" id="modalEditHora" name="novaHora"><br>
+                        <input class="form-control" type="time" id="modalEditHora" name="novaHora" required><br>
 
-                        <input class="form-control" type="hidden" id="modalEditData" name="novaData"><br>
+                        <input class="form-control" type="hidden" id="modalEditData" name="novaData" required><br>
 
                         <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
-                            <input class="btn-save" type="submit" value="Salvar" id="btnSalvarEdit">
+                            <input class="btn-save" type="submit" value="Salvar">
                         </a>
 
                     </form>
@@ -140,7 +141,6 @@
                         {% csrf_token %}
                         <input type="hidden" id="eventoId" name="eventoId">
                         <!-- Adicione o campo eventoIdExcluir oculto -->
-
                         <br>
                         <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
                             <input class="btn-save" type="submit" value="Confirmar" id="btnDelet"
@@ -312,20 +312,22 @@
                             <h3>${evento.titulo}</h3>                        
                             <p>${evento.descricao}</p>
                             <p>${evento.hora}</p>
-                                <div style="margin-left: 82%; margin-top: -25px;">
+                            <div class="box-botao">
+                                <div>
                                     <a class="btnModalEdit" evento-id="${evento.id}">
                                         <div class="btn-edit">
                                             <i class="fas fa-pen"></i>
                                         </div>
                                     </a>
                                 </div>
-                                <div style="margin-left: 92%; margin-top: -30px;">
+                                <div">
                                     <a class="btnModalDelet" evento-id="${evento.id}">
                                         <div class="btn-delet">
                                             <i class="fas fa-trash"></i>
                                         </div>
                                     </a>
                                 </div>
+                            </div>
                         </div>`);
                         $(".btnModalEdit").click(function () {
                             var eventoId = $(this).attr('evento-id');
@@ -354,15 +356,17 @@
                             });
                         });
 
-                        $("#btnSalvarEdit").click(function () {
+                        function editEvento(event) {
+                            event.preventDefault(); // Prevent default form submission
+                    
                             var eventoId = eventIdToUpdate;
                             var novoTitulo = $('#modalEditTitulo').val();
                             var novaDescricao = $('#modalEditDescricao').val();
                             var novaHora = $('#modalEditHora').val();
                             var novaData = $('#modalEditData').val();
-
+                    
                             novaHora = novaHora.split(':').slice(0, 2).join(':');
-
+                    
                             $.ajax({
                                 type: "POST",
                                 url: "{% url 'edit_event' %}",
@@ -382,7 +386,8 @@
                                     console.error("Erro ao editar evento:", error.responseText);
                                 }
                             });
-                        });
+                        }
+                        $('#formEditEvento').on('submit', editEvento);
 
                         $("#btnDelet").click(function () {
                             var eventoId = $('#eventoId').val();

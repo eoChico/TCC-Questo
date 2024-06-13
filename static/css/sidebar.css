@@ -40,7 +40,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 21px;
-    color: #fff;
+    color: #ae81d6;
 }
 
 .sidebar .menu .logo {
@@ -170,4 +170,5 @@ body {
         margin-left: 0;
     }
   }
+  
   
