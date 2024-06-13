@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Deck (models.Model):
-    nome = models.CharField(max_length=100)
-    descricao = models.TextField()
+    nome = models.CharField(max_length=11)
+    descricao = models.TextField(max_length=70)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -12,15 +12,15 @@ class Deck (models.Model):
     
 class Flashcard(models.Model):
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
-    pergunta = models.TextField()
-    resposta = models.TextField()
+    pergunta = models.TextField(max_length=150)
+    resposta = models.TextField(max_length=150)
 
     def __str__(self):
         return f"Flashcard: {self.pergunta}"
     
 
 class Evento(models.Model):
-    titulo = models.CharField(max_length=255)
+    titulo = models.CharField(max_length=64)
     descricao = models.TextField()
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     data = models.DateField()
@@ -39,6 +39,8 @@ class Nivel(models.Model):
 class Vestibular(models.Model):
     nome = models.CharField(max_length=200)
     ensino = models.ForeignKey(Nivel, on_delete=models.CASCADE)
+    urlImg = models.URLField()
+    desc = models.TextField()
     def __str__(self):
         return self.nome
 
@@ -61,7 +63,6 @@ class Correcao(models.Model):
     urlCorrecao = models.URLField()
     def __str__(self):
         return f"Correção do caderno {self.caderno.numero} da prova do {self.caderno.prova.titulo}"
-
 
 
 

@@ -1,6 +1,5 @@
 from django import forms
 from .models import Deck, Flashcard, Evento, Planejamento
-import datetime
 
 class DeckForm(forms.ModelForm):
     class Meta:
@@ -10,6 +9,10 @@ class DeckForm(forms.ModelForm):
             'nome': 'Nome do Deck',
             'descricao': 'Descrição do Deck',
         }
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 8}),
+        }
 
 class FlashcardForm(forms.ModelForm):
     class Meta:
@@ -18,6 +21,10 @@ class FlashcardForm(forms.ModelForm):
         labels = {
             'pergunta': 'Pergunta',
             'resposta': 'Resposta',
+        }
+        widgets = {
+            'pergunta': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+            'resposta': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
         }
 
 class EventoForm(forms.ModelForm):
