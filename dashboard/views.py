@@ -68,6 +68,7 @@ def detalhes_event(request):
             return JsonResponse({'error': 'Evento não encontrado ou você não tem permissão para acessá-lo.'})
     return JsonResponse({'error': 'Método de requisição não suportado.'})
 
+@login_required
 def detalhes_event(request):
     if request.method == 'GET':
         evento_id = request.GET.get('eventoId')

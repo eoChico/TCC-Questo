@@ -144,9 +144,6 @@ body {
     line-height: 40px;
     padding-top: 5px;
 }
-
-<<<<<<< HEAD
-=======
 /* Estilos para dispositivos móveis */
 @media screen and (max-width: 768px) {
     .sidebar{
@@ -174,4 +171,3 @@ body {
     }
   }
   
->>>>>>> 91c7512facc1b39fcdfec1d817a9642af3d0668e
