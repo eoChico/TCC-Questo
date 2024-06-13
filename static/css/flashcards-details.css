@@ -1,0 +1,263 @@
+.container {
+    padding: 20px;
+    color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.container-flashcards {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.flashcard {
+    margin: 10px;
+    width: 200px;
+    color: #000;
+    height: 250px;
+    perspective: 1000px;
+}
+
+.flashcards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1.5s;
+    transform-style: preserve-3d;
+}
+
+.flashcard:hover .flipper {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    z-index: 1;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-word;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.front {
+    transform: rotateY(0deg);
+}
+
+.back {
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+.btn-container {
+    display: flex;
+    float: right;
+}
+
+.btn-save {
+    height: 30px;
+    width: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7ebd53;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-save:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.btn-newform {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7ebd53;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.btn-newform:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.btn-edit {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5e81ac;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btn-edit:hover {
+    background-color: #f0f0f0;
+    /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+    color: #000;
+}
+
+.btn-delet {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b0413e;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btn-delet:hover {
+    background-color: #f0f0f0;
+    /* Mudando a cor de fundo quando o mouse passa sobre o botão */
+    color: #000;
+}
+
+.modal-form {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
+.modal-editdeck {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
+.modal-deletdeck {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+
+.modal-content {
+    background-color: #28232d;
+    color: #fff;
+    margin: 7% auto;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 23%;
+    animation: modal-in 0.3s ease-in-out;
+}
+
+.form-control {
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.fechar,
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-left: -20px;
+}
+
+.fechar:hover,
+.fechar:focus,
+.close:hover,
+.close:focus {
+    color: #aaa;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+}
+
+@keyframes modal-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 70%;
+    }
+}

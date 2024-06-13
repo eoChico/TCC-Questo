@@ -76,23 +76,23 @@
                         <div class="day-content">
                             {% for planejamento in planejamentos %}
                             <div>
-                                <input type="checkbox" id="planejamento{{ planejamento.id }}" name="planejamentos"
-                                    value="{{ planejamento.id }}">
-                                <label for="planejamento{{ planejamento.id }}">{{ planejamento.name }}</label>
+                                <h4 style="font-weight: 500">
+                                    <input type="checkbox" id="planejamento{{ planejamento.id }}" name="planejamentos"
+                                        value="{{ planejamento.id }}">
+                                    <label for="planejamento{{ planejamento.id }}">{{ planejamento.name }}</label>
+                                </h4>
                             </div>
                             {% endfor %}
                         </div>
                     </div>
                     {% endfor %}
-                    <br>
-                    <button type="submit" class="btn-save"
-                        style="width: 100px; background-color: #b0413e;">Confirmar</button>
+                    <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
+                        <input class="btn-save" type="submit" value="Confirmar" id="btnDelet"
+                            style="width: 100px; background-color: #b0413e;">
+                    </a>
                 </form>
             </div>
         </div>
-
-
-
     </div>
 
     <script>

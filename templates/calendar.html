@@ -124,7 +124,7 @@
                         <input class="form-control" type="hidden" id="modalEditData" name="novaData" required><br>
 
                         <a type="submit" value="Salvar" style="display: flex; justify-content: center;">
-                            <input class="btn-save" type="submit" value="Salvar" id="btnSalvarEdit">
+                            <input class="btn-save" type="submit" value="Salvar">
                         </a>
 
                     </form>
@@ -356,15 +356,17 @@
                             });
                         });
 
-                        $("#btnSalvarEdit").click(function () {
+                        function editEvento(event) {
+                            event.preventDefault(); // Prevent default form submission
+                    
                             var eventoId = eventIdToUpdate;
                             var novoTitulo = $('#modalEditTitulo').val();
                             var novaDescricao = $('#modalEditDescricao').val();
                             var novaHora = $('#modalEditHora').val();
                             var novaData = $('#modalEditData').val();
-
+                    
                             novaHora = novaHora.split(':').slice(0, 2).join(':');
-
+                    
                             $.ajax({
                                 type: "POST",
                                 url: "{% url 'edit_event' %}",
@@ -384,7 +386,8 @@
                                     console.error("Erro ao editar evento:", error.responseText);
                                 }
                             });
-                        });
+                        }
+                        $('#formEditEvento').on('submit', editEvento);
 
                         $("#btnDelet").click(function () {
                             var eventoId = $('#eventoId').val();
