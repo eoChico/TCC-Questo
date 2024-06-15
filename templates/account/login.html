@@ -3,6 +3,8 @@
 {% load allauth account %}
 {% block content %}
 <title>Entrar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 <div class="main-login">
     <div class="left-login">
@@ -40,7 +42,7 @@
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
-                        <button type="submit">{% trans "Entrar" %}</button>
+                        <button type="submit">{% trans "Logar" %}</button>
                         <div class="link-urls">
                             <a href="{% url 'account_reset_password' %}">{% trans 'Esqueceu sua senha?' %}</a>
                             {% blocktrans %}

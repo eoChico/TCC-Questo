@@ -30,7 +30,7 @@
 
 .right-singup>h1 {
     color: #fff;
-    font-size: 2.3vw;
+    font-size: 30px;
 }
 
 .right-singup>img {
@@ -103,7 +103,7 @@ button {
     font-weight: 800;
     letter-spacing: 3px;
     background: #ac6cff;
-    color: #000A12;
+    color: #fff;
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px #ac6cff;
 }
@@ -130,4 +130,30 @@ a:hover {
     font-weight: 500;
     text-decoration: underline;
     color: #ed4245;
+}
+
+@media screen and (max-width: 768px){
+    .main-singup {
+        flex-direction: column;
+    }
+    .right-singup{
+        width: 100%;
+        text-align: center;
+        height: 30%;
+    }
+
+    .right-singup>img {
+        display: none;
+    }
+    .left-singup {
+        width: 100%;
+        height: 67%;
+    }
+    .card-singup {
+        width: 90%;
+        height: 100%;
+    }
+    ul{
+        font-size: 12px;
+    }
 }
