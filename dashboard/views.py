@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import FlashcardForm,DeckForm, EventoForm, PlannerForm
+from .forms import FlashcardForm,DeckForm, EventoForm, PlannerForm,NotesForm
 from django.http import HttpResponse, JsonResponse, HttpResponseServerError
-from .models import Evento,Flashcard, Deck, Nivel, Vestibular, Prova, Caderno, Correcao, DayOfWeek, Planejamento
+from .models import Evento,Flashcard, Deck, Nivel, Vestibular,Notes, Prova, Caderno, Correcao, DayOfWeek, Planejamento
 from django.views.decorators.csrf import csrf_exempt
 from datetime import date, datetime, time
 import json
@@ -252,3 +252,17 @@ def deletar_planejamentos(request):
 @login_required
 def funcionalidades(request):
     return render(request,'funcionalidades.html')
+    
+@login_required
+def notes(request):
+    notes = Notes.objects.filter(usuario=request.user)
+    if request.method == 'POST':
+        notes_form = NotesForm(request.POST)  # Inicialize o formulário com os dados submetidos
+        if notes_form.is_valid():  # Verifique se o formulário é válido
+            notes = notes_form.save(commit=False)  # Salve os dados do formulário sem commit no banco de dados
+            notes.usuario = request.user  # Atribua o usuário atual ao deck
+            notes.save()  # Salve o deck no banco de dados
+            return redirect('notes')
+    else:
+        notes_form = NotesForm()
+    return render(request,'notes.html',{'notes':notes,'notes_form':notes_form})

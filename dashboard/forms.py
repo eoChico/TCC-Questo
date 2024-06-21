@@ -1,5 +1,6 @@
 from django import forms
-from .models import Deck, Flashcard, Evento, Planejamento
+from .models import Deck, Flashcard, Evento, Planejamento,Notes
+from colorfield.widgets import ColorWidget
 
 class DeckForm(forms.ModelForm):
     class Meta:
@@ -56,4 +57,17 @@ class PlannerForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'days_of_week': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
             'hora': forms.TimeInput(format='%H:%M', attrs={'type': 'time', 'class': 'form-control'}),
+        }
+
+class NotesForm(forms.ModelForm):
+    class Meta:
+        model = Notes
+        fields = ['content', 'color']
+        labels = {
+            'content': 'Conteúdo',
+            'color': 'Cor',
+        }
+        widgets = {
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 8}),
+            'color': forms.Select(choices=Notes.COLOR_CHOICES),
         }

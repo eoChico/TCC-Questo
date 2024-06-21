@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from colorfield.fields import ColorField
 
 # Create your models here.
 class Deck (models.Model):
@@ -78,3 +79,23 @@ class DayOfWeek(models.Model):
     name = models.CharField(max_length=15)
     def __str__(self):
         return self.name
+
+class Notes(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(max_length=200)
+    COLOR_CHOICES = [
+        ("#000000", "Preto"),
+        ("#3fa34d", "Verde"),
+        ("#276fbf", "Azul"),
+        ("#f9dc5c","Amarelo"),
+        ("#fcab10","Laranja"),
+        ("#f8333c","Vermelho"),
+        ("#ee85b5","Rosa"),
+        ("#9f6ba0","Roxo")
+
+
+        # Adicione mais cores aqui
+    ]
+    color = models.CharField(max_length=7, choices=COLOR_CHOICES)
+    def __str__(self):
+        return self.content

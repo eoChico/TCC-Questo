@@ -32,10 +32,11 @@
     align-items: center;
     word-break: break-word;
     text-align: center;
-    width: 175px;
+    justify-content: center;
+    width: 270px;
     color: #000;
-    height: 200px;
-    background-color: #fff;
+    height: 300px;
+    color: #fff;    
     border-radius: 5px;
     margin: 7px;
     padding: 5px;

@@ -1,0 +1,75 @@
+{% extends 'side_bar.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/notes.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1 style="color: #fff;">Minhas Anatoções</h1>
+        <div class="btn-container">
+            <div id="btnModalForm" class="btn-newform">
+                <i class="fas fa-plus"></i>
+            </div>
+        </div>
+    </div>
+    <div class="container-decks">
+        {% if not notes %}
+        <div style="text-align: center;width: 100%;">
+            <img src="{% static 'img/no-data.svg' %}" width="450" height="450" alt="mulher estudando">
+            <h1>Parece que você ainda não tem nenhuma anotação</h1>
+        </div>
+        {% else %}
+        {% for note in notes %}
+        <a style="color: inherit; text-decoration: none;">
+            <div class="deck" style="background-color:{{note.color}};">
+                <h3>{{note.content}}</h3>
+            </div>
+        </a>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<div id="modalForm" class="modal-form">
+    <div class="modal-content">
+        <span class="fechar">&times;</span>
+        <form method="post">
+            <h2>Criar Anotação</h2>
+                {% csrf_token %}
+                {{ notes_form }}
+            <br>
+            <div class="btn-save">
+                <input class="btn-save" type="submit" value="Salvar">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var btnModalForm = document.getElementById("btnModalForm");
+        var modalForm = document.getElementById("modalForm");
+
+        btnModalForm.onclick = function () {
+            modalForm.style.display = "block";
+        }
+
+        function closeAddModal() {
+            modalForm.style.display = "none";
+        }
+
+        document.querySelector('.fechar').onclick = function () {
+            closeAddModal();
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modalForm) {
+                closeAddModal();
+            }
+        }
+    });
+</script>
+{% endblock %}

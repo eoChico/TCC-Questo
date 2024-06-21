@@ -48,6 +48,8 @@ urlpatterns = [
     path('deletar-planejamentos/', views.deletar_planejamentos, name='deletar_planejamentos'),
 
     path('accounts/funcionalidades/', views.funcionalidades, name='funcionalidades'),
+    path('accounts/notes/', views.notes, name='notes'),
+
 
    
 ]
