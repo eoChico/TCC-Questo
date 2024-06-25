@@ -47,8 +47,9 @@ urlpatterns = [
     path('accounts/planner/', views.planner, name='planner'),
     path('deletar-planejamentos/', views.deletar_planejamentos, name='deletar_planejamentos'),
 
-    path('accounts/funcionalidades/', views.funcionalidades, name='funcionalidades'),
     path('accounts/notes/', views.notes, name='notes'),
+    path('notes/delete/<int:note_id>/', views.notes_delete, name='delete_notes'),
+    path('notes/edit/<int:note_id>/', views.notes_edit, name='edit_notes')
 
 
    

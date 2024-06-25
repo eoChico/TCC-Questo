@@ -120,7 +120,14 @@ a {
 .left-login-image {
     width: 35vw;
 }
-
+ul {
+    font-weight: 700;
+    color: #ed4245;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 a:hover {
     font-weight: 500;
     text-decoration: underline;

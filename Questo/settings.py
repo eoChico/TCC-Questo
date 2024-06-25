@@ -143,11 +143,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+ACCOUNT_LOGOUT_ON_GET = True 
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
-EMAIL_HOST_USER = 'franciscofernandes7484@gmail.com'
-EMAIL_HOST_PASSWORD = 'gsti fymi sfok fdua'
+EMAIL_HOST_USER = 'questodev@gmail.com'
+EMAIL_HOST_PASSWORD = 'buvq sqla gjyj kgwd '
 
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'

@@ -157,11 +157,6 @@ h3 {
     font-size: 20px;
 }
 
-.btn-delet:hover {
-    background-color: #f0f0f0;
-    /* Mudando a cor de fundo quando o mouse passa sobre o botão */
-    color: #000;
-}
 
 .modal-form {
     display: none;
@@ -239,6 +234,7 @@ h3 {
     text-decoration: none;
     cursor: pointer;
 }
+
 
 textarea {
     resize: none;

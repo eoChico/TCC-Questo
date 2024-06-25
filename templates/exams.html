@@ -8,10 +8,14 @@
 {% block content %}
 <div class="container">
     <h1 style="color: #fff;">Escolha o nível de ensino</h1><br>
-    {% for niveis in niveis %}
-    <a href="{% url 'vestibulares' niveis.pk %}">
-        <h2>{{ niveis.ensino }}</h2>
-    </a>
+    <div class="provas">
+        {% for niveis in niveis %}
+        <div class="nivel">
+        <a href="{% url 'vestibulares' niveis.pk %}">
+            <h2>{{ niveis.ensino }}</h2>
+        </a>
+    </div>
     {% endfor %}
+</div>
 </div>
 {% endblock %}

@@ -1,48 +1,178 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Questo</title>
-  <link rel="stylesheet" href="{%static 'css/home.css '%}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
   <header>
     <div class="left">
-      <h4>Funcionalidades</h4>
-      <h4>Sobre nós</h4>
-      <h4>FAQ</h4>
+      <a href="#Funcionalidades">
+        <h4>Funcionalidades</h4>
+      </a>
+      <a href="#Sobre">
+        <h4>Sobre</h4>
+      </a>
+      <a href="#Contato">
+        <h4>Contato</h4>
+      </a>
     </div>
     <div class="right">
-      <div class="login active"><a href="#">Entrar</a></div>
-      <div class="singup"><a href="#">Cadastrar</a></div>
+      <div class="login active"><a href="{%url 'account_login'%}">Entrar</a></div>
+      <div class="singup"><a href="{%url 'account_signup'%}">Cadastrar</a></div>
     </div>
   </header>
   <main>
     <div class="left-container">
       <div class="sub-container">
-        <div class="container-img">
-        </div>
+        <div class="container-img"></div>
         <div class="container-title">
           <h1>QUESTO</h1>
           <h2>O melhor lugar para organizar seus estudos para vestibulares de forma efetiva.</h2>
           <div class="buttons">
-            <a href="#">
-            <div class="experimente">
-              Experimente Agora |
-              <i class="fa-solid fa-arrow-right-long"></i>
-            </div>
-          </a>
+            <a href="{%url 'account_login'%}">
+              <div class="experimente">
+                Experimente Agora |
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
     <div class="container-right">
+      <img src="{%static 'img/home/dictionary-animate.svg'%}" alt="aa">
     </div>
   </main>
+  <section class="second">
+    <div class="sobre">
+      <div class="frase">
+        <h1>Conheça como o Questo pode te ajudar</h1>
+        <h1>a aumentar a produtividade dos seus estudos.</h1>
+      </div>
+      <div class="funcionalidades" id="Funcionalidades">
+        <div class="carousel-container">
+          <div class="carousel">
+            <button class="prev">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="carousel-inner">
+              <div class="carousel-item">
+                <img src="{%static 'img/home/homepage-calendario.jpeg'%}" alt="calendario">
+                <h3>Calendário</h3>
+              </div>
+              <div class="carousel-item">
+                <img src="{%static 'img/home/homepage-flashcard.jpeg'%}" alt="calendario">
+                <h3>Flashcards</h3>
+              </div>
+              <div class="carousel-item">
+                <img src="{%static 'img/home/homepage-planner.jpeg'%}" alt="calendario">
+                <h3>Planner Semanal</h3>
+              </div>
+              <div class="carousel-item">
+                <img src="{%static 'img/home/homepage-provas.jpeg'%}" alt="calendario">
+                <h3>Banca de Provas</h3>
+              </div>
+              <div class="carousel-item">
+                <img src="{%static 'img/home/homepage-provas.jpeg'%}" alt="calendario">
+                <h3>Bloco de anotações</h3>
+              </div>
+              <!-- Add more items here -->
+            </div>
+            <button class="next">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <section class="third">
+        <div class="frase" id="Sobre">
+          <h1>Por que</h1>
+          <h1>usar o Questo?</h1>
+        </div>
+        <div class="porque">
+          <div class="porque-img">
+            <img src="{%static 'img/home/subindo.svg'%}" alt="subindo">
+          </div>
+          <div class="porque-text">
+          <p>Utilizar uma plataforma de organização de estudos é essencial para melhorar a gestão do tempo, aumentar a produtividade e reduzir o estresse dos estudantes. Essas ferramentas ajudam na criação de planos de estudo, definição de prazos, acompanhamento do progresso e personalização de métodos de aprendizagem, contribuindo para um melhor desempenho acadêmico e uma experiência de estudo mais eficiente e organizada.
+          </p>
+        </div>
+        </div>
+      </section>
+
+    </div>
+  </section>
+  <section class="contato" id="Contato">
+    <div class="container">
+      <div class="contact-info">
+        <h2>Contatos</h2>
+        <p>Você pode entrar em contatos com nós das seguintes formas:</p>
+        <ul>
+          <li><i class="fa fa-phone"></i> (12) 98134-5226</li>
+          <li><i class="fa fa-envelope"></i> questodev@gmail.com</li>
+        </ul>
+      </div>
+      <div class="equipe">
+        <h2>Equipe de desenvolvimento</h2>
+        <ul >
+          <li>Francisco Arthur de Lima Fernandes</li>
+          <li>Júlia Valentine Machado</li>
+          <li>Eric Yuji de Oliveira Murata</li>
+          <li>Luara Camila Lima de Carvalaho</li>
+          <li>Lucas Pereira Banhos dos Santos</li>
+
+        </ul>
+      </div>
+    </div>
+  </section>
+  <script>
+    const carouselInner = document.querySelector('.carousel-inner');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    let currentIndex = 0;
+    let itemsPerSlide = window.innerWidth <= 768 ? 1 : 2; // Initial check
+    const totalItems = carouselInner.children.length;
+
+    function updateCarousel() {
+      const width = carouselInner.parentElement.offsetWidth / itemsPerSlide + 10;
+      carouselInner.style.transform = `translateX(-${currentIndex * width}px)`;
+    }
+
+    prevButton.addEventListener('click', () => {
+      currentIndex -= itemsPerSlide;
+      if (currentIndex < 0) {
+        currentIndex = totalItems - itemsPerSlide;
+      }
+      updateCarousel();
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentIndex += itemsPerSlide;
+      if (currentIndex >= totalItems) {
+        currentIndex = 0;
+      }
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', () => {
+      itemsPerSlide = window.innerWidth <= 768 ? 1 : 2; // Update items per slide based on screen width
+      updateCarousel();
+    });
+
+    updateCarousel();
+
+  </script>
 </body>
+
 </html>

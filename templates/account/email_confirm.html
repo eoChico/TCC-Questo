@@ -1,14 +1,21 @@
 {% load i18n %}
+{%load static%}
 {% load account %}
+<title>Confirmar endereço de E-mail</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{%static 'css/email-confirm.css'%}">
 {% load allauth %}
+<div class="container">
     {% element h1 %}
         {% trans "Confirm Email Address" %}
     {% endelement %}
+    <img src="{% static 'img/logoQuesto.png'%}" alt="logo" height="100" class="logo">
     {% if confirmation %}
         {% user_display confirmation.email_address.user as user_display %}
         {% if can_confirm %}
             <p>
-                {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
+                {% blocktrans with confirmation.email_address.email as email %}Por favor confirme que este endereço de email <a href="mailto:{{ email }}">{{ email }}</a> pode ser utilizado.{% endblocktrans %}
             </p>
             {% url 'account_confirm_email' confirmation.key as action_url %}
             {% element form method="post" action=action_url %}
@@ -21,12 +28,13 @@
             {% endelement %}
         {% else %}
             <p>
-                {% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}
+                {% blocktrans %}Unable to confirm {{ email }} .{% endblocktrans %}
             </p>
         {% endif %}
     {% else %}
         {% url 'account_email' as email_url %}
         <p>
-            {% blocktrans %}This email confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new email confirmation request</a>.{% endblocktrans %}
+            {% blocktrans %}Este token já expirou, Porfavor <a href="{{ email_url }}"> solicite uma nova confirmação de email</a>.{% endblocktrans %}
         </p>
+    </div>
     {% endif %}

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 <div class="main-login">
     <div class="left-login">
-        <h1>Desperte sua produtividade e <br>  mantenha-se organizado</h1>
+        <h1>Desperte sua produtividade e <br> mantenha-se organizado</h1>
         <img src="{% static 'img/login_background.svg'%}" class="left-login-image" alt="background">
     </div>
     <div class="right-login">
@@ -20,8 +20,28 @@
             {% url 'account_login' as login_url %}
             <form method="post" action="{{ login_url }}" class="login-form">
                 {% csrf_token %}
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field in form %}
+                    {% if field.errors %}
+                    <ul>
+                        {% for error in field.errors %}
+                        <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                        <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                {% endif %}
                 {% for field in form %}
-                {% if field.name != 'remember' %} 
+                {% if field.name != 'remember' %}
                 <div class="form-group">
                     <div class="textfield">
                         <label for="{{ field.id_for_label }}">{{ field.label }}:</label>

@@ -84,7 +84,6 @@ class Notes(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=200)
     COLOR_CHOICES = [
-        ("#000000", "Preto"),
         ("#3fa34d", "Verde"),
         ("#276fbf", "Azul"),
         ("#f9dc5c","Amarelo"),

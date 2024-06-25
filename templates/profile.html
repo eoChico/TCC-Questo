@@ -1,34 +1,51 @@
 {% extends "side_bar.html" %}
+{%load static%}
 
 {% block title%}
 Profile
 {%endblock%}
 
 {%block head%}
-<style>
-    .main{
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-    .container{
-        background-color:#d9d9d9;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-        border-radius: 15px;
-        width: 500px;
-    }
-</style>
+<link rel="stylesheet" href="{%static 'css/profile.css'%}">
 {%endblock%}
 
 {%block content%}
     <div class="container">
-        <h1>Usuário:{{request.user.username}}</h1>
-        <h1>Email: {{request.user.email}}</h1>
-        
-        <a href="{% url 'account_logout'%}">Sair</a>
-        <a href="{% url 'account_reset_password' %}">Resetar Senha</a>
+        <div class="user">
+            <h1>{{request.user.username}}</h1>
+            <div class="email-container">
+                <h3>E-mail:</h3>
+                <h2>{{request.user.email}}</h2>
+            </div>
+        </div>
+        <div class="eventos">
+            <h3>próximos eventos:</h3>
+            {%if eventos == null%}
+                <h4>vc nao tem eventos</h4>
+            {%else%}
+                {%for evento in eventos %}
+                <div class="evento">
+                    <h1>{{evento.titulo}}</h1>
+                    <h1>{{evento.data}}</h1>
+                    <h1>{{evento.hora}}</h1>
+                </div>
+                {%endfor%}
+            {%endif%}
+        </div>
+        <div class="estatisticas">
+            <div class="notes">
+                <h1>Quantas anotações você tem ?</h1>
+                <h2>{{notes}}</h2>
+            </div>
+            <div class="decks">
+                <h1>Quantos baralhos você tem ?</h1>
+                <h2>{{decks}}</h2>
+            </div>
+        </div>
+        <div class="buttons">
+            <a href="{% url 'account_logout'%}" style="background-color:#b0413e;">Sair</a>
+            <a href="{% url 'account_reset_password' %}"style="background-color:#5e81ac;">Resetar Senha</a>
+        </div>
     </div>
     
 {%endblock%}

@@ -9,6 +9,7 @@ from datetime import date, datetime, time
 import json
 from django.utils.html import format_html
 from django.forms.models import model_to_dict
+from django.utils import timezone
 from django.template.loader import render_to_string
 
 
@@ -18,7 +19,10 @@ def home(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    eventos = Evento.objects.filter(usuario=request.user,data__gte=timezone.now())[:10]
+    decks = Deck.objects.filter(usuario=request.user).count()
+    notes = Notes.objects.filter(usuario=request.user).count()
+    return render(request, 'profile.html',{'eventos':eventos,'decks':decks,'notes':notes})
 
 
 @login_required
@@ -187,11 +191,13 @@ def edit_deck(request, deck_id):
         form = DeckForm(instance=deck)
     return render(request, 'flashcards_details.html', {'form': form, 'deck': deck})
 # Função para deletar o card
+@login_required
 def delete_flashcard(request, id):
     flashcard = get_object_or_404(Flashcard, id=id)
     flashcard.delete()
     return JsonResponse({'success': True})
 # Função para editar o card
+@login_required
 def edit_flashcard(request, id):
     flashcard = get_object_or_404(Flashcard, id=id)
     if request.method == "POST":
@@ -249,9 +255,6 @@ def deletar_planejamentos(request):
                 return redirect('planner')
     return redirect('planner')
 
-@login_required
-def funcionalidades(request):
-    return render(request,'funcionalidades.html')
     
 @login_required
 def notes(request):
@@ -266,3 +269,23 @@ def notes(request):
     else:
         notes_form = NotesForm()
     return render(request,'notes.html',{'notes':notes,'notes_form':notes_form})
+
+@login_required
+def notes_delete(request, note_id):
+    if request.method == 'POST':
+        note = get_object_or_404(Notes, id=note_id)
+        note.delete()
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+@login_required
+def notes_edit(request, note_id):
+    note = get_object_or_404(Notes, id=note_id)
+    if request.method == "POST":
+        form = NotesForm(request.POST, instance=note)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'errors': form.errors}, status=400)
+    return JsonResponse({'success': False}, status=401)
